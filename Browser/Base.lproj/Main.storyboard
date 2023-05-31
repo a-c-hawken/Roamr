@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Browser" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D10-x5-pry">
+                                <rect key="frame" x="-1" y="769" width="393" height="83"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="83" id="O7n-TH-Esg"/>
+                                </constraints>
+                                <items>
+                                    <tabBarItem title="" id="TD3-8M-75k"/>
+                                    <tabBarItem title="" id="PbJ-2i-kz6"/>
+                                    <tabBarItem title="" id="Qkl-Kt-9a5"/>
+                                    <tabBarItem title="" id="9GA-RJ-NHk"/>
+                                    <tabBarItem title="" id="oRm-0f-VdL">
+                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                                    </tabBarItem>
+                                </items>
+                            </tabBar>
+                            <searchBar userInteractionEnabled="NO" contentMode="redraw" misplaced="YES" searchBarStyle="prominent" text="" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="Qe7-Sm-k5S">
+                                <rect key="frame" x="0.0" y="713" width="393" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="pdi-9r-PLG"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits" textContentType="url"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="3rH-Lf-Awz"/>
+                                </connections>
+                            </searchBar>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="tT5-a3-u8A">
+                                <rect key="frame" x="357" y="731" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <wkWebView contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S9U-3g-o1X">
+                                <rect key="frame" x="-1" y="59" width="394" height="654"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="D10-x5-pry" secondAttribute="trailing" constant="1" id="1CK-LE-AyS"/>
+                            <constraint firstItem="D10-x5-pry" firstAttribute="leading" secondItem="Qe7-Sm-k5S" secondAttribute="leading" id="5bD-Ps-3Vq"/>
+                            <constraint firstItem="Qe7-Sm-k5S" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7tA-TP-a4P"/>
+                            <constraint firstItem="D10-x5-pry" firstAttribute="top" secondItem="tT5-a3-u8A" secondAttribute="bottom" constant="18" id="V8E-ov-fbM"/>
+                            <constraint firstItem="S9U-3g-o1X" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lT8-dj-fdB"/>
+                            <constraint firstAttribute="bottom" secondItem="D10-x5-pry" secondAttribute="bottom" symbolic="YES" id="mzt-Ga-IYz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tT5-a3-u8A" secondAttribute="trailing" constant="16" id="pRa-VX-ClR"/>
+                            <constraint firstItem="D10-x5-pry" firstAttribute="top" secondItem="Qe7-Sm-k5S" secondAttribute="bottom" id="zWW-n6-lio"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="135.1145038167939" y="3.5211267605633805"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="csO-T4-ScU">
+            <objects>
+                <viewController id="eHj-xS-zOR" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sq6-Eh-cjW">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ok-rd-1es">
+                                <rect key="frame" x="-1" y="769" width="393" height="83"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="83" id="csZ-Ic-ZbK"/>
+                                </constraints>
+                                <items>
+                                    <tabBarItem title="" id="kG7-rK-fG4"/>
+                                    <tabBarItem title="" id="xpe-xb-pft"/>
+                                    <tabBarItem title="" id="v2X-Kw-QvS"/>
+                                    <tabBarItem title="" id="tsg-P2-y4s"/>
+                                    <tabBarItem title="" id="kEn-Us-PyL">
+                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                                    </tabBarItem>
+                                </items>
+                            </tabBar>
+                            <searchBar userInteractionEnabled="NO" contentMode="redraw" searchBarStyle="prominent" text="" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="VLJ-DF-PDG">
+                                <rect key="frame" x="0.0" y="713" width="393" height="56"/>
+                                <textInputTraits key="textInputTraits" textContentType="url"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="vUp-fY-NIr"/>
+                                </connections>
+                            </searchBar>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="fev-VO-8Fs">
+                                <rect key="frame" x="357" y="731" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <searchBar userInteractionEnabled="NO" contentMode="redraw" fixedFrame="YES" searchBarStyle="prominent" text="" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="CxJ-63-CLL">
+                                <rect key="frame" x="0.0" y="387" width="393" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits" textContentType="url"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="2O8-Iw-UBr"/>
+                                </connections>
+                            </searchBar>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="xUX-Wc-xF7">
+                                <rect key="frame" x="357" y="405" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="dwD-dz-Zj6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fev-VO-8Fs" firstAttribute="top" secondItem="dwD-dz-Zj6" secondAttribute="top" constant="672" id="LRr-WP-yT0"/>
+                            <constraint firstItem="4ok-rd-1es" firstAttribute="leading" secondItem="sq6-Eh-cjW" secondAttribute="leadingMargin" constant="-17" id="VSB-n4-53B"/>
+                            <constraint firstAttribute="trailing" secondItem="VLJ-DF-PDG" secondAttribute="trailing" id="dEd-xM-FSC"/>
+                            <constraint firstItem="4ok-rd-1es" firstAttribute="top" secondItem="VLJ-DF-PDG" secondAttribute="bottom" id="gGB-7X-2J6"/>
+                            <constraint firstItem="dwD-dz-Zj6" firstAttribute="trailing" secondItem="4ok-rd-1es" secondAttribute="trailing" constant="1" id="gpk-8A-Eyj"/>
+                            <constraint firstItem="fev-VO-8Fs" firstAttribute="trailing" secondItem="sq6-Eh-cjW" secondAttribute="trailingMargin" id="hfy-Ur-ObH"/>
+                            <constraint firstItem="4ok-rd-1es" firstAttribute="top" secondItem="fev-VO-8Fs" secondAttribute="bottom" constant="18" id="kVF-BD-Qcv"/>
+                            <constraint firstItem="VLJ-DF-PDG" firstAttribute="leading" secondItem="sq6-Eh-cjW" secondAttribute="leading" id="vh2-We-tfG"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ju2-xa-otn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="854" y="4"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
