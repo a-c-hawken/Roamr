@@ -11,6 +11,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var textInput: UITextField!
     @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var loadingBar: UIProgressView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +66,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         menuButton.menu = mainMenu
         textInput.delegate = self
+        updateNavigationButtons()
             }
 
             // Trigger the search when the Return key is pressed
@@ -80,4 +82,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
                 return true
     }
+    // Go back to the previous web page
+       @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
+           if webView.canGoBack {
+               webView.goBack()
+           }
+       }
+
+       // Go forward to the next web page
+       @IBAction func forwardButtonTapped(_ sender: UIBarButtonItem) {
+           if webView.canGoForward {
+               webView.goForward()
+           }
+       }
+
+       // Enable or disable the back and forward buttons based on the web view's navigation state
+       func updateNavigationButtons() {
+           backButton.isEnabled = webView.canGoBack
+           forwardButton.isEnabled = webView.canGoForward
+       }
 }

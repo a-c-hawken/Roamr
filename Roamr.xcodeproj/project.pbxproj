@@ -36,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DF2514E02A2585CE0075EB42 /* Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Browser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF2514E02A2585CE0075EB42 /* Roamr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roamr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF2514E32A2585CE0075EB42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF2514E52A2585CE0075EB42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DF2514E72A2585CE0075EB42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,9 +44,9 @@
 		DF2514EC2A2585D00075EB42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF2514EF2A2585D00075EB42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF2514F12A2585D00075EB42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DF2514F62A2585D00075EB42 /* BrowserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrowserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF2514F62A2585D00075EB42 /* RoamrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoamrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF2514FA2A2585D00075EB42 /* BrowserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserTests.swift; sourceTree = "<group>"; };
-		DF2515002A2585D00075EB42 /* BrowserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrowserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF2515002A2585D00075EB42 /* RoamrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoamrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF2515042A2585D00075EB42 /* BrowserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserUITests.swift; sourceTree = "<group>"; };
 		DF2515062A2585D00075EB42 /* BrowserUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,9 +89,9 @@
 		DF2514E12A2585CE0075EB42 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DF2514E02A2585CE0075EB42 /* Browser.app */,
-				DF2514F62A2585D00075EB42 /* BrowserTests.xctest */,
-				DF2515002A2585D00075EB42 /* BrowserUITests.xctest */,
+				DF2514E02A2585CE0075EB42 /* Roamr.app */,
+				DF2514F62A2585D00075EB42 /* RoamrTests.xctest */,
+				DF2515002A2585D00075EB42 /* RoamrUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,9 +130,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DF2514DF2A2585CE0075EB42 /* Browser */ = {
+		DF2514DF2A2585CE0075EB42 /* Roamr */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DF25150A2A2585D00075EB42 /* Build configuration list for PBXNativeTarget "Browser" */;
+			buildConfigurationList = DF25150A2A2585D00075EB42 /* Build configuration list for PBXNativeTarget "Roamr" */;
 			buildPhases = (
 				DF2514DC2A2585CE0075EB42 /* Sources */,
 				DF2514DD2A2585CE0075EB42 /* Frameworks */,
@@ -142,14 +142,14 @@
 			);
 			dependencies = (
 			);
-			name = Browser;
+			name = Roamr;
 			productName = Browser;
-			productReference = DF2514E02A2585CE0075EB42 /* Browser.app */;
+			productReference = DF2514E02A2585CE0075EB42 /* Roamr.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DF2514F52A2585D00075EB42 /* BrowserTests */ = {
+		DF2514F52A2585D00075EB42 /* RoamrTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DF25150D2A2585D00075EB42 /* Build configuration list for PBXNativeTarget "BrowserTests" */;
+			buildConfigurationList = DF25150D2A2585D00075EB42 /* Build configuration list for PBXNativeTarget "RoamrTests" */;
 			buildPhases = (
 				DF2514F22A2585D00075EB42 /* Sources */,
 				DF2514F32A2585D00075EB42 /* Frameworks */,
@@ -160,14 +160,14 @@
 			dependencies = (
 				DF2514F82A2585D00075EB42 /* PBXTargetDependency */,
 			);
-			name = BrowserTests;
+			name = RoamrTests;
 			productName = BrowserTests;
-			productReference = DF2514F62A2585D00075EB42 /* BrowserTests.xctest */;
+			productReference = DF2514F62A2585D00075EB42 /* RoamrTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		DF2514FF2A2585D00075EB42 /* BrowserUITests */ = {
+		DF2514FF2A2585D00075EB42 /* RoamrUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DF2515102A2585D00075EB42 /* Build configuration list for PBXNativeTarget "BrowserUITests" */;
+			buildConfigurationList = DF2515102A2585D00075EB42 /* Build configuration list for PBXNativeTarget "RoamrUITests" */;
 			buildPhases = (
 				DF2514FC2A2585D00075EB42 /* Sources */,
 				DF2514FD2A2585D00075EB42 /* Frameworks */,
@@ -178,9 +178,9 @@
 			dependencies = (
 				DF2515022A2585D00075EB42 /* PBXTargetDependency */,
 			);
-			name = BrowserUITests;
+			name = RoamrUITests;
 			productName = BrowserUITests;
-			productReference = DF2515002A2585D00075EB42 /* BrowserUITests.xctest */;
+			productReference = DF2515002A2585D00075EB42 /* RoamrUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -206,7 +206,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DF2514DB2A2585CE0075EB42 /* Build configuration list for PBXProject "Browser" */;
+			buildConfigurationList = DF2514DB2A2585CE0075EB42 /* Build configuration list for PBXProject "Roamr" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -219,9 +219,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DF2514DF2A2585CE0075EB42 /* Browser */,
-				DF2514F52A2585D00075EB42 /* BrowserTests */,
-				DF2514FF2A2585D00075EB42 /* BrowserUITests */,
+				DF2514DF2A2585CE0075EB42 /* Roamr */,
+				DF2514F52A2585D00075EB42 /* RoamrTests */,
+				DF2514FF2A2585D00075EB42 /* RoamrUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -286,12 +286,12 @@
 /* Begin PBXTargetDependency section */
 		DF2514F82A2585D00075EB42 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DF2514DF2A2585CE0075EB42 /* Browser */;
+			target = DF2514DF2A2585CE0075EB42 /* Roamr */;
 			targetProxy = DF2514F72A2585D00075EB42 /* PBXContainerItemProxy */;
 		};
 		DF2515022A2585D00075EB42 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DF2514DF2A2585CE0075EB42 /* Browser */;
+			target = DF2514DF2A2585CE0075EB42 /* Roamr */;
 			targetProxy = DF2515012A2585D00075EB42 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -437,9 +437,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6GQMCZS5X3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Browser/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Browser;
+				INFOPLIST_KEY_CFBundleDisplayName = Roamr;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -466,9 +467,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6GQMCZS5X3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Browser/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Browser;
+				INFOPLIST_KEY_CFBundleDisplayName = Roamr;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -503,7 +505,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Browser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Browser";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Roamr.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Roamr";
 			};
 			name = Debug;
 		};
@@ -522,7 +524,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Browser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Browser";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Roamr.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Roamr";
 			};
 			name = Release;
 		};
@@ -563,7 +565,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DF2514DB2A2585CE0075EB42 /* Build configuration list for PBXProject "Browser" */ = {
+		DF2514DB2A2585CE0075EB42 /* Build configuration list for PBXProject "Roamr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DF2515082A2585D00075EB42 /* Debug */,
@@ -572,7 +574,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DF25150A2A2585D00075EB42 /* Build configuration list for PBXNativeTarget "Browser" */ = {
+		DF25150A2A2585D00075EB42 /* Build configuration list for PBXNativeTarget "Roamr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DF25150B2A2585D00075EB42 /* Debug */,
@@ -581,7 +583,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DF25150D2A2585D00075EB42 /* Build configuration list for PBXNativeTarget "BrowserTests" */ = {
+		DF25150D2A2585D00075EB42 /* Build configuration list for PBXNativeTarget "RoamrTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DF25150E2A2585D00075EB42 /* Debug */,
@@ -590,7 +592,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DF2515102A2585D00075EB42 /* Build configuration list for PBXNativeTarget "BrowserUITests" */ = {
+		DF2515102A2585D00075EB42 /* Build configuration list for PBXNativeTarget "RoamrUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DF2515112A2585D00075EB42 /* Debug */,
