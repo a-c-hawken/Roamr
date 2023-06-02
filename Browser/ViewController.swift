@@ -1,7 +1,7 @@
 import UIKit
 import WebKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate {
 
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var newTabButton: UIToolbar!
@@ -13,14 +13,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingBar: UIProgressView!
     
+    // Enable or disable the back and forward buttons based on the web view's navigation state
+    func updateNavigationButtons() {
+        backButton.isEnabled = webView.canGoBack
+        forwardButton.isEnabled = webView.canGoForward
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+            if let url = URL(string: "https://google.com") {
+                let request = URLRequest(url: url)
+                webView.load(request)
+            }
         
-        if let url = URL(string: "https://google.com") {
-            let request = URLRequest(url: url)
-            webView.load(request)
-        }
         
         var menuItems: [UIAction] {
             return [
@@ -40,7 +45,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     // Handle the action for the standard item
                 }),
                 UIAction(title: "Reload", image: UIImage(systemName: "arrow.clockwise"), handler: { (_) in
-                    // Handle the action for the standard item
+                    self.webView.reload()
+                    self.updateNavigationButtons()
                 }),
                 UIAction(title: "Request desktop browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
                     // Handle the action for the standard item
@@ -66,6 +72,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         menuButton.menu = mainMenu
         textInput.delegate = self
+        webView.navigationDelegate = self
         updateNavigationButtons()
             }
 
@@ -80,12 +87,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         webView.load(request)
                     }
                 }
+                updateNavigationButtons()
                 return true
     }
+    
     // Go back to the previous web page
        @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
            if webView.canGoBack {
                webView.goBack()
+               updateNavigationButtons()
            }
        }
 
@@ -93,12 +103,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
        @IBAction func forwardButtonTapped(_ sender: UIBarButtonItem) {
            if webView.canGoForward {
                webView.goForward()
+               updateNavigationButtons()
            }
        }
-
-       // Enable or disable the back and forward buttons based on the web view's navigation state
-       func updateNavigationButtons() {
-           backButton.isEnabled = webView.canGoBack
-           forwardButton.isEnabled = webView.canGoForward
-       }
+    
 }
