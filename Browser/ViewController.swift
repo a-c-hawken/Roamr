@@ -1,6 +1,7 @@
 import UIKit
+import WebKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var newTabButton: UIToolbar!
@@ -8,9 +9,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var forwardButton: UIBarButtonItem!
 
+    @IBOutlet weak var textInput: UITextField!
+    @IBOutlet weak var webView: WKWebView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        if let url = URL(string: "https://google.com") {
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
         
         var menuItems: [UIAction] {
             return [
@@ -55,5 +64,20 @@ class ViewController: UIViewController {
         }
         
         menuButton.menu = mainMenu
+        textInput.delegate = self
+            }
+
+            // Trigger the search when the Return key is pressed
+            func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+                textField.resignFirstResponder() // Dismiss the keyboard
+                if let searchText = textField.text, !searchText.isEmpty {
+                    let textSearch = searchText.replacingOccurrences(of: " ", with: "+")
+                    let urlString = "https://www.google.com/search?q=\(textSearch)"
+                    if let url = URL(string: urlString) {
+                        let request = URLRequest(url: url)
+                        webView.load(request)
+                    }
+                }
+                return true
     }
 }
