@@ -59,20 +59,31 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <textInputTraits key="textInputTraits" keyboardType="webSearch" returnKeyType="google" textContentType="url"/>
                             </textField>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MGE-i4-hzc">
-                                <rect key="frame" x="55" y="843" width="320" height="4"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </progressView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="65V-hc-H9R">
+                                <rect key="frame" x="344" y="818" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDn-tj-MiJ">
+                                <rect key="frame" x="331" y="811" width="47" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise" catalog="system"/>
+                                <connections>
+                                    <action selector="reloadWebView" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="Q5m-Nz-T2d"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="65V-hc-H9R" secondAttribute="trailing" constant="66" id="3UU-6f-sr3"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="4AB-eE-LB3"/>
                             <constraint firstItem="iQ5-Ip-pqd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Asg-yX-pyY"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DGR-j3-G1J"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wDn-tj-MiJ" secondAttribute="trailing" constant="52" id="I0h-AV-sYh"/>
+                            <constraint firstItem="p8X-dL-z4d" firstAttribute="top" secondItem="65V-hc-H9R" secondAttribute="bottom" constant="11" id="Iyo-iC-2h4"/>
                             <constraint firstItem="ZYV-7a-AVU" firstAttribute="top" secondItem="iQ5-Ip-pqd" secondAttribute="bottom" constant="2" id="JDc-pY-E1a"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="MUZ-QH-n0x"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VJb-5d-4Z4"/>
+                            <constraint firstItem="p8X-dL-z4d" firstAttribute="top" secondItem="wDn-tj-MiJ" secondAttribute="bottom" constant="3" id="cyS-VJ-p7d"/>
                             <constraint firstItem="iQ5-Ip-pqd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gaH-KD-Aaa"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="top" secondItem="ZYV-7a-AVU" secondAttribute="bottom" id="iOH-54-CbT"/>
                             <constraint firstItem="ZYV-7a-AVU" firstAttribute="centerX" secondItem="iQ5-Ip-pqd" secondAttribute="centerX" id="ntS-ir-5Wa"/>
@@ -86,9 +97,10 @@
                     <connections>
                         <outlet property="backButton" destination="9qL-yV-Js7" id="PbY-Gv-UCQ"/>
                         <outlet property="forwardButton" destination="el6-mS-cgl" id="Hw3-6i-JyP"/>
-                        <outlet property="loadingBar" destination="MGE-i4-hzc" id="Tu9-xP-g4O"/>
+                        <outlet property="loadingWheel" destination="65V-hc-H9R" id="Vme-aT-qgl"/>
                         <outlet property="menuButton" destination="LZS-uQ-8Fi" id="ifo-eM-S5M"/>
                         <outlet property="newTabButton" destination="p8X-dL-z4d" id="8vq-gX-cZl"/>
+                        <outlet property="reloadButton" destination="wDn-tj-MiJ" id="mPq-eH-eGr"/>
                         <outlet property="tabViewButton" destination="p8X-dL-z4d" id="L7r-f6-k4j"/>
                         <outlet property="textInput" destination="ZYV-7a-AVU" id="ns2-Wa-cpy"/>
                         <outlet property="webView" destination="iQ5-Ip-pqd" id="hbf-Nj-yWB"/>
@@ -100,6 +112,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="113" height="128"/>
         <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>

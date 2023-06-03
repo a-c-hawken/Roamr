@@ -9,9 +9,11 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var forwardButton: UIBarButtonItem!
 
+    @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var textInput: UITextField!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingBar: UIProgressView!
+    @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
     
     // Enable or disable the back and forward buttons based on the web view's navigation state
     func updateNavigationButtons() {
@@ -45,10 +47,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 UIAction(title: "Split View", image: UIImage(systemName: "square.bottomhalf.filled"), handler: { (_) in
                     // Handle the action for the standard item
                 }),
-                UIAction(title: "Reload", image: UIImage(systemName: "arrow.clockwise"), handler: { (_) in
-                    self.webView.reload()
-                    self.updateNavigationButtons()
-                }),
                 UIAction(title: "Request desktop browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
                     // Handle the action for the standard item
                 }),
@@ -75,6 +73,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         textInput.delegate = self
         webView.navigationDelegate = self
         updateNavigationButtons()
+        
+        loadingWheel.hidesWhenStopped = true
             }
 
             // Trigger the search when the Return key is pressed
@@ -107,11 +107,23 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                webView.goForward()
            }
        }
+        
+        @IBAction func reloadWebView() {
+            webView.reload()
+        }
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+            loadingWheel.startAnimating()
+            reloadButton.isHidden = true
+        }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if let pageTitle = webView.title {
             textInput.text = pageTitle
+            loadingWheel.stopAnimating()
+            reloadButton.isHidden = false
         }
+        
         updateNavigationButtons()
     }
     
