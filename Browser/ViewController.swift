@@ -21,11 +21,12 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DispatchQueue.main.async {
             if let url = URL(string: "https://google.com") {
                 let request = URLRequest(url: url)
-                webView.load(request)
+                self.webView.load(request)
             }
-        
+        }
         
         var menuItems: [UIAction] {
             return [
@@ -84,7 +85,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                     let urlString = "https://www.google.com/search?q=\(textSearch)"
                     if let url = URL(string: urlString) {
                         let request = URLRequest(url: url)
-                        webView.load(request)
+                        DispatchQueue.main.async {
+                            self.webView.load(request)
+                        }
                     }
                 }
                 updateNavigationButtons()
@@ -95,7 +98,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
        @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
            if webView.canGoBack {
                webView.goBack()
-               updateNavigationButtons()
            }
        }
 
@@ -103,8 +105,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
        @IBAction func forwardButtonTapped(_ sender: UIBarButtonItem) {
            if webView.canGoForward {
                webView.goForward()
-               updateNavigationButtons()
            }
        }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if let pageTitle = webView.title {
+            textInput.text = pageTitle
+        }
+        updateNavigationButtons()
+    }
     
 }
