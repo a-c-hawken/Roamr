@@ -49,10 +49,13 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                         }
                     }
                 }),
+                UIAction(title: "Split View", image: UIImage(systemName: "square.bottomhalf.filled"), handler: { (_) in
+                    // Handle the action for the standard item
+                }),
                 UIAction(title: "Find on Page", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
                     // Handle the action for the standard item
                 }),
-                UIAction(title: "Split View", image: UIImage(systemName: "square.bottomhalf.filled"), handler: { (_) in
+                UIAction(title: "Zoom", image: UIImage(systemName: "arrow.up.left.and.down.right.magnifyingglass"), handler: { (_) in
                     // Handle the action for the standard item
                 }),
                 UIAction(title: "Request Desktop Browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
