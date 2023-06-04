@@ -86,13 +86,13 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="k1Y-Ep-EvG"/>
-                                    <barButtonItem title="newTab" image="plus" catalog="system" width="50" id="ST2-Ye-BOo">
+                                    <barButtonItem title="newTab" image="plus" catalog="system" width="50" id="ST2-Ye-BOo"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ziS-Kt-O8c"/>
+                                    <barButtonItem title="tabView" image="square.on.square" catalog="system" width="50" id="8je-W5-L3E">
                                         <connections>
-                                            <action selector="openTabView" destination="BYZ-38-t0r" id="tCZ-7D-F1L"/>
+                                            <action selector="openTabView" destination="BYZ-38-t0r" id="6N8-55-tNp"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ziS-Kt-O8c"/>
-                                    <barButtonItem title="tabView" image="square.on.square" catalog="system" width="50" id="8je-W5-L3E"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="58B-Zc-tbW"/>
                                     <barButtonItem title="Menu" image="ellipsis" catalog="system" width="50" id="LZS-uQ-8Fi"/>
                                 </items>
@@ -265,30 +265,6 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="0.1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QdY-aD-v7v">
-                                                    <rect key="frame" x="388.66666666666669" y="11.999999999999998" width="21.333333333333332" height="20.333333333333332"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" systemColor="opaqueSeparatorColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="qnp-hW-tp5" detailTextLabel="F0G-x2-jfA" style="IBUITableViewCellStyleValue1" id="lwY-bJ-AN2">
-                                        <rect key="frame" x="0.0" y="137.66666793823242" width="430" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lwY-bJ-AN2" id="TaY-nZ-eNo">
-                                            <rect key="frame" x="0.0" y="0.0" width="430" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Version" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qnp-hW-tp5">
-                                                    <rect key="frame" x="20" y="11.999999999999998" width="57" height="20.333333333333332"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" systemColor="opaqueSeparatorColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="0.1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="F0G-x2-jfA">
                                                     <rect key="frame" x="388.66666666666669" y="11.999999999999998" width="21.333333333333332" height="20.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
