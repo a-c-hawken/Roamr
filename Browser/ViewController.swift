@@ -116,6 +116,11 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         @IBAction func reloadWebView() {
             webView.reload()
         }
+        
+    @IBAction func openTabView(){
+        performSegue(withIdentifier: "tabViewSegue", sender: self)
+    }
+    
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
             loadingWheel.startAnimating()
