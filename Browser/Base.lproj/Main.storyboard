@@ -50,15 +50,31 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZYV-7a-AVU">
-                                <rect key="frame" x="55" y="809" width="320" height="38"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="InH-aX-CH3">
+                                <rect key="frame" x="55" y="809" width="323" height="40"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZYV-7a-AVU">
+                                        <rect key="frame" x="1.3333333333333428" y="1" width="320.33333333333326" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="UHn-Ym-dW8"/>
+                                            <constraint firstAttribute="height" constant="38" id="yyE-nS-6eN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="webSearch" returnKeyType="google" textContentType="url"/>
+                                    </textField>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="UHn-Ym-dW8"/>
-                                    <constraint firstAttribute="height" constant="38" id="yyE-nS-6eN"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZYV-7a-AVU" secondAttribute="trailing" id="7QF-Sk-4N2"/>
+                                    <constraint firstItem="3KV-Hl-mCf" firstAttribute="trailing" secondItem="ZYV-7a-AVU" secondAttribute="trailing" constant="1.3333333333333712" id="HHa-vp-wgG"/>
+                                    <constraint firstItem="ZYV-7a-AVU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3KV-Hl-mCf" secondAttribute="leading" id="PQM-qI-Sv2"/>
+                                    <constraint firstItem="ZYV-7a-AVU" firstAttribute="centerY" secondItem="InH-aX-CH3" secondAttribute="centerY" id="XpT-rP-BOZ"/>
+                                    <constraint firstItem="ZYV-7a-AVU" firstAttribute="centerX" secondItem="InH-aX-CH3" secondAttribute="centerX" id="Xq9-ds-vmQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZYV-7a-AVU" secondAttribute="trailing" constant="1.3333333333333712" id="qdy-dU-lcs"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZYV-7a-AVU" secondAttribute="bottom" constant="1" id="ywn-Xo-Tft"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits" keyboardType="webSearch" returnKeyType="google" textContentType="url"/>
-                            </textField>
+                                <viewLayoutGuide key="contentLayoutGuide" id="ZGp-9w-Mur"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="3KV-Hl-mCf"/>
+                            </scrollView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="65V-hc-H9R">
                                 <rect key="frame" x="344" y="818" width="20" height="20"/>
                             </activityIndicatorView>
@@ -74,26 +90,27 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="InH-aX-CH3" firstAttribute="top" secondItem="iQ5-Ip-pqd" secondAttribute="bottom" constant="2" id="3G4-Qt-ZBg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="65V-hc-H9R" secondAttribute="trailing" constant="66" id="3UU-6f-sr3"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="4AB-eE-LB3"/>
+                            <constraint firstItem="InH-aX-CH3" firstAttribute="centerY" secondItem="wDn-tj-MiJ" secondAttribute="centerY" id="97k-wl-o9F"/>
+                            <constraint firstItem="InH-aX-CH3" firstAttribute="bottom" secondItem="p8X-dL-z4d" secondAttribute="top" id="AeG-78-wyC"/>
                             <constraint firstItem="iQ5-Ip-pqd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Asg-yX-pyY"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DGR-j3-G1J"/>
                             <constraint firstItem="wDn-tj-MiJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="Ea0-en-WR6"/>
+                            <constraint firstItem="InH-aX-CH3" firstAttribute="trailing" secondItem="wDn-tj-MiJ" secondAttribute="trailing" id="GGi-Pj-EN2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wDn-tj-MiJ" secondAttribute="trailing" constant="52" id="I0h-AV-sYh">
                                 <variation key="heightClass=compact-widthClass=regular" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="top" secondItem="65V-hc-H9R" secondAttribute="bottom" constant="11" id="Iyo-iC-2h4"/>
-                            <constraint firstItem="ZYV-7a-AVU" firstAttribute="top" secondItem="iQ5-Ip-pqd" secondAttribute="bottom" constant="2" id="JDc-pY-E1a"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="MUZ-QH-n0x"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VJb-5d-4Z4"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="top" secondItem="wDn-tj-MiJ" secondAttribute="bottom" constant="3" id="cyS-VJ-p7d"/>
                             <constraint firstItem="iQ5-Ip-pqd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gaH-KD-Aaa"/>
-                            <constraint firstItem="p8X-dL-z4d" firstAttribute="top" secondItem="ZYV-7a-AVU" secondAttribute="bottom" constant="2" id="iOH-54-CbT"/>
-                            <constraint firstItem="ZYV-7a-AVU" firstAttribute="centerX" secondItem="iQ5-Ip-pqd" secondAttribute="centerX" id="ntS-ir-5Wa"/>
+                            <constraint firstItem="InH-aX-CH3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="55" id="mb3-sM-2hF"/>
                             <constraint firstItem="iQ5-Ip-pqd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="53" id="uFa-eB-93z">
                                 <variation key="heightClass=compact-widthClass=regular" constant="20" symbolic="YES"/>
                             </constraint>
-                            <constraint firstItem="ZYV-7a-AVU" firstAttribute="centerX" secondItem="p8X-dL-z4d" secondAttribute="centerX" id="vHI-WT-E3O"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LbT-vJ-HGm"/>
