@@ -49,10 +49,13 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                         }
                     }
                 }),
+                UIAction(title: "Find on Page", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
+                    // Handle the action for the standard item
+                }),
                 UIAction(title: "Split View", image: UIImage(systemName: "square.bottomhalf.filled"), handler: { (_) in
                     // Handle the action for the standard item
                 }),
-                UIAction(title: "Request desktop browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
+                UIAction(title: "Request Desktop Browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
                     // Handle the action for the standard item
                 }),
                 UIAction(title: "Private Mode", image: UIImage(systemName: "eye.slash"), handler: { (_) in
