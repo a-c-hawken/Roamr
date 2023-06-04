@@ -12,7 +12,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var textInput: UITextField!
     @IBOutlet weak var webView: WKWebView!
-    @IBOutlet weak var loadingBar: UIProgressView!
     @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
     
     // Enable or disable the back and forward buttons based on the web view's navigation state
@@ -42,7 +41,13 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                     // Handle the action for the standard item
                 }),
                 UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up"), handler: { (_) in
-                    // Handle the action for the standard item
+                    if let urlString = self.webView.url?.absoluteString {
+                        let message = "Check out this link:"
+                        if let url = URL(string: urlString) {
+                            let activityViewController = UIActivityViewController(activityItems: [message, url], applicationActivities: nil)
+                            self.present(activityViewController, animated: true, completion: nil)
+                        }
+                    }
                 }),
                 UIAction(title: "Split View", image: UIImage(systemName: "square.bottomhalf.filled"), handler: { (_) in
                     // Handle the action for the standard item
@@ -125,6 +130,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
         
         updateNavigationButtons()
+            
     }
     
 }
