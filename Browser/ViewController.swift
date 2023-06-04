@@ -32,7 +32,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         var menuItems: [UIAction] {
             return [
                 UIAction(title: "Settings", image: UIImage(systemName: "gearshape"), handler: { (_) in
-                    // Handle the action for the standard item
+                    self.performSegue(withIdentifier: "settingsSegue", sender: self)
                 }),
                 UIAction(title: "Extensions", image: UIImage(systemName: "puzzlepiece.extension"), handler: { (_) in
                     // Handle the action for the standard item
