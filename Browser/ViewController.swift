@@ -12,20 +12,23 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var textInput: UITextField!
     @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var webView2: WKWebView?
     @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
     
     // Enable or disable the back and forward buttons based on the web view's navigation state
     func updateNavigationButtons() {
         backButton.isEnabled = webView.canGoBack
         forwardButton.isEnabled = webView.canGoForward
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [self] in
             if let url = URL(string: "https://google.com") {
                 let request = URLRequest(url: url)
-                self.webView.load(request)
+                webView.load(request)
+                self.webView2?.load(request)
             }
         }
         
@@ -49,8 +52,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                         }
                     }
                 }),
-                UIAction(title: "Split View", image: UIImage(systemName: "square.bottomhalf.filled"), handler: { (_) in
-                    // Handle the action for the standard item
+                UIAction(title: "Split View", image: UIImage(systemName: "square.bottomhalf.filled"), handler: { [self] (_) in
+                    self.performSegue(withIdentifier: "splitView", sender: self)
                 }),
                 UIAction(title: "Find on Page", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
                     // Handle the action for the standard item
@@ -83,6 +86,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         menuButton.menu = mainMenu
         textInput.delegate = self
         webView.navigationDelegate = self
+        webView2?.navigationDelegate = self
         updateNavigationButtons()
         
         loadingWheel.hidesWhenStopped = true
@@ -98,6 +102,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                         let request = URLRequest(url: url)
                         DispatchQueue.main.async {
                             self.webView.load(request)
+                            self.webView2?.load(request)
                         }
                     }
                 }
