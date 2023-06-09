@@ -12,7 +12,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var textInput: UITextField!
     @IBOutlet weak var webView: WKWebView!
-    @IBOutlet weak var webView2: WKWebView?
     @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
     
     // Enable or disable the back and forward buttons based on the web view's navigation state
@@ -28,7 +27,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             if let url = URL(string: "https://google.com") {
                 let request = URLRequest(url: url)
                 webView.load(request)
-                self.webView2?.load(request)
             }
         }
         
@@ -86,7 +84,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         menuButton.menu = mainMenu
         textInput.delegate = self
         webView.navigationDelegate = self
-        webView2?.navigationDelegate = self
         updateNavigationButtons()
         
         loadingWheel.hidesWhenStopped = true
@@ -102,7 +99,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                         let request = URLRequest(url: url)
                         DispatchQueue.main.async {
                             self.webView.load(request)
-                            self.webView2?.load(request)
                         }
                     }
                 }

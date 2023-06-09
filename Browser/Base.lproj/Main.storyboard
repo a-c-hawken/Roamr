@@ -6,46 +6,44 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tabs-->
-        <scene sceneID="Lyd-2r-0VL">
+        <!--Collection View Controller-->
+        <scene sceneID="HCa-kQ-WGV">
             <objects>
-                <viewController title="Tabs" id="noC-zb-gZE" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="S74-rQ-KcR">
+                <collectionViewController id="1HO-s3-l4Z" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Koc-zK-mvY">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="922"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nJP-Il-KTs">
-                                <rect key="frame" x="0.0" y="835" width="430" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="new tab" image="plus" catalog="system" id="keI-5R-vDJ"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Uvu-c0-PjK"/>
-                                    <barButtonItem title=" 00 Tabs" id="DEs-cs-Pii"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Uxi-kq-T4e"/>
-                                    <barButtonItem title="back" image="chevron.down" catalog="system" id="kyi-B3-80N"/>
-                                </items>
-                                <toolbarAppearance key="standardAppearance"/>
-                            </toolbar>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ipR-31-qX5">
-                                <rect key="frame" x="20" y="57" width="390" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Normal"/>
-                                    <segment title="Private"/>
-                                </segments>
-                            </segmentedControl>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="nEF-TQ-Tw3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Tabs" id="zAH-vT-WVO"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ia5-VU-mBM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VD6-FL-mbQ">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fOh-rR-yxx">
+                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ONq-CW-GK3">
+                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionViewCellContentView>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="1HO-s3-l4Z" id="bvd-a7-LuL"/>
+                            <outlet property="delegate" destination="1HO-s3-l4Z" id="36q-mQ-nes"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="Yif-a4-nh3"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yfi-Mg-WXf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3740.9302325581393" y="720.38626609442065"/>
+            <point key="canvasLocation" x="3349" y="729"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -168,8 +166,8 @@
                         <outlet property="textInput" destination="ZYV-7a-AVU" id="ns2-Wa-cpy"/>
                         <outlet property="webView" destination="iQ5-Ip-pqd" id="hbf-Nj-yWB"/>
                         <segue destination="RF4-aA-Mm7" kind="show" identifier="settingsSegue" id="vM3-q0-UPE"/>
-                        <segue destination="noC-zb-gZE" kind="presentation" identifier="tabViewSegue" modalPresentationStyle="formSheet" modalTransitionStyle="coverVertical" id="P8f-We-Pui"/>
                         <segue destination="OTu-5f-wlP" kind="show" identifier="splitView" id="uMH-Oz-rqa"/>
+                        <segue destination="1HO-s3-l4Z" kind="showDetail" identifier="tabViewSegue" id="5Wu-Qd-Ls0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -278,7 +276,7 @@
                 <exit id="K9w-dW-9k0" userLabel="Exit" sceneMemberID="exit"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YyV-fr-f5D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4559" y="720"/>
+            <point key="canvasLocation" x="4206" y="729"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PvP-lj-cz6">
@@ -301,7 +299,7 @@
         <!--View Controller-->
         <scene sceneID="Mfx-0G-Zc6">
             <objects>
-                <viewController id="OTu-5f-wlP" customClass="ViewController" customModule="Roamr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="OTu-5f-wlP" customClass="ViewController" customModule="Roamr" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U8R-6b-Yli">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -335,18 +333,6 @@
                                     <barButtonItem title="Menu" image="ellipsis" catalog="system" width="50" id="acJ-Ht-0U1"/>
                                 </items>
                             </toolbar>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wju-3H-WcV">
-                                <rect key="frame" x="0.0" y="461" width="430" height="346"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="346" id="zGr-fN-wnN"/>
-                                </constraints>
-                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxX-sy-Hmp">
                                 <rect key="frame" x="55" y="809" width="323" height="40"/>
                                 <subviews>
@@ -383,9 +369,23 @@
                                     <action selector="reloadWebView" destination="OTu-5f-wlP" eventType="primaryActionTriggered" id="9yt-6e-sjr"/>
                                 </connections>
                             </button>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tod-gJ-Mlx">
-                                <rect key="frame" x="0.0" y="59" width="430" height="390"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNC-FJ-krP">
+                                <rect key="frame" x="0.0" y="53" width="430" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="FX1-SK-PLo"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="deD-bb-CtY"/>
+                                    <constraint firstAttribute="width" constant="430" id="hCU-E3-egu"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="SJy-AC-Xw9" kind="embed" id="A4F-HL-S4e"/>
+                                </connections>
+                            </containerView>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wju-3H-WcV">
+                                <rect key="frame" x="0.0" y="461" width="430" height="346"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="346" id="zGr-fN-wnN"/>
+                                </constraints>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -400,24 +400,24 @@
                             <constraint firstItem="4TW-Zr-IG1" firstAttribute="trailing" secondItem="GzQ-2L-UFD" secondAttribute="trailing" constant="52" id="2u4-7O-lt7">
                                 <variation key="heightClass=compact-widthClass=regular" constant="0.0"/>
                             </constraint>
-                            <constraint firstItem="wju-3H-WcV" firstAttribute="top" secondItem="tod-gJ-Mlx" secondAttribute="bottom" constant="12" id="98o-kp-7Vi"/>
                             <constraint firstItem="vJw-6Q-cB9" firstAttribute="leading" secondItem="4TW-Zr-IG1" secondAttribute="leading" id="BJJ-zK-9Kp"/>
                             <constraint firstItem="mxX-sy-Hmp" firstAttribute="trailing" secondItem="GzQ-2L-UFD" secondAttribute="trailing" id="CRQ-Gm-PMv"/>
                             <constraint firstItem="mxX-sy-Hmp" firstAttribute="leading" secondItem="4TW-Zr-IG1" secondAttribute="leading" constant="55" id="D2Q-NK-xj5"/>
-                            <constraint firstItem="tod-gJ-Mlx" firstAttribute="top" secondItem="4TW-Zr-IG1" secondAttribute="top" id="Eo3-yo-CCU"/>
                             <constraint firstItem="4TW-Zr-IG1" firstAttribute="trailing" secondItem="xZU-HI-8B6" secondAttribute="trailing" constant="66" id="NmX-Cl-dYX"/>
+                            <constraint firstItem="BNC-FJ-krP" firstAttribute="top" secondItem="U8R-6b-Yli" secondAttribute="top" constant="53" id="QQ6-12-zbm"/>
                             <constraint firstItem="mxX-sy-Hmp" firstAttribute="top" secondItem="wju-3H-WcV" secondAttribute="bottom" constant="2" id="Tt1-0G-leb"/>
                             <constraint firstItem="mxX-sy-Hmp" firstAttribute="centerY" secondItem="GzQ-2L-UFD" secondAttribute="centerY" id="W9g-qU-Nsg"/>
-                            <constraint firstItem="wju-3H-WcV" firstAttribute="leading" secondItem="tod-gJ-Mlx" secondAttribute="leading" id="XG6-mh-3A2"/>
                             <constraint firstItem="vJw-6Q-cB9" firstAttribute="bottom" secondItem="4TW-Zr-IG1" secondAttribute="bottom" id="YQp-5T-jVY"/>
                             <constraint firstItem="vJw-6Q-cB9" firstAttribute="trailing" secondItem="4TW-Zr-IG1" secondAttribute="trailing" id="ZNF-HD-pjT"/>
                             <constraint firstItem="vJw-6Q-cB9" firstAttribute="top" secondItem="GzQ-2L-UFD" secondAttribute="bottom" constant="3" id="csi-lg-fgy"/>
                             <constraint firstItem="GzQ-2L-UFD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4TW-Zr-IG1" secondAttribute="leading" symbolic="YES" id="dwl-93-79O"/>
                             <constraint firstItem="wju-3H-WcV" firstAttribute="leading" secondItem="4TW-Zr-IG1" secondAttribute="leading" id="ePL-RU-vHz"/>
+                            <constraint firstItem="wju-3H-WcV" firstAttribute="top" secondItem="BNC-FJ-krP" secondAttribute="bottom" constant="8" symbolic="YES" id="eia-1L-442"/>
                             <constraint firstItem="wju-3H-WcV" firstAttribute="trailing" secondItem="4TW-Zr-IG1" secondAttribute="trailing" id="esT-SW-4Dp"/>
-                            <constraint firstItem="wju-3H-WcV" firstAttribute="trailing" secondItem="tod-gJ-Mlx" secondAttribute="trailing" id="rf5-rx-9ke"/>
+                            <constraint firstItem="wju-3H-WcV" firstAttribute="top" secondItem="BNC-FJ-krP" secondAttribute="bottom" constant="8" symbolic="YES" id="f0O-Yw-bjf"/>
                             <constraint firstItem="vJw-6Q-cB9" firstAttribute="trailing" secondItem="4TW-Zr-IG1" secondAttribute="trailing" id="siP-mi-VFd"/>
                             <constraint firstItem="mxX-sy-Hmp" firstAttribute="bottom" secondItem="vJw-6Q-cB9" secondAttribute="top" id="tma-9b-H1Q"/>
+                            <constraint firstItem="BNC-FJ-krP" firstAttribute="trailing" secondItem="4TW-Zr-IG1" secondAttribute="trailing" id="vjQ-tu-Pds"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Eh0-mc-fiL"/>
@@ -432,18 +432,63 @@
                         <outlet property="tabViewButton" destination="vJw-6Q-cB9" id="9U3-Qx-2nq"/>
                         <outlet property="textInput" destination="Afq-jP-xyA" id="sNF-BH-DTg"/>
                         <outlet property="webView" destination="wju-3H-WcV" id="xVc-HM-KOV"/>
-                        <outlet property="webView2" destination="tod-gJ-Mlx" id="NIa-g0-BTB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RKy-Ks-KgQ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4558.604651162791" y="3.8626609442060089"/>
+            <point key="canvasLocation" x="4607" y="4"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="h2n-V3-6mm">
+            <objects>
+                <viewController id="SJy-AC-Xw9" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="auL-nj-tC6">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="4GP-Ee-p13">
+                                <rect key="frame" x="98.333333333333314" y="349" width="320" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="c9I-YB-eFO"/>
+                                    <constraint firstAttribute="height" constant="38" id="nTF-pa-C7d"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" keyboardType="webSearch" returnKeyType="google" textContentType="url"/>
+                            </textField>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="erz-4p-8aq">
+                                <rect key="frame" x="390.66666666666669" y="358" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AR2-WD-uwz">
+                                <rect key="frame" x="377" y="351" width="47" height="34"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise" catalog="system"/>
+                                <connections>
+                                    <action selector="reloadWebView" destination="OTu-5f-wlP" eventType="primaryActionTriggered" id="L4u-oK-QU5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="4GP-Ee-p13" secondAttribute="trailing" constant="-8.3333333333334849" id="4Sj-M0-bo6"/>
+                            <constraint firstItem="4GP-Ee-p13" firstAttribute="centerY" secondItem="AR2-WD-uwz" secondAttribute="centerY" id="Fhy-7Z-yhm"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="4GP-Ee-p13" secondAttribute="bottom" constant="-70" id="Jk0-an-I6H"/>
+                            <constraint firstItem="4GP-Ee-p13" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="auL-nj-tC6" secondAttribute="leadingMargin" id="MLs-l0-Rzs"/>
+                            <constraint firstItem="4GP-Ee-p13" firstAttribute="centerY" secondItem="erz-4p-8aq" secondAttribute="centerY" id="Ysq-qc-3Ww"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="AR2-WD-uwz" secondAttribute="trailing" constant="-14" id="rC5-eJ-rkb"/>
+                            <constraint firstItem="AR2-WD-uwz" firstAttribute="centerX" secondItem="erz-4p-8aq" secondAttribute="centerX" id="ySP-99-eH5"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ibA-A2-bsu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5450" y="4"/>
         </scene>
     </scenes>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="113" height="128"/>
         <image name="chevron.backward" catalog="system" width="97" height="128"/>
-        <image name="chevron.down" catalog="system" width="128" height="70"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="plus" catalog="system" width="128" height="113"/>
