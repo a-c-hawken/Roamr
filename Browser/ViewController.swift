@@ -131,12 +131,26 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                webView.goForward()
            }
        }
+    
+    @IBAction func createNewTabButtonPressed(_ sender: UIButton) {
+        if let urlString = webView.url?.absoluteString, let title = webView.title {
+            if let url = URL(string: urlString) {
+                createNewTab(url: url, title: title)
+            }
+        }
+        
+        if let urlString = textInput.text, let url = URL(string: urlString) {
+            let newTab = Tab(url: url, title: nil)
+            tabs.append(newTab)
+            textInput.text = nil
+        }
+    }
         
         @IBAction func reloadWebView() {
             webView.reload()
         }
         
-    @IBAction func createNewTab(url: URL?, title: String?) {
+    func createNewTab(url: URL?, title: String?) {
         let newTab = Tab(url: url, title: title)
         tabs.append(newTab)
     }
@@ -158,18 +172,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             reloadButton.isHidden = false
         }
         
-        func createNewTabButtonPressed(_ sender: UIButton) {
-            if let urlString = webView.url?.absoluteString, let title = webView.title {
-                if let url = URL(string: urlString) {
-                    createNewTab(url: url, title: title)
-                }
-            }
-            
-            if let urlString = textInput.text, let url = URL(string: urlString) {
-                let newTab = Tab(url: url, title: nil)
-                tabs.append(newTab)
-                textInput.text = nil
-            }
         }
         updateNavigationButtons()
             
