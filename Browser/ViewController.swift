@@ -14,7 +14,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
     
-    // Enable or disable the back and forward buttons based on the web view's navigation state
+    var tabs: [String] = []
+    
+    // Enable or disable the back and fo    rward buttons based on the web view's navigation state
     func updateNavigationButtons() {
         backButton.isEnabled = webView.canGoBack
         forwardButton.isEnabled = webView.canGoForward
@@ -128,6 +130,17 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         performSegue(withIdentifier: "tabViewSegue", sender: self)
     }
     
+    @IBAction func newTab(){
+        if let urlString = self.webView.url?.absoluteString {
+            tabs.append(urlString)
+        }
+        textInput.text = " "
+        if let url = URL(string: "https://google.com") {
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
+    }
+    
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
             loadingWheel.startAnimating()
@@ -142,7 +155,10 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
         
         updateNavigationButtons()
-            
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
     }
     
 }
