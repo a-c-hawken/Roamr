@@ -13,6 +13,18 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var textInput: UITextField!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
+    var tabs: [Tab] = []
+
+    class Tab {
+        var url: URL?
+        var title: String?
+        // Add any additional properties as needed
+        
+        init(url: URL?, title: String?) {
+            self.url = url
+            self.title = title
+        }
+    }
     
     // Enable or disable the back and forward buttons based on the web view's navigation state
     func updateNavigationButtons() {
@@ -124,6 +136,11 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             webView.reload()
         }
         
+    @IBAction func createNewTab(url: URL?, title: String?) {
+        let newTab = Tab(url: url, title: title)
+        tabs.append(newTab)
+    }
+        
     @IBAction func openTabView(){
         performSegue(withIdentifier: "tabViewSegue", sender: self)
     }
@@ -141,6 +158,19 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             reloadButton.isHidden = false
         }
         
+        func createNewTabButtonPressed(_ sender: UIButton) {
+            if let urlString = webView.url?.absoluteString, let title = webView.title {
+                if let url = URL(string: urlString) {
+                    createNewTab(url: url, title: title)
+                }
+            }
+            
+            if let urlString = textInput.text, let url = URL(string: urlString) {
+                let newTab = Tab(url: url, title: nil)
+                tabs.append(newTab)
+                textInput.text = nil
+            }
+        }
         updateNavigationButtons()
             
     }
