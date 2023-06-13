@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="42f-s0-R2I">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="42f-s0-R2I">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -15,7 +14,7 @@
             <objects>
                 <collectionViewController id="1HO-s3-l4Z" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Koc-zK-mvY">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="922"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="863"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VD6-FL-mbQ">
@@ -71,11 +70,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="k1Y-Ep-EvG"/>
-                                    <barButtonItem title="newTab" image="plus" catalog="system" width="50" id="ST2-Ye-BOo">
-                                        <connections>
-                                            <action selector="newTab" destination="BYZ-38-t0r" id="FKu-Q5-XnQ"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem title="newTab" image="plus" catalog="system" width="50" id="ST2-Ye-BOo"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ziS-Kt-O8c"/>
                                     <barButtonItem title="tabView" image="square.on.square" catalog="system" width="50" id="8je-W5-L3E">
                                         <connections>
@@ -326,7 +321,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Il9-dm-fSx"/>
-                                    <barButtonItem title="newTab" image="plus" catalog="system" width="50" id="iQi-k5-w4I"/>
+                                    <barButtonItem title="newTab" image="plus" catalog="system" width="50" id="iQi-k5-w4I">
+                                        <connections>
+                                            <action selector="createNewTabWithUrl:title:" destination="OTu-5f-wlP" id="Gj0-gP-eoq"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="NCS-qb-JtS"/>
                                     <barButtonItem title="tabView" image="square.on.square" catalog="system" width="50" id="fhN-6y-oRG">
                                         <connections>
@@ -451,7 +450,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="4GP-Ee-p13">
-                                <rect key="frame" x="98.333333333333314" y="349" width="320" height="38"/>
+                                <rect key="frame" x="98.333333333333314" y="383" width="320" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="c9I-YB-eFO"/>
                                     <constraint firstAttribute="height" constant="38" id="nTF-pa-C7d"/>
@@ -460,10 +459,10 @@
                                 <textInputTraits key="textInputTraits" keyboardType="webSearch" returnKeyType="google" textContentType="url"/>
                             </textField>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="erz-4p-8aq">
-                                <rect key="frame" x="390.66666666666669" y="358" width="20" height="20"/>
+                                <rect key="frame" x="390.66666666666669" y="392" width="20" height="20"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AR2-WD-uwz">
-                                <rect key="frame" x="377" y="351" width="47" height="34"/>
+                                <rect key="frame" x="377" y="385" width="47" height="34"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise" catalog="system"/>
                                 <connections>
@@ -471,7 +470,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="suQ-e7-LBQ"/>
+                        <viewLayoutGuide key="safeArea" id="FLB-Lq-99Y"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="4GP-Ee-p13" secondAttribute="trailing" constant="-8.3333333333334849" id="4Sj-M0-bo6"/>
