@@ -13,8 +13,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var textInput: UITextField!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
-    var tabs: [Tab] = []
-
+    var tab: [Tab] = []
+    
     class Tab {
         var url: URL?
         var title: String?
@@ -25,8 +25,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             self.title = title
         }
     }
-    
-    var tabs: [String] = []
     
     // Enable or disable the back and fo    rward buttons based on the web view's navigation state
     func updateNavigationButtons() {
@@ -113,6 +111,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                         let request = URLRequest(url: url)
                         DispatchQueue.main.async {
                             self.webView.load(request)
+                            print("Searching", request)
                         }
                     }
                 }
@@ -124,6 +123,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
        @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
            if webView.canGoBack {
                webView.goBack()
+               print("Go Back")
            }
        }
 
@@ -131,66 +131,54 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
        @IBAction func forwardButtonTapped(_ sender: UIBarButtonItem) {
            if webView.canGoForward {
                webView.goForward()
+               print("Go Forward")
            }
        }
     
     @IBAction func createNewTabButtonPressed(_ sender: UIButton) {
         if let urlString = webView.url?.absoluteString, let title = webView.title {
+            print("Saving Tab, Title: ", title, "URL: ", urlString)
             if let url = URL(string: urlString) {
                 createNewTab(url: url, title: title)
             }
         }
-        
-        if let urlString = textInput.text, let url = URL(string: urlString) {
-            let newTab = Tab(url: url, title: nil)
-            tabs.append(newTab)
-            textInput.text = nil
-        }
+//        if let urlString = textInput.text, let url = URL(string: urlString) {
+//            let newTab = Tab(url: url, title: nil)
+//            tabs.append(newTab)
+//            textInput.text = nil
+//        }
     }
         
         @IBAction func reloadWebView() {
             webView.reload()
+            print("Reload")
         }
         
     func createNewTab(url: URL?, title: String?) {
-        let newTab = Tab(url: url, title: title)
-        tabs.append(newTab)
+            let newTab = Tab(url: url, title: title)
+            tab.append(newTab)
+        for tab in tab{
+            print(tab.title!, tab.url!)
+        }
     }
         
     @IBAction func openTabView(){
         performSegue(withIdentifier: "tabViewSegue", sender: self)
     }
     
-    @IBAction func newTab(){
-        if let urlString = self.webView.url?.absoluteString {
-            tabs.append(urlString)
-        }
-        textInput.text = " "
-        if let url = URL(string: "https://google.com") {
-            let request = URLRequest(url: url)
-            webView.load(request)
-        }
-    }
-    
-    
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
             loadingWheel.startAnimating()
             reloadButton.isHidden = true
-        }
+            print("Reload Button isHidden, loading wheel isShown")
+    }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        print("Finished Navigation")
         if let pageTitle = webView.title {
             textInput.text = pageTitle
             loadingWheel.stopAnimating()
             reloadButton.isHidden = false
         }
-        
-        }
-        updateNavigationButtons()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
     }
     
 }
