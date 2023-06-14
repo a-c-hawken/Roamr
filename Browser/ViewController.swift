@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
     var tab: [Tab] = []
+    var history: [Tab] = []
     
     class Tab {
         var url: URL?
@@ -25,6 +26,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             self.title = title
         }
     }
+    
     
     // Enable or disable the back and fo    rward buttons based on the web view's navigation state
     func updateNavigationButtons() {
@@ -142,11 +144,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 createNewTab(url: url, title: title)
             }
         }
-//        if let urlString = textInput.text, let url = URL(string: urlString) {
-//            let newTab = Tab(url: url, title: nil)
-//            tabs.append(newTab)
-//            textInput.text = nil
-//        }
     }
         
         @IBAction func reloadWebView() {
@@ -159,6 +156,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             tab.append(newTab)
         for tab in tab{
             print(tab.title!, tab.url!)
+        }
+    }
+    
+    func history(url: URL?) {
+        let historyTab = Tab(url: url, title: "")
+        history.append(historyTab)
+        for tab in history{
+            print("History", tab.url!)
         }
     }
         
@@ -178,7 +183,15 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             textInput.text = pageTitle
             loadingWheel.stopAnimating()
             reloadButton.isHidden = false
+            if let urlString = webView.url?.absoluteString {
+                print("URL: ", urlString)
+                if let url = URL(string: urlString) {
+                    history(url: url)
+                }
+            }
         }
+        updateNavigationButtons()
     }
     
 }
+
