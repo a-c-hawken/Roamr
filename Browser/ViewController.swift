@@ -104,21 +104,30 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             }
 
             // Trigger the search when the Return key is pressed
-            func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-                textField.resignFirstResponder() // Dismiss the keyboard
-                if let searchText = textField.text, !searchText.isEmpty {
-                    let textSearch = searchText.replacingOccurrences(of: " ", with: "+")
-                    let urlString = "https://www.google.com/search?q=\(textSearch)"
-                    if let url = URL(string: urlString) {
-                        let request = URLRequest(url: url)
-                        DispatchQueue.main.async {
-                            self.webView.load(request)
-                            print("Searching", request)
-                        }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder() // Dismiss the keyboard
+        if let searchText = textField.text, !searchText.isEmpty {
+            // Check if the input is a valid URL
+            if let url = URL(string: searchText), url.scheme != nil {
+                let request = URLRequest(url: url)
+                DispatchQueue.main.async {
+                    self.webView.load(request)
+                    print("Opening URL", request)
+                }
+            } else {
+                let textSearch = searchText.replacingOccurrences(of: " ", with: "+")
+                let urlString = "https://www.google.com/search?q=\(textSearch)"
+                if let url = URL(string: urlString) {
+                    let request = URLRequest(url: url)
+                    DispatchQueue.main.async {
+                        self.webView.load(request)
+                        print("Searching", request)
                     }
                 }
-                updateNavigationButtons()
-                return true
+            }
+        }
+        updateNavigationButtons()
+        return true
     }
     
     // Go back to the previous web page
@@ -192,6 +201,10 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
         updateNavigationButtons()
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+            textField.selectedTextRange = textField.textRange(from: textField.beginningOfDocument, to: textField.endOfDocument)
+        }
     
 }
 
