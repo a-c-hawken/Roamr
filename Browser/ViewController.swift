@@ -43,6 +43,11 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             }
         }
         
+        NotificationCenter.default.addObserver(self,
+          selector: #selector(self.keyboardNotification(notification:)),
+          name: UIResponder.keyboardWillChangeFrameNotification,
+          object: nil)
+        
         var menuItems: [UIAction] {
             return [
                 UIAction(title: "Settings", image: UIImage(systemName: "gearshape"), handler: { (_) in
@@ -101,6 +106,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
         loadingWheel.hidesWhenStopped = true
             }
+    
 
             // Trigger the search when the Return key is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -128,6 +134,27 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         updateNavigationButtons()
         return true
     }
+    
+    deinit {
+         NotificationCenter.default.removeObserver(self)
+       }
+     
+    @objc func keyboardNotification(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        
+        let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        let endFrameY = endFrame?.origin.y ?? 0
+        let duration:TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+        let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
+        let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
+        let animationCurve:UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
+        if endFrameY >= UIScreen.main.bounds.size.height {
+            self.view.frame.origin.y = 0.0
+        } else {
+            self.view.frame.origin.y = -300
+        }
+    }
+    
     
     // Go back to the previous web page
        @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
