@@ -32,7 +32,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     func updateNavigationButtons() {
         backButton.isEnabled = webView.canGoBack
         forwardButton.isEnabled = webView.canGoForward
-        
     }
     
     override func viewDidLoad() {
