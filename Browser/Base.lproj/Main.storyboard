@@ -172,11 +172,15 @@
                         <segue destination="RF4-aA-Mm7" kind="show" identifier="settingsSegue" id="vM3-q0-UPE"/>
                         <segue destination="OTu-5f-wlP" kind="show" identifier="splitView" id="uMH-Oz-rqa"/>
                         <segue destination="1HO-s3-l4Z" kind="showDetail" identifier="tabViewSegue" id="5Wu-Qd-Ls0"/>
+                        <segue destination="GvX-F0-zgJ" kind="show" identifier="ThemesSegue" id="d5Y-pT-WvE"/>
+                        <segue destination="UAD-ma-paK" kind="show" identifier="ExtensionsSegue" id="HW8-m5-mul"/>
+                        <segue destination="bj5-i7-8Bc" kind="showDetail" identifier="historySegue" id="eKw-ki-m2E"/>
+                        <segue destination="wI0-aF-eNe" kind="showDetail" identifier="bookmarksSegue" id="eAE-Xh-X17"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3742.3255813953488" y="3.8626609442060089"/>
+            <point key="canvasLocation" x="3742" y="4"/>
         </scene>
         <!--Settings-->
         <scene sceneID="7by-1Q-aLE">
@@ -280,7 +284,7 @@
                 <exit id="K9w-dW-9k0" userLabel="Exit" sceneMemberID="exit"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YyV-fr-f5D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4206" y="729"/>
+            <point key="canvasLocation" x="4183" y="729"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PvP-lj-cz6">
@@ -493,6 +497,114 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ibA-A2-bsu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5450" y="4"/>
+        </scene>
+        <!--Themes-->
+        <scene sceneID="YtG-oZ-ksu">
+            <objects>
+                <tableViewController title="Themes" id="GvX-F0-zgJ" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="w5V-WY-Mtb">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="dWN-Na-6nd">
+                                <cells/>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="GvX-F0-zgJ" id="n4G-3H-UAm"/>
+                            <outlet property="delegate" destination="GvX-F0-zgJ" id="KAp-QF-PVP"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Themes" largeTitleDisplayMode="always" id="QrU-sY-Q99">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="qHw-h7-m8K"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vHt-3G-iEc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4980" y="729"/>
+        </scene>
+        <!--Extensions-->
+        <scene sceneID="uPz-fY-GGc">
+            <objects>
+                <tableViewController title="Extensions" id="UAD-ma-paK" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="TKA-Ys-d4W">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="ZdV-dW-eRb">
+                                <cells/>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="UAD-ma-paK" id="1Z4-Lk-5WV"/>
+                            <outlet property="delegate" destination="UAD-ma-paK" id="2Ea-9U-Apg"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Extensions" largeTitleDisplayMode="always" id="ktn-P4-Byd">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="EnD-3Y-2Ps"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3vm-Yo-O4z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5759" y="729"/>
+        </scene>
+        <!--History-->
+        <scene sceneID="WzR-8A-ynd">
+            <objects>
+                <tableViewController title="History" id="bj5-i7-8Bc" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Evw-4i-ksS">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="m83-MW-9o8">
+                                <cells/>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="bj5-i7-8Bc" id="dDT-q2-Pi4"/>
+                            <outlet property="delegate" destination="bj5-i7-8Bc" id="9ox-J6-JTH"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="History" largeTitleDisplayMode="always" id="Uxg-w1-5AV">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="LeB-Ac-qut"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SIu-kX-8Zb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6527" y="729"/>
+        </scene>
+        <!--Bookmarks-->
+        <scene sceneID="0n0-uM-On8">
+            <objects>
+                <tableViewController title="Bookmarks" id="wI0-aF-eNe" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="hFA-Xi-H3G">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="lLu-r4-g5E">
+                                <cells/>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="wI0-aF-eNe" id="8qd-JO-TZe"/>
+                            <outlet property="delegate" destination="wI0-aF-eNe" id="XAb-y1-Mcm"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Bookmarks" largeTitleDisplayMode="always" id="k9T-e0-s1X">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Q6z-Qd-kfg"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FOV-Wt-5We" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7253" y="729"/>
         </scene>
     </scenes>
     <resources>

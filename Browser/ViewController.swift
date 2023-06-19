@@ -54,10 +54,10 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                     self.performSegue(withIdentifier: "settingsSegue", sender: self)
                 }),
                 UIAction(title: "Extensions", image: UIImage(systemName: "puzzlepiece.extension"), handler: { (_) in
-                    // Handle the action for the standard item
+                    self.performSegue(withIdentifier: "ExtensionsSegue", sender: self)
                 }),
                 UIAction(title: "Themes", image: UIImage(systemName: "paintbrush"), handler: { (_) in
-                    // Handle the action for the standard item
+                    self.performSegue(withIdentifier: "ThemesSegue", sender: self)
                 }),
                 UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up"), handler: { (_) in
                     if let urlString = self.webView.url?.absoluteString {
@@ -84,13 +84,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                     // Handle the action for the standard item
                 }),
                 UIAction(title: "Bookmarks", image: UIImage(systemName: "book"), handler: { (_) in
-                    // Handle the action for the disabled item
+                    self.performSegue(withIdentifier: "bookmarksSegue", sender: self)
                 }),
                 UIAction(title: "History", image: UIImage(systemName: "clock.arrow.circlepath"), handler: { (_) in
-                    // Handle the action for the disabled item
+                    self.performSegue(withIdentifier: "historySegue", sender: self)
                 }),
                 UIAction(title: "Delete all data", image: UIImage(systemName: "trash"), attributes: .destructive, handler: { (_) in
-                    // Handle the action for the delete item
+                    self.history.removeAll()
+                    print("Deleting All History")
                 })
             ]
         }
