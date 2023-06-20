@@ -21,13 +21,18 @@ class HistoryTableViewController: UITableViewController {
             self.title = title
         }
     }
-    
+    func addTab(url: URL?, title: String?) {
+        let tab = Tab(url: url, title: title)
+        history.append(tab)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
+        //Demo Tab
+        addTab(url: URL(string: "https://www.google.com"), title: "Google")
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
@@ -41,8 +46,8 @@ class HistoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        //let historyItem = history[indexPath.row]
-        //cell.textLabel?.text = historyItem.url?.absoluteString
+        let historyItem = history[indexPath.row]
+        cell.textLabel?.text = historyItem.url?.absoluteString
         
         return cell
     }

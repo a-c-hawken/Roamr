@@ -1,6 +1,10 @@
 import UIKit
 import WebKit
 
+protocol HistoryDelegate {
+    func didSelectHistory(url: URL)
+}
+
 class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate {
 
     @IBOutlet weak var backButton: UIBarButtonItem!
@@ -13,6 +17,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var textInput: UITextField!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
+    
+    var delegate: HistoryDelegate?
     
     
     var tab: [Tab] = []
@@ -90,6 +96,11 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 }),
                 UIAction(title: "History", image: UIImage(systemName: "clock.arrow.circlepath"), handler: { (_) in
                     self.performSegue(withIdentifier: "historySegue", sender: self)
+                    for tab in self.history {
+                        let url = tab.url
+                        self.delegate?.didSelectHistory(url: url!)
+                    }
+                    
                 }),
                 UIAction(title: "Delete all data", image: UIImage(systemName: "trash"), attributes: .destructive, handler: { (_) in
                     self.history.removeAll()
@@ -235,4 +246,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             textField.selectedTextRange = textField.textRange(from: textField.beginningOfDocument, to: textField.endOfDocument)
         }
 }
+
+
 
