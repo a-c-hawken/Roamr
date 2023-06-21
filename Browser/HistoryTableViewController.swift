@@ -11,7 +11,7 @@ class HistoryTableViewController: UITableViewController, HistoryDelegate {
     func didSelectHistory(url: URL) {
         let tab = Tab(url: url)
         history.append(tab)
-        print ("save",history)
+        print ("save", history)
         tableView.reloadData()
     }
 
@@ -114,5 +114,5 @@ class HistoryTableViewController: UITableViewController, HistoryDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
+
