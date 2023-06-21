@@ -7,24 +7,25 @@
 
 import UIKit
 
-class HistoryTableViewController: UITableViewController {
-    
+class HistoryTableViewController: UITableViewController, HistoryDelegate {
+    func didSelectHistory(url: URL) {
+        let tab = Tab(url: url)
+        history.append(tab)
+        print ("save",history)
+        tableView.reloadData()
+    }
+
     var history: [Tab] = []
     
     class Tab {
         var url: URL?
-        var title: String?
         // Add any additional properties as needed
         
-        init(url: URL?, title: String?) {
+        init(url: URL?) {
             self.url = url
-            self.title = title
         }
     }
-    func addTab(url: URL?, title: String?) {
-        let tab = Tab(url: url, title: title)
-        history.append(tab)
-    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,7 +33,10 @@ class HistoryTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
         
         //Demo Tab
-        addTab(url: URL(string: "https://www.google.com"), title: "Google")
+        let tab = Tab(url: URL(string: "https://www.google.com"))
+        history.append(tab)
+        tableView.reloadData()
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
@@ -45,6 +49,9 @@ class HistoryTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        for tab in history {
+            let cell = UITableViewCell(style: .default, reuseIdentifier: "historyTab")
+        }
         
         let historyItem = history[indexPath.row]
         cell.textLabel?.text = historyItem.url?.absoluteString

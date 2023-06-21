@@ -18,8 +18,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
     
-    var delegate: HistoryDelegate?
-    
     
     var tab: [Tab] = []
     var history: [Tab] = []
@@ -96,11 +94,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 }),
                 UIAction(title: "History", image: UIImage(systemName: "clock.arrow.circlepath"), handler: { (_) in
                     self.performSegue(withIdentifier: "historySegue", sender: self)
-                    for tab in self.history {
-                        let url = tab.url
-                        self.delegate?.didSelectHistory(url: url!)
-                    }
-                    
                 }),
                 UIAction(title: "Delete all data", image: UIImage(systemName: "trash"), attributes: .destructive, handler: { (_) in
                     self.history.removeAll()
@@ -245,6 +238,17 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     func textFieldDidBeginEditing(_ textField: UITextField) {
             textField.selectedTextRange = textField.textRange(from: textField.beginningOfDocument, to: textField.endOfDocument)
         }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(segue.destination)
+        if let destination = segue.destination as? HistoryDelegate {
+            for tab in self.history {
+                let url = tab.url
+                destination.didSelectHistory(url: url!)
+                print("Url preparing to transfer", url!)
+            }
+        }
+    }
 }
 
 
