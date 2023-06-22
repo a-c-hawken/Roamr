@@ -242,11 +242,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print(segue.destination)
         if let destination = segue.destination as? HistoryDelegate {
+            print("good")
             for tab in self.history {
                 let url = tab.url
                 destination.didSelectHistory(url: url!)
                 print("Url preparing to transfer", url!)
             }
+        } else {
+            print("not good")
         }
     }
 }
