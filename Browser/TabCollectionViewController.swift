@@ -9,7 +9,28 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class TabCollectionViewController: UICollectionViewController {
+class TabCollectionViewController: UICollectionViewController, TabDelegate {
+    
+    class Tab {
+        var url: URL?
+        var title: String?
+        // Add any additional properties as needed
+        
+        init(url: URL?, title: String?) {
+            self.url = url
+            self.title = title
+        }
+    }
+    
+    var tab: [Tab] = []
+    
+    func didSelectTabView(url: URL, title: String) {
+        let newTab = Tab(url: url, title: title)
+        tab.append(newTab)
+        print ("recieved and saved url: ", newTab.url!.absoluteString, " title: ", newTab.title!)
+        collectionView.reloadData()
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,14 +64,14 @@ class TabCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return tab.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tabCell", for: indexPath) as! CollectionViewCell
+        cell.title.text = tab[indexPath.row].url!.absoluteString
+        print("cell", tab[indexPath.row].url!.absoluteString)
+
         return cell
     }
 

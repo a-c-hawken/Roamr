@@ -5,6 +5,10 @@ protocol HistoryDelegate {
     func didSelectHistory(url: URL)
 }
 
+protocol TabDelegate {
+    func didSelectTabView(url: URL, title: String)
+}
+
 class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate {
 
     @IBOutlet weak var backButton: UIBarButtonItem!
@@ -180,6 +184,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
        }
     
     @IBAction func createNewTabButtonPressed(_ sender: UIButton) {
+        createNewTab()
+    }
+    func createNewTab(){
         if let urlString = webView.url?.absoluteString, let title = webView.title {
             print("Saving Tab, Title: ", title, "URL: ", urlString)
             if let url = URL(string: urlString) {
@@ -248,8 +255,16 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 destination.didSelectHistory(url: url!)
                 print("Url preparing to transfer", url!)
             }
-        } else {
-            print("not good")
+        }
+        if let destination = segue.destination as? TabDelegate {
+            print("tab good")
+            createNewTab()
+            for tab in self.tab {
+                let url = tab.url
+                let title = tab.title
+                destination.didSelectTabView(url: url!, title: title!)
+                print("Preparing to transfer to tab view: ", url!, " With title: ", title!)
+            }
         }
     }
 }
