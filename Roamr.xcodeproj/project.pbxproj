@@ -17,7 +17,7 @@
 		DF2515052A2585D00075EB42 /* BrowserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2515042A2585D00075EB42 /* BrowserUITests.swift */; };
 		DF2515072A2585D00075EB42 /* BrowserUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2515062A2585D00075EB42 /* BrowserUITestsLaunchTests.swift */; };
 		DF4183182A3915BC00BA2B6D /* TabCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4183172A3915BC00BA2B6D /* TabCollectionViewController.swift */; };
-		DFA9E1D52A46D41700ED21CC /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9E1D42A46D41700ED21CC /* CollectionViewCell.swift */; };
+		DF731A3E2A4A55B1007B78C0 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF731A3D2A4A55B1007B78C0 /* CollectionViewCell.swift */; };
 		DFBC4EA52A41439D00C0160D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBC4EA42A41439D00C0160D /* TableViewCell.swift */; };
 		DFBC4EA72A41468E00C0160D /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBC4EA62A41468E00C0160D /* HistoryTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -54,7 +54,7 @@
 		DF2515042A2585D00075EB42 /* BrowserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserUITests.swift; sourceTree = "<group>"; };
 		DF2515062A2585D00075EB42 /* BrowserUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DF4183172A3915BC00BA2B6D /* TabCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCollectionViewController.swift; sourceTree = "<group>"; };
-		DFA9E1D42A46D41700ED21CC /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		DF731A3D2A4A55B1007B78C0 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		DFBC4EA42A41439D00C0160D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		DFBC4EA62A41468E00C0160D /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +109,7 @@
 			children = (
 				DF2514E32A2585CE0075EB42 /* AppDelegate.swift */,
 				DF2514E52A2585CE0075EB42 /* SceneDelegate.swift */,
+				DF731A3D2A4A55B1007B78C0 /* CollectionViewCell.swift */,
 				DF2514E72A2585CE0075EB42 /* ViewController.swift */,
 				DF2514E92A2585CE0075EB42 /* Main.storyboard */,
 				DF4183172A3915BC00BA2B6D /* TabCollectionViewController.swift */,
@@ -117,7 +118,6 @@
 				DF2514F12A2585D00075EB42 /* Info.plist */,
 				DFBC4EA42A41439D00C0160D /* TableViewCell.swift */,
 				DFBC4EA62A41468E00C0160D /* HistoryTableViewController.swift */,
-				DFA9E1D42A46D41700ED21CC /* CollectionViewCell.swift */,
 			);
 			path = Browser;
 			sourceTree = "<group>";
@@ -273,7 +273,7 @@
 				DFBC4EA52A41439D00C0160D /* TableViewCell.swift in Sources */,
 				DF2514E82A2585CE0075EB42 /* ViewController.swift in Sources */,
 				DFBC4EA72A41468E00C0160D /* HistoryTableViewController.swift in Sources */,
-				DFA9E1D52A46D41700ED21CC /* CollectionViewCell.swift in Sources */,
+				DF731A3E2A4A55B1007B78C0 /* CollectionViewCell.swift in Sources */,
 				DF2514E42A2585CE0075EB42 /* AppDelegate.swift in Sources */,
 				DF4183182A3915BC00BA2B6D /* TabCollectionViewController.swift in Sources */,
 				DF2514E62A2585CE0075EB42 /* SceneDelegate.swift in Sources */,

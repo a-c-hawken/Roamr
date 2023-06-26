@@ -39,7 +39,15 @@ class TabCollectionViewController: UICollectionViewController, TabDelegate {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "tabCell")
+        
+        //demo tab
+        let tab = Tab(url: URL(string: "https://www.google.com"), title: "Google")
+        print("added", tab.url!.absoluteString)
+        self.tab.append(tab)
+        collectionView.reloadData()
+        
+        
 
         // Do any additional setup after loading the view.
     }
@@ -58,7 +66,7 @@ class TabCollectionViewController: UICollectionViewController, TabDelegate {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
