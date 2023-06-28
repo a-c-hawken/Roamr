@@ -39,7 +39,7 @@ class TabCollectionViewController: UICollectionViewController, TabDelegate {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "tabCell")
+        self.collectionView!.register(CollectionViewCell.self, forCellWithReuseIdentifier: "tabCell")
         
         //demo tab
         let tab = Tab(url: URL(string: "https://www.google.com"), title: "Google")
@@ -77,7 +77,7 @@ class TabCollectionViewController: UICollectionViewController, TabDelegate {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tabCell", for: indexPath) as! CollectionViewCell
-        cell.title.text = tab[indexPath.row].url!.absoluteString
+        //cell.title.text = tab[indexPath.row].url!.absoluteString
         print("cell", tab[indexPath.row].url!.absoluteString)
 
         return cell

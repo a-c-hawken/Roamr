@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1430"
-   version = "1.7">
+   version = "1.8">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DF2514DF2A2585CE0075EB42"
-               BuildableName = "Aydan HawkWeb.app"
-               BlueprintName = "Aydan HawkWeb"
-               ReferencedContainer = "container:Aydan HawkWeb.xcodeproj">
+               BuildableName = "Roamr.app"
+               BlueprintName = "Roamr"
+               ReferencedContainer = "container:Roamr.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,9 +35,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DF2514F52A2585D00075EB42"
-               BuildableName = "Aydan HawkWebTests.xctest"
-               BlueprintName = "Aydan HawkWebTests"
-               ReferencedContainer = "container:Aydan HawkWeb.xcodeproj">
+               BuildableName = "RoamrTests.xctest"
+               BlueprintName = "RoamrTests"
+               ReferencedContainer = "container:Roamr.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -46,9 +46,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DF2514FF2A2585D00075EB42"
-               BuildableName = "Aydan HawkWebUITests.xctest"
-               BlueprintName = "Aydan HawkWebUITests"
-               ReferencedContainer = "container:Aydan HawkWeb.xcodeproj">
+               BuildableName = "RoamrUITests.xctest"
+               BlueprintName = "RoamrUITests"
+               ReferencedContainer = "container:Roamr.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -68,9 +68,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DF2514DF2A2585CE0075EB42"
-            BuildableName = "Aydan HawkWeb.app"
-            BlueprintName = "Aydan HawkWeb"
-            ReferencedContainer = "container:Aydan HawkWeb.xcodeproj">
+            BuildableName = "Roamr.app"
+            BlueprintName = "Roamr"
+            ReferencedContainer = "container:Roamr.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -85,9 +85,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DF2514DF2A2585CE0075EB42"
-            BuildableName = "Aydan HawkWeb.app"
-            BlueprintName = "Aydan HawkWeb"
-            ReferencedContainer = "container:Aydan HawkWeb.xcodeproj">
+            BuildableName = "Roamr.app"
+            BlueprintName = "Roamr"
+            ReferencedContainer = "container:Roamr.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
