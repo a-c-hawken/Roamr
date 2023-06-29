@@ -49,7 +49,7 @@
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <connections>
-                                    <outlet property="title" destination="MQZ-IJ-Afo" id="PDA-rs-rtj"/>
+                                    <outlet property="title" destination="MQZ-IJ-Afo" id="9P2-Bf-wCw"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
