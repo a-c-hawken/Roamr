@@ -77,7 +77,7 @@ class TabCollectionViewController: UICollectionViewController, TabDelegate {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tabCell", for: indexPath) as! CollectionViewCell
-        cell.title.text = tab[indexPath.row].title
+        //cell.title.text = tab[indexPath.row].title
         
         print("made cell", tab[indexPath.row].url!.absoluteString)
 
