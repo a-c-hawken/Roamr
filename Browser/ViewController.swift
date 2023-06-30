@@ -78,9 +78,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                         }
                     }
                 }),
-                UIAction(title: "Split View", image: UIImage(systemName: "square.bottomhalf.filled"), handler: { [self] (_) in
-                    self.performSegue(withIdentifier: "splitView", sender: self)
-                }),
+//                UIAction(title: "Split View", image: UIImage(systemName: "square.bottomhalf.filled"), handler: { [self] (_) in
+//                    self.performSegue(withIdentifier: "splitView", sender: self)
+//                }),
                 UIAction(title: "Find on Page", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
                     // Handle the action for the standard item
                 }),
