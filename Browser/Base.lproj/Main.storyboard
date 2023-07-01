@@ -79,7 +79,7 @@
                                 <rect key="frame" x="55" y="807" width="323" height="42"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Search" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="20" background="Image" translatesAutoresizingMaskIntoConstraints="NO" id="ZYV-7a-AVU">
-                                        <rect key="frame" x="0.0" y="0.0" width="320.33333333333331" height="38"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="323" height="38"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="38" id="KUY-Uv-bkf"/>
                                         </constraints>
@@ -89,9 +89,9 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="ZYV-7a-AVU" firstAttribute="top" secondItem="ZGp-9w-Mur" secondAttribute="top" id="3zd-6g-Jzn"/>
-                                    <constraint firstItem="3KV-Hl-mCf" firstAttribute="trailing" secondItem="ZYV-7a-AVU" secondAttribute="trailing" constant="2.6666666666667425" id="6od-IO-OAl"/>
+                                    <constraint firstItem="3KV-Hl-mCf" firstAttribute="trailing" secondItem="ZYV-7a-AVU" secondAttribute="trailing" id="6od-IO-OAl"/>
                                     <constraint firstItem="3KV-Hl-mCf" firstAttribute="bottom" secondItem="ZYV-7a-AVU" secondAttribute="bottom" constant="4" id="HDP-ES-9en"/>
-                                    <constraint firstAttribute="trailing" secondItem="ZYV-7a-AVU" secondAttribute="trailing" constant="2.6666666666667425" id="VRl-jX-UCI"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZYV-7a-AVU" secondAttribute="trailing" id="VRl-jX-UCI"/>
                                     <constraint firstAttribute="bottom" secondItem="ZYV-7a-AVU" secondAttribute="bottom" constant="4" id="muz-bD-mFq"/>
                                     <constraint firstItem="ZYV-7a-AVU" firstAttribute="leading" secondItem="3KV-Hl-mCf" secondAttribute="leading" id="w54-ch-XQT"/>
                                 </constraints>
@@ -99,16 +99,8 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="3KV-Hl-mCf"/>
                             </scrollView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="65V-hc-H9R">
-                                <rect key="frame" x="344" y="818" width="20" height="20"/>
+                                <rect key="frame" x="391" y="815" width="20" height="20"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDn-tj-MiJ">
-                                <rect key="frame" x="331" y="810" width="47" height="36"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise" catalog="system"/>
-                                <connections>
-                                    <action selector="reloadWebView" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="Q5m-Nz-T2d"/>
-                                </connections>
-                            </button>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iQ5-Ip-pqd">
                                 <rect key="frame" x="0.0" y="53" width="430" height="751"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -155,40 +147,70 @@
                                     <barButtonItem title="Menu" image="ellipsis" catalog="system" width="50" id="LZS-uQ-8Fi"/>
                                 </items>
                             </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azF-c6-c9e">
+                                <rect key="frame" x="-2" y="807" width="51" height="37"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" image="arrowshape.turn.up.left" catalog="system"/>
+                                <connections>
+                                    <action selector="goBackToLastTabWithSegue:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FLh-Le-rc2"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="i0A-vn-rZL">
+                                <rect key="frame" x="0.0" y="800" width="430" height="4"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="430" id="Od8-nX-YG9"/>
+                                </constraints>
+                            </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDn-tj-MiJ">
+                                <rect key="frame" x="378" y="808" width="47" height="34.333333333333371"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise" catalog="system"/>
+                                <connections>
+                                    <action selector="reloadWebView" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="Q5m-Nz-T2d"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="InH-aX-CH3" firstAttribute="top" secondItem="iQ5-Ip-pqd" secondAttribute="bottom" constant="3" id="3G4-Qt-ZBg"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="65V-hc-H9R" secondAttribute="trailing" constant="66" id="3UU-6f-sr3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="65V-hc-H9R" secondAttribute="trailing" constant="19" id="3UU-6f-sr3"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="4AB-eE-LB3"/>
-                            <constraint firstItem="InH-aX-CH3" firstAttribute="centerY" secondItem="wDn-tj-MiJ" secondAttribute="centerY" id="97k-wl-o9F"/>
+                            <constraint firstItem="azF-c6-c9e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="-2" id="4DS-ME-WPe"/>
+                            <constraint firstItem="InH-aX-CH3" firstAttribute="leading" secondItem="azF-c6-c9e" secondAttribute="trailing" constant="6" id="AUZ-Gi-nS4"/>
                             <constraint firstItem="InH-aX-CH3" firstAttribute="bottom" secondItem="p8X-dL-z4d" secondAttribute="top" id="AeG-78-wyC"/>
                             <constraint firstItem="iQ5-Ip-pqd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Asg-yX-pyY"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DGR-j3-G1J"/>
+                            <constraint firstItem="InH-aX-CH3" firstAttribute="top" secondItem="i0A-vn-rZL" secondAttribute="bottom" constant="3" id="DUk-dO-av4"/>
                             <constraint firstItem="wDn-tj-MiJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="Ea0-en-WR6"/>
-                            <constraint firstItem="InH-aX-CH3" firstAttribute="trailing" secondItem="wDn-tj-MiJ" secondAttribute="trailing" id="GGi-Pj-EN2"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wDn-tj-MiJ" secondAttribute="trailing" constant="52" id="I0h-AV-sYh">
+                            <constraint firstItem="InH-aX-CH3" firstAttribute="trailing" secondItem="wDn-tj-MiJ" secondAttribute="trailing" constant="-47" id="GGi-Pj-EN2"/>
+                            <constraint firstItem="azF-c6-c9e" firstAttribute="top" secondItem="iQ5-Ip-pqd" secondAttribute="bottom" constant="3" id="HZE-SM-RQu"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wDn-tj-MiJ" secondAttribute="trailing" constant="5" id="I0h-AV-sYh">
                                 <variation key="heightClass=compact-widthClass=regular" constant="0.0"/>
                             </constraint>
-                            <constraint firstItem="p8X-dL-z4d" firstAttribute="top" secondItem="65V-hc-H9R" secondAttribute="bottom" constant="11" id="Iyo-iC-2h4"/>
+                            <constraint firstItem="p8X-dL-z4d" firstAttribute="top" secondItem="65V-hc-H9R" secondAttribute="bottom" constant="14" id="Iyo-iC-2h4"/>
+                            <constraint firstItem="i0A-vn-rZL" firstAttribute="leading" secondItem="p8X-dL-z4d" secondAttribute="leading" id="MEh-1d-wKm"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="MUZ-QH-n0x"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VJb-5d-4Z4"/>
-                            <constraint firstItem="p8X-dL-z4d" firstAttribute="top" secondItem="wDn-tj-MiJ" secondAttribute="bottom" constant="3" id="cyS-VJ-p7d"/>
+                            <constraint firstItem="p8X-dL-z4d" firstAttribute="top" secondItem="wDn-tj-MiJ" secondAttribute="bottom" constant="6.6666666666666288" id="cyS-VJ-p7d"/>
                             <constraint firstItem="iQ5-Ip-pqd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gaH-KD-Aaa"/>
+                            <constraint firstItem="p8X-dL-z4d" firstAttribute="top" secondItem="azF-c6-c9e" secondAttribute="bottom" constant="5" id="kdX-8r-HRf"/>
                             <constraint firstItem="InH-aX-CH3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="55" id="mb3-sM-2hF"/>
                             <constraint firstItem="iQ5-Ip-pqd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="53" id="uFa-eB-93z">
                                 <variation key="heightClass=compact-widthClass=regular" constant="20" symbolic="YES"/>
                             </constraint>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="LbT-vJ-HGm"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="LbT-vJ-HGm"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="backButton" destination="9qL-yV-Js7" id="PbY-Gv-UCQ"/>
-                        <outlet property="forwardButton" destination="el6-mS-cgl" id="Hw3-6i-JyP"/>
+                        <outlet property="forwardButton" destination="el6-mS-cgl" id="5bt-le-bRq"/>
                         <outlet property="loadingWheel" destination="65V-hc-H9R" id="Vme-aT-qgl"/>
                         <outlet property="menuButton" destination="LZS-uQ-8Fi" id="ifo-eM-S5M"/>
                         <outlet property="newTabButton" destination="p8X-dL-z4d" id="8vq-gX-cZl"/>
+                        <outlet property="progressBar" destination="i0A-vn-rZL" id="XCd-sa-afB"/>
                         <outlet property="reloadButton" destination="wDn-tj-MiJ" id="mPq-eH-eGr"/>
                         <outlet property="tabViewButton" destination="p8X-dL-z4d" id="L7r-f6-k4j"/>
                         <outlet property="textInput" destination="ZYV-7a-AVU" id="ns2-Wa-cpy"/>
@@ -204,7 +226,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="qdU-wC-Jgv"/>
             </objects>
-            <point key="canvasLocation" x="3742" y="4"/>
+            <point key="canvasLocation" x="3744" y="4"/>
         </scene>
         <!--Settings-->
         <scene sceneID="7by-1Q-aLE">
@@ -458,6 +480,7 @@
     <resources>
         <image name="Image" width="1843" height="246"/>
         <image name="arrow.clockwise" catalog="system" width="113" height="128"/>
+        <image name="arrowshape.turn.up.left" catalog="system" width="128" height="104"/>
         <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>

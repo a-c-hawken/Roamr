@@ -16,12 +16,15 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var tabViewButton: UIToolbar!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var forwardButton: UIBarButtonItem!
-
+    
     @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var textInput: UITextField!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
     
+    @IBOutlet weak var progressBar: UIProgressView!
+    var newWebView: WKWebView!
+    var window: UIWindow?
     
     var tab: [Tab] = []
     var history: [Tab] = []
@@ -52,6 +55,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 webView.load(request)
             }
         }
+        view.addSubview(webView)
         
         NotificationCenter.default.addObserver(self,
           selector: #selector(self.keyboardNotification(notification:)),
@@ -184,16 +188,56 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
        }
     
     @IBAction func createNewTabButtonPressed(_ sender: UIButton) {
-        createNewTab()
+        createNewTab1()
+        if let url = URL(string: "https://google.com") {
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
     }
-    func createNewTab(){
+    func createNewTab1(){
         if let urlString = webView.url?.absoluteString, let title = webView.title {
             print("Saving Tab, Title: ", title, "URL: ", urlString)
             if let url = URL(string: urlString) {
-                createNewTab(url: url, title: title)
+                createNewTabWithNewWebView(url: url, title: title)
             }
         }
     }
+    func createNewTabWithNewWebView(url: URL?, title: String?) {
+        let newTab = Tab(url: url, title: title)
+        tab.append(newTab)
+        setupNewWebView()
+        loadNewWebView(url: url)
+    }
+    func setupNewWebView() {
+        let navBarHeight = navigationController?.navigationBar.frame.size.height ?? 0
+        let statusBarHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        let toolbarHeight = tabBarController?.tabBar.frame.size.height ?? 0
+
+        let newWebViewFrame = CGRect(
+            x: 0,
+            y: navBarHeight + statusBarHeight,
+            width: view.bounds.width,
+            height: view.bounds.height - (navBarHeight + statusBarHeight + toolbarHeight)
+        )
+
+        newWebView = WKWebView(frame: newWebViewFrame)
+        newWebView.navigationDelegate = self
+        view.addSubview(newWebView)
+    }
+
+    func loadNewWebView(url: URL?) {
+        if let url = url {
+            let request = URLRequest(url: url)
+            newWebView.load(request)
+        }
+    }
+    
+    func webView(_ webView: WKWebView, didClose navigation: WKNavigation!) {
+        if webView == newWebView {
+            newWebView.removeFromSuperview()
+        }
+    }
+
         
         @IBAction func reloadWebView() {
             webView.reload()
@@ -258,7 +302,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
         if let destination = segue.destination as? TabDelegate {
             print("tab good")
-            createNewTab()
+            createNewTab1()
             for tab in self.tab {
                 let url = tab.url
                 let title = tab.title
@@ -267,7 +311,13 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             }
         }
     }
+    
+    @IBAction func goBackToLastTab(segue: UIStoryboardSegue){
+
+    }
+    
 }
 
 
 
+	
