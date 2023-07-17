@@ -8,7 +8,8 @@
 import UIKit
 
 class TabTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var title: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

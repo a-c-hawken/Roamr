@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D1B359202A64DA190003D227 /* ThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B3591F2A64DA190003D227 /* ThemeTableViewController.swift */; };
+		D1B359222A64F00C0003D227 /* TabTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B359212A64F00C0003D227 /* TabTableViewCell.swift */; };
 		DF2514E42A2585CE0075EB42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2514E32A2585CE0075EB42 /* AppDelegate.swift */; };
 		DF2514E62A2585CE0075EB42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2514E52A2585CE0075EB42 /* SceneDelegate.swift */; };
 		DF2514E82A2585CE0075EB42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2514E72A2585CE0075EB42 /* ViewController.swift */; };
@@ -17,7 +19,6 @@
 		DF2515052A2585D00075EB42 /* BrowserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2515042A2585D00075EB42 /* BrowserUITests.swift */; };
 		DF2515072A2585D00075EB42 /* BrowserUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2515062A2585D00075EB42 /* BrowserUITestsLaunchTests.swift */; };
 		DF4183182A3915BC00BA2B6D /* TabCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4183172A3915BC00BA2B6D /* TabCollectionViewController.swift */; };
-		DF731A3E2A4A55B1007B78C0 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF731A3D2A4A55B1007B78C0 /* CollectionViewCell.swift */; };
 		DFBC4EA52A41439D00C0160D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBC4EA42A41439D00C0160D /* TableViewCell.swift */; };
 		DFBC4EA72A41468E00C0160D /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBC4EA62A41468E00C0160D /* HistoryTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D1B3591F2A64DA190003D227 /* ThemeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTableViewController.swift; sourceTree = "<group>"; };
+		D1B359212A64F00C0003D227 /* TabTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabTableViewCell.swift; sourceTree = "<group>"; };
 		DF2514E02A2585CE0075EB42 /* Roamr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roamr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF2514E32A2585CE0075EB42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF2514E52A2585CE0075EB42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,7 +57,6 @@
 		DF2515042A2585D00075EB42 /* BrowserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserUITests.swift; sourceTree = "<group>"; };
 		DF2515062A2585D00075EB42 /* BrowserUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DF4183172A3915BC00BA2B6D /* TabCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCollectionViewController.swift; sourceTree = "<group>"; };
-		DF731A3D2A4A55B1007B78C0 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		DFBC4EA42A41439D00C0160D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		DFBC4EA62A41468E00C0160D /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,10 +111,11 @@
 			children = (
 				DF2514E32A2585CE0075EB42 /* AppDelegate.swift */,
 				DF2514E52A2585CE0075EB42 /* SceneDelegate.swift */,
-				DF731A3D2A4A55B1007B78C0 /* CollectionViewCell.swift */,
 				DF2514E72A2585CE0075EB42 /* ViewController.swift */,
 				DF2514E92A2585CE0075EB42 /* Main.storyboard */,
 				DF4183172A3915BC00BA2B6D /* TabCollectionViewController.swift */,
+				D1B359212A64F00C0003D227 /* TabTableViewCell.swift */,
+				D1B3591F2A64DA190003D227 /* ThemeTableViewController.swift */,
 				DF2514EC2A2585D00075EB42 /* Assets.xcassets */,
 				DF2514EE2A2585D00075EB42 /* LaunchScreen.storyboard */,
 				DF2514F12A2585D00075EB42 /* Info.plist */,
@@ -273,7 +276,8 @@
 				DFBC4EA52A41439D00C0160D /* TableViewCell.swift in Sources */,
 				DF2514E82A2585CE0075EB42 /* ViewController.swift in Sources */,
 				DFBC4EA72A41468E00C0160D /* HistoryTableViewController.swift in Sources */,
-				DF731A3E2A4A55B1007B78C0 /* CollectionViewCell.swift in Sources */,
+				D1B359222A64F00C0003D227 /* TabTableViewCell.swift in Sources */,
+				D1B359202A64DA190003D227 /* ThemeTableViewController.swift in Sources */,
 				DF2514E42A2585CE0075EB42 /* AppDelegate.swift in Sources */,
 				DF4183182A3915BC00BA2B6D /* TabCollectionViewController.swift in Sources */,
 				DF2514E62A2585CE0075EB42 /* SceneDelegate.swift in Sources */,
@@ -457,6 +461,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Browser/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Roamr;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -470,6 +475,9 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Aydanhawken.Browser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -487,6 +495,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Browser/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Roamr;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -500,6 +509,9 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Aydanhawken.Browser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

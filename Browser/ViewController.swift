@@ -10,6 +10,7 @@ protocol TabDelegate {
 }
 
 class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate {
+    
 
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var newTabButton: UIToolbar!
@@ -96,6 +97,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 }),
                 UIAction(title: "Private Mode", image: UIImage(systemName: "eye.slash"), handler: { (_) in
                     // Handle the action for the standard item
+                }),
+                UIAction(title: "Add Bookmark", image: UIImage(systemName: "star"), handler: { (_) in
                 }),
                 UIAction(title: "Bookmarks", image: UIImage(systemName: "book"), handler: { (_) in
                     self.performSegue(withIdentifier: "bookmarksSegue", sender: self)
@@ -188,69 +191,20 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
        }
     
     @IBAction func createNewTabButtonPressed(_ sender: UIButton) {
-        createNewTab1()
+        let newTab = Tab(url: webView.url, title: webView.title)
+        tab.append(newTab)
         if let url = URL(string: "https://google.com") {
             let request = URLRequest(url: url)
             webView.load(request)
-        }
-    }
-    func createNewTab1(){
-        if let urlString = webView.url?.absoluteString, let title = webView.title {
-            print("Saving Tab, Title: ", title, "URL: ", urlString)
-            if let url = URL(string: urlString) {
-                createNewTabWithNewWebView(url: url, title: title)
-            }
-        }
-    }
-    func createNewTabWithNewWebView(url: URL?, title: String?) {
-        let newTab = Tab(url: url, title: title)
-        tab.append(newTab)
-        setupNewWebView()
-        loadNewWebView(url: url)
-    }
-    func setupNewWebView() {
-        let navBarHeight = navigationController?.navigationBar.frame.size.height ?? 0
-        let statusBarHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
-        let toolbarHeight = tabBarController?.tabBar.frame.size.height ?? 0
-
-        let newWebViewFrame = CGRect(
-            x: 0,
-            y: navBarHeight + statusBarHeight,
-            width: view.bounds.width,
-            height: view.bounds.height - (navBarHeight + statusBarHeight + toolbarHeight)
-        )
-
-        newWebView = WKWebView(frame: newWebViewFrame)
-        newWebView.navigationDelegate = self
-        view.addSubview(newWebView)
-    }
-
-    func loadNewWebView(url: URL?) {
-        if let url = url {
-            let request = URLRequest(url: url)
-            newWebView.load(request)
-        }
-    }
-    
-    func webView(_ webView: WKWebView, didClose navigation: WKNavigation!) {
-        if webView == newWebView {
-            newWebView.removeFromSuperview()
+            webView.backForwardList.perform(Selector(("_removeAllItems")))
         }
     }
 
-        
         @IBAction func reloadWebView() {
             webView.reload()
             print("Reload")
         }
         
-    func createNewTab(url: URL?, title: String?) {
-            let newTab = Tab(url: url, title: title)
-            tab.append(newTab)
-        for tab in tab{
-            print(tab.title!, tab.url!)
-        }
-    }
     
     func history(url: URL?) {
         let historyTab = Tab(url: url, title: "")
@@ -267,7 +221,13 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
             loadingWheel.startAnimating()
             reloadButton.isHidden = true
+        //progressBar.isHidden = false
+        progressBar.setProgress(0.0, animated: false)
             print("Reload Button isHidden, loading wheel isShown")
+    }
+    
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        progressBar.setProgress(0.5, animated: true)
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -283,6 +243,10 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 }
             }
         }
+        progressBar.setProgress(1.0, animated: true)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+//            self.progressBar.isHidden = true
+//        }
         updateNavigationButtons()
     }
     
@@ -302,18 +266,24 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
         if let destination = segue.destination as? TabDelegate {
             print("tab good")
-            createNewTab1()
             for tab in self.tab {
                 let url = tab.url
                 let title = tab.title
                 destination.didSelectTabView(url: url!, title: title!)
-                print("Preparing to transfer to tab view: ", url!, " With title: ", title!)
+                print("Preparing to transfer to tab view: ", url!, " With title: ", title)
             }
         }
     }
     
     @IBAction func goBackToLastTab(segue: UIStoryboardSegue){
-
+        let tabCount = tab.count
+        print(tab.count)
+        if tabCount > 0 {
+            let lastTab = tab[tabCount - 1]
+            let lastTabUrl = lastTab.url
+            let request = URLRequest(url: lastTabUrl!)
+            webView.load(request)
+        }
     }
     
 }

@@ -9,7 +9,7 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class TabCollectionViewController: UICollectionViewController, TabDelegate {
+class TabTableViewController: UITableViewController, TabDelegate {
     
     class Tab {
         var url: URL?
@@ -28,24 +28,18 @@ class TabCollectionViewController: UICollectionViewController, TabDelegate {
         let newTab = Tab(url: url, title: title)
         tab.append(newTab)
         print ("recieved and saved url: ", newTab.url!.absoluteString, " title: ", newTab.title!)
-        collectionView.reloadData()
+        tableView.reloadData()
     }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(CollectionViewCell.self, forCellWithReuseIdentifier: "tabCell")
-        
         //demo tab
-        let tab = Tab(url: URL(string: "https://www.google.com"), title: "Google")
-        print("added", tab.url!.absoluteString)
-        self.tab.append(tab)
-        collectionView.reloadData()
+//        let tab = Tab(url: URL(string: "https://www.google.com"), title: "Google")
+//        print("added", tab.url!.absoluteString)
+//        self.tab.append(tab)
+//        tableView.reloadData()
         
         
 
@@ -64,55 +58,35 @@ class TabCollectionViewController: UICollectionViewController, TabDelegate {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
 
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return tab.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tabCell", for: indexPath) as! CollectionViewCell
-        //cell.title.text = tab[indexPath.row].title
-        
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tabCell", for: indexPath) as! TabTableViewCell
         print("made cell", tab[indexPath.row].url!.absoluteString)
-
+        cell.title.text = tab[indexPath.row].url!.absoluteString
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: TabTableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
     }
-    */
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected", tab[indexPath.row].url!.absoluteString)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
