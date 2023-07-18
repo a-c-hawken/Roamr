@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ParentViewControllerTabsDelegate {
+    func didSelectTabView(url: URL)
+}
+
 private let reuseIdentifier = "Cell"
 
 class TabTableViewController: UITableViewController, TabDelegate {
@@ -72,7 +76,7 @@ class TabTableViewController: UITableViewController, TabDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tabCell", for: indexPath) as! TabTableViewCell
         print("made cell", tab[indexPath.row].url!.absoluteString)
-        cell.title.text = tab[indexPath.row].url!.absoluteString
+        cell.title.text = tab[indexPath.row].title
         return cell
     }
     
@@ -86,7 +90,18 @@ class TabTableViewController: UITableViewController, TabDelegate {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected", tab[indexPath.row].url!.absoluteString)
-        self.dismiss(animated: true, completion: nil)
+        if let destination =  presentingViewController as? ParentViewControllerTabsDelegate
+        {
+            destination.didSelectTabView(url: tab[indexPath.row].url!)
+            self.dismiss(animated: true, completion: nil)
+            print("tab transfered")
+        } else{
+            print("uh oh something about transferring the selected tab is wrong")
+                  }
+    }
+    
+    func updateAdBlockerList(){
+
     }
     
 }

@@ -9,9 +9,15 @@ protocol TabDelegate {
     func didSelectTabView(url: URL, title: String)
 }
 
-class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate, ParentViewControllerTabsDelegate {
+    func didSelectTabView(url: URL) {
+        let request = URLRequest(url: url)
+        webView.load(request)
+        print ("recieved and loaded url: ", request.url!.absoluteString)
+    }
     
-
+    
+    
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var newTabButton: UIToolbar!
     @IBOutlet weak var tabViewButton: UIToolbar!
@@ -26,11 +32,12 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var progressBar: UIProgressView!
     var newWebView: WKWebView!
     var window: UIWindow?
+    var adBlockArray: [String] = []
     
     var tab: [Tab] = []
     var history: [Tab] = []
     
-    class Tab {
+    class Tab: Codable {
         var url: URL?
         var title: String?
         // Add any additional properties as needed
@@ -50,6 +57,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadAndSetData()
         DispatchQueue.main.async { [self] in
             if let url = URL(string: "https://google.com") {
                 let request = URLRequest(url: url)
@@ -59,14 +67,17 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         view.addSubview(webView)
         
         NotificationCenter.default.addObserver(self,
-          selector: #selector(self.keyboardNotification(notification:)),
-          name: UIResponder.keyboardWillChangeFrameNotification,
-          object: nil)
+                                               selector: #selector(self.keyboardNotification(notification:)),
+                                               name: UIResponder.keyboardWillChangeFrameNotification,
+                                               object: nil)
         
         var menuItems: [UIAction] {
             return [
                 UIAction(title: "Settings", image: UIImage(systemName: "gearshape"), handler: { (_) in
                     self.performSegue(withIdentifier: "settingsSegue", sender: self)
+                }),
+                UIAction(title: "Security", image: UIImage(systemName: "lock.fill"), handler: { (_) in
+                    self.performSegue(withIdentifier: "securitySegue", sender: self)
                 }),
                 UIAction(title: "Extensions", image: UIImage(systemName: "puzzlepiece.extension"), handler: { (_) in
                     self.performSegue(withIdentifier: "ExtensionsSegue", sender: self)
@@ -83,9 +94,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                         }
                     }
                 }),
-//                UIAction(title: "Split View", image: UIImage(systemName: "square.bottomhalf.filled"), handler: { [self] (_) in
-//                    self.performSegue(withIdentifier: "splitView", sender: self)
-//                }),
+                //                UIAction(title: "Split View", image: UIImage(systemName: "square.bottomhalf.filled"), handler: { [self] (_) in
+                //                    self.performSegue(withIdentifier: "splitView", sender: self)
+                //                }),
                 UIAction(title: "Find on Page", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
                     // Handle the action for the standard item
                 }),
@@ -108,11 +119,12 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 }),
                 UIAction(title: "Delete all data", image: UIImage(systemName: "trash"), attributes: .destructive, handler: { (_) in
                     self.history.removeAll()
+                    self.tab.removeAll()
                     print("Deleting All History")
                 })
             ]
         }
-
+        
         var mainMenu: UIMenu {
             return UIMenu(title: "", image: nil, identifier: nil, options: [], children: menuItems)
         }
@@ -123,10 +135,10 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         updateNavigationButtons()
         
         loadingWheel.hidesWhenStopped = true
-            }
+    }
     
-
-            // Trigger the search when the Return key is pressed
+    
+    // Trigger the search when the Return key is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder() // Dismiss the keyboard
         if let searchText = textField.text, !searchText.isEmpty {
@@ -154,9 +166,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     deinit {
-         NotificationCenter.default.removeObserver(self)
-       }
-     
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     @objc func keyboardNotification(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }
         
@@ -175,20 +187,20 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     
     // Go back to the previous web page
-       @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
-           if webView.canGoBack {
-               webView.goBack()
-               print("Go Back")
-           }
-       }
-
-       // Go forward to the next web page
-       @IBAction func forwardButtonTapped(_ sender: UIBarButtonItem) {
-           if webView.canGoForward {
-               webView.goForward()
-               print("Go Forward")
-           }
-       }
+    @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
+        if webView.canGoBack {
+            webView.goBack()
+            print("Go Back")
+        }
+    }
+    
+    // Go forward to the next web page
+    @IBAction func forwardButtonTapped(_ sender: UIBarButtonItem) {
+        if webView.canGoForward {
+            webView.goForward()
+            print("Go Forward")
+        }
+    }
     
     @IBAction func createNewTabButtonPressed(_ sender: UIButton) {
         let newTab = Tab(url: webView.url, title: webView.title)
@@ -199,12 +211,12 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             webView.backForwardList.perform(Selector(("_removeAllItems")))
         }
     }
-
-        @IBAction func reloadWebView() {
-            webView.reload()
-            print("Reload")
-        }
-        
+    
+    @IBAction func reloadWebView() {
+        webView.reload()
+        print("Reload")
+    }
+    
     
     func history(url: URL?) {
         let historyTab = Tab(url: url, title: "")
@@ -213,17 +225,17 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             print("History", tab.url!)
         }
     }
-        
+    
     @IBAction func openTabView(){
         performSegue(withIdentifier: "tabViewSegue", sender: self)
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-            loadingWheel.startAnimating()
-            reloadButton.isHidden = true
+        loadingWheel.startAnimating()
+        reloadButton.isHidden = true
         //progressBar.isHidden = false
         progressBar.setProgress(0.0, animated: false)
-            print("Reload Button isHidden, loading wheel isShown")
+        print("Reload Button isHidden, loading wheel isShown")
     }
     
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
@@ -242,19 +254,21 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                     history(url: url)
                 }
             }
+            saveData()
         }
         progressBar.setProgress(1.0, animated: true)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-//            self.progressBar.isHidden = true
-//        }
+        //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+        //            self.progressBar.isHidden = true
+        //        }
         updateNavigationButtons()
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-            textField.selectedTextRange = textField.textRange(from: textField.beginningOfDocument, to: textField.endOfDocument)
-        }
+        textField.selectedTextRange = textField.textRange(from: textField.beginningOfDocument, to: textField.endOfDocument)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        saveData()
         print(segue.destination)
         if let destination = segue.destination as? HistoryDelegate {
             print("good")
@@ -283,9 +297,73 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             let lastTabUrl = lastTab.url
             let request = URLRequest(url: lastTabUrl!)
             webView.load(request)
+            saveData()
         }
     }
     
+    @IBAction func pullDown(_ sender: Any) {
+        webView.reload()
+    }
+    
+    func retrieveData() -> [Tab] {
+        let defaults = UserDefaults.standard
+        if let encodedTabs = defaults.data(forKey: "tabData") {
+            let decoder = JSONDecoder()
+            if let decodedTabs = try? decoder.decode([Tab].self, from: encodedTabs) {
+                return decodedTabs
+            }
+        }
+        return []
+    }
+    
+    func retrieveDataHistory() -> [Tab]
+    {
+        let defaults = UserDefaults.standard
+        if let encodedHistory = defaults.data(forKey: "historyData") {
+            let decoder = JSONDecoder()
+            if let decodedHistory = try? decoder.decode([Tab].self, from: encodedHistory) {
+                return decodedHistory
+            }
+        }
+        return []
+    }
+    
+    func loadAndSetData() {
+        let savedTabs = retrieveData()
+        let savedHistory = retrieveDataHistory()
+        tab = savedTabs
+        history = savedHistory
+    }
+
+    func saveData() {
+        let defaults = UserDefaults.standard
+        let encoder = JSONEncoder()
+
+        if let encodedTab = try? encoder.encode(tab) {
+            defaults.set(encodedTab, forKey: "tabData")
+            print("Tab data saved")
+        }
+        if let encodedHistory = try? encoder.encode(history) {
+            defaults.set(encodedHistory, forKey: "historyData")
+            print("History data saved")
+        }
+    }
+//    //To reduce data save this instead of refetching it every time
+//    func updateAdBlockArray(){
+//        let url = URL(string: "https://hosts.anudeep.me/mirror/adservers.txt")!
+//        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+//            if let data = data {
+//                let dataString = String(data: data, encoding: .utf8)
+//                let lines = dataString!.split(separator: "\n")
+//                for line in lines {
+//                    if !line.starts(with: "#") {
+//                        self.adBlockArray.append(String(line))
+//                    }
+//                }
+//            }
+//        }
+//        task.resume()
+//    }
 }
 
 

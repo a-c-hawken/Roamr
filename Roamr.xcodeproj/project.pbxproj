@@ -7,8 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D13856DE2A664196005A2518 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13856DD2A664196005A2518 /* WidgetKit.framework */; };
+		D13856E02A664196005A2518 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13856DF2A664196005A2518 /* SwiftUI.framework */; };
+		D13856E32A664196005A2518 /* RoamrWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13856E22A664196005A2518 /* RoamrWidgetsBundle.swift */; };
+		D13856E72A664196005A2518 /* RoamrWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13856E62A664196005A2518 /* RoamrWidgets.swift */; };
+		D13856E92A664196005A2518 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13856E82A664196005A2518 /* AppIntent.swift */; };
+		D13856EB2A664199005A2518 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D13856EA2A664199005A2518 /* Assets.xcassets */; };
+		D13856EF2A664199005A2518 /* RoamrWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D13856DB2A664196005A2518 /* RoamrWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D138572C2A6651C4005A2518 /* Roamr.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D138572B2A6651C4005A2518 /* Roamr.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D13857302A6651C4005A2518 /* Stickers.xcstickers in Resources */ = {isa = PBXBuildFile; fileRef = D138572F2A6651C4005A2518 /* Stickers.xcstickers */; };
+		D13857312A6651C4005A2518 /* Stickers.xcstickers in Resources */ = {isa = PBXBuildFile; fileRef = D138572F2A6651C4005A2518 /* Stickers.xcstickers */; };
 		D1B359202A64DA190003D227 /* ThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B3591F2A64DA190003D227 /* ThemeTableViewController.swift */; };
 		D1B359222A64F00C0003D227 /* TabTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B359212A64F00C0003D227 /* TabTableViewCell.swift */; };
+		D1CA2E842A66592E009E3A60 /* WatchRoamrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CA2E832A66592E009E3A60 /* WatchRoamrApp.swift */; };
+		D1CA2E862A66592E009E3A60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CA2E852A66592E009E3A60 /* ContentView.swift */; };
+		D1CA2E882A665931009E3A60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1CA2E872A665931009E3A60 /* Assets.xcassets */; };
+		D1CA2E8B2A665931009E3A60 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1CA2E8A2A665931009E3A60 /* Preview Assets.xcassets */; };
+		D1CA2E952A665931009E3A60 /* WatchRoamr_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CA2E942A665931009E3A60 /* WatchRoamr_Watch_AppTests.swift */; };
+		D1CA2E9F2A665931009E3A60 /* WatchRoamr_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CA2E9E2A665931009E3A60 /* WatchRoamr_Watch_AppUITests.swift */; };
+		D1CA2EA12A665931009E3A60 /* WatchRoamr_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CA2EA02A665931009E3A60 /* WatchRoamr_Watch_AppUITestsLaunchTests.swift */; };
+		D1CA2EA42A665931009E3A60 /* WatchRoamr Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D1CA2E812A66592E009E3A60 /* WatchRoamr Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DF2514E42A2585CE0075EB42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2514E32A2585CE0075EB42 /* AppDelegate.swift */; };
 		DF2514E62A2585CE0075EB42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2514E52A2585CE0075EB42 /* SceneDelegate.swift */; };
 		DF2514E82A2585CE0075EB42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2514E72A2585CE0075EB42 /* ViewController.swift */; };
@@ -24,6 +42,41 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D13856ED2A664199005A2518 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF2514D82A2585CE0075EB42 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D13856DA2A664196005A2518;
+			remoteInfo = RoamrWidgetsExtension;
+		};
+		D138572D2A6651C4005A2518 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF2514D82A2585CE0075EB42 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D138572A2A6651C4005A2518;
+			remoteInfo = "RoamrStickers StickerPackExtension";
+		};
+		D1CA2E912A665931009E3A60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF2514D82A2585CE0075EB42 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D1CA2E802A66592E009E3A60;
+			remoteInfo = "WatchRoamr Watch App";
+		};
+		D1CA2E9B2A665931009E3A60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF2514D82A2585CE0075EB42 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D1CA2E802A66592E009E3A60;
+			remoteInfo = "WatchRoamr Watch App";
+		};
+		D1CA2EA22A665931009E3A60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF2514D82A2585CE0075EB42 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D1CA2E802A66592E009E3A60;
+			remoteInfo = "WatchRoamr Watch App";
+		};
 		DF2514F72A2585D00075EB42 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DF2514D82A2585CE0075EB42 /* Project object */;
@@ -40,9 +93,66 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D13856F32A664199005A2518 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D13856EF2A664199005A2518 /* RoamrWidgetsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D138571F2A6641C4005A2518 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				D1CA2EA42A665931009E3A60 /* WatchRoamr Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D13857352A6651C4005A2518 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D138572C2A6651C4005A2518 /* Roamr.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		D13856DB2A664196005A2518 /* RoamrWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RoamrWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D13856DD2A664196005A2518 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		D13856DF2A664196005A2518 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		D13856E22A664196005A2518 /* RoamrWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoamrWidgetsBundle.swift; sourceTree = "<group>"; };
+		D13856E62A664196005A2518 /* RoamrWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoamrWidgets.swift; sourceTree = "<group>"; };
+		D13856E82A664196005A2518 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		D13856EA2A664199005A2518 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D13856EC2A664199005A2518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D13857282A6651C4005A2518 /* Roamr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roamr.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D138572B2A6651C4005A2518 /* Roamr.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Roamr.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D138572F2A6651C4005A2518 /* Stickers.xcstickers */ = {isa = PBXFileReference; lastKnownFileType = folder.stickers; name = Stickers.xcstickers; path = "RoamrStickers StickerPackExtension/Stickers.xcstickers"; sourceTree = "<group>"; };
 		D1B3591F2A64DA190003D227 /* ThemeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTableViewController.swift; sourceTree = "<group>"; };
 		D1B359212A64F00C0003D227 /* TabTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabTableViewCell.swift; sourceTree = "<group>"; };
+		D1CA2E812A66592E009E3A60 /* WatchRoamr Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WatchRoamr Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1CA2E832A66592E009E3A60 /* WatchRoamrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRoamrApp.swift; sourceTree = "<group>"; };
+		D1CA2E852A66592E009E3A60 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D1CA2E872A665931009E3A60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D1CA2E8A2A665931009E3A60 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D1CA2E902A665931009E3A60 /* WatchRoamr Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WatchRoamr Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1CA2E942A665931009E3A60 /* WatchRoamr_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRoamr_Watch_AppTests.swift; sourceTree = "<group>"; };
+		D1CA2E9A2A665931009E3A60 /* WatchRoamr Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WatchRoamr Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1CA2E9E2A665931009E3A60 /* WatchRoamr_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRoamr_Watch_AppUITests.swift; sourceTree = "<group>"; };
+		D1CA2EA02A665931009E3A60 /* WatchRoamr_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRoamr_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DF2514E02A2585CE0075EB42 /* Roamr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roamr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF2514E32A2585CE0075EB42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF2514E52A2585CE0075EB42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +172,36 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D13856D82A664196005A2518 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D13856E02A664196005A2518 /* SwiftUI.framework in Frameworks */,
+				D13856DE2A664196005A2518 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1CA2E7E2A66592E009E3A60 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1CA2E8D2A665931009E3A60 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1CA2E972A665931009E3A60 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DF2514DD2A2585CE0075EB42 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -86,12 +226,75 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D13856DC2A664196005A2518 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D13856DD2A664196005A2518 /* WidgetKit.framework */,
+				D13856DF2A664196005A2518 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D13856E12A664196005A2518 /* RoamrWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				D13856E22A664196005A2518 /* RoamrWidgetsBundle.swift */,
+				D13856E62A664196005A2518 /* RoamrWidgets.swift */,
+				D13856E82A664196005A2518 /* AppIntent.swift */,
+				D13856EA2A664199005A2518 /* Assets.xcassets */,
+				D13856EC2A664199005A2518 /* Info.plist */,
+			);
+			path = RoamrWidgets;
+			sourceTree = "<group>";
+		};
+		D1CA2E822A66592E009E3A60 /* WatchRoamr Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				D1CA2E832A66592E009E3A60 /* WatchRoamrApp.swift */,
+				D1CA2E852A66592E009E3A60 /* ContentView.swift */,
+				D1CA2E872A665931009E3A60 /* Assets.xcassets */,
+				D1CA2E892A665931009E3A60 /* Preview Content */,
+			);
+			path = "WatchRoamr Watch App";
+			sourceTree = "<group>";
+		};
+		D1CA2E892A665931009E3A60 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D1CA2E8A2A665931009E3A60 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D1CA2E932A665931009E3A60 /* WatchRoamr Watch AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				D1CA2E942A665931009E3A60 /* WatchRoamr_Watch_AppTests.swift */,
+			);
+			path = "WatchRoamr Watch AppTests";
+			sourceTree = "<group>";
+		};
+		D1CA2E9D2A665931009E3A60 /* WatchRoamr Watch AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D1CA2E9E2A665931009E3A60 /* WatchRoamr_Watch_AppUITests.swift */,
+				D1CA2EA02A665931009E3A60 /* WatchRoamr_Watch_AppUITestsLaunchTests.swift */,
+			);
+			path = "WatchRoamr Watch AppUITests";
+			sourceTree = "<group>";
+		};
 		DF2514D72A2585CE0075EB42 = {
 			isa = PBXGroup;
 			children = (
+				D138572F2A6651C4005A2518 /* Stickers.xcstickers */,
 				DF2514E22A2585CE0075EB42 /* Browser */,
 				DF2514F92A2585D00075EB42 /* BrowserTests */,
 				DF2515032A2585D00075EB42 /* BrowserUITests */,
+				D13856E12A664196005A2518 /* RoamrWidgets */,
+				D1CA2E822A66592E009E3A60 /* WatchRoamr Watch App */,
+				D1CA2E932A665931009E3A60 /* WatchRoamr Watch AppTests */,
+				D1CA2E9D2A665931009E3A60 /* WatchRoamr Watch AppUITests */,
+				D13856DC2A664196005A2518 /* Frameworks */,
 				DF2514E12A2585CE0075EB42 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -102,6 +305,12 @@
 				DF2514E02A2585CE0075EB42 /* Roamr.app */,
 				DF2514F62A2585D00075EB42 /* RoamrTests.xctest */,
 				DF2515002A2585D00075EB42 /* RoamrUITests.xctest */,
+				D13856DB2A664196005A2518 /* RoamrWidgetsExtension.appex */,
+				D13857282A6651C4005A2518 /* Roamr.app */,
+				D138572B2A6651C4005A2518 /* Roamr.appex */,
+				D1CA2E812A66592E009E3A60 /* WatchRoamr Watch App.app */,
+				D1CA2E902A665931009E3A60 /* WatchRoamr Watch AppTests.xctest */,
+				D1CA2E9A2A665931009E3A60 /* WatchRoamr Watch AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,6 +354,108 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D13856DA2A664196005A2518 /* RoamrWidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D13856F02A664199005A2518 /* Build configuration list for PBXNativeTarget "RoamrWidgetsExtension" */;
+			buildPhases = (
+				D13856D72A664196005A2518 /* Sources */,
+				D13856D82A664196005A2518 /* Frameworks */,
+				D13856D92A664196005A2518 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RoamrWidgetsExtension;
+			productName = RoamrWidgetsExtension;
+			productReference = D13856DB2A664196005A2518 /* RoamrWidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		D13857272A6651C4005A2518 /* RoamrStickers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D13857362A6651C4005A2518 /* Build configuration list for PBXNativeTarget "RoamrStickers" */;
+			buildPhases = (
+				D13857262A6651C4005A2518 /* Resources */,
+				D13857352A6651C4005A2518 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D138572E2A6651C4005A2518 /* PBXTargetDependency */,
+			);
+			name = RoamrStickers;
+			productName = RoamrStickers;
+			productReference = D13857282A6651C4005A2518 /* Roamr.app */;
+			productType = "com.apple.product-type.application.messages";
+		};
+		D138572A2A6651C4005A2518 /* RoamrStickers StickerPackExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D13857322A6651C4005A2518 /* Build configuration list for PBXNativeTarget "RoamrStickers StickerPackExtension" */;
+			buildPhases = (
+				D13857292A6651C4005A2518 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "RoamrStickers StickerPackExtension";
+			productName = "RoamrStickers StickerPackExtension";
+			productReference = D138572B2A6651C4005A2518 /* Roamr.appex */;
+			productType = "com.apple.product-type.app-extension.messages-sticker-pack";
+		};
+		D1CA2E802A66592E009E3A60 /* WatchRoamr Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1CA2EA52A665931009E3A60 /* Build configuration list for PBXNativeTarget "WatchRoamr Watch App" */;
+			buildPhases = (
+				D1CA2E7D2A66592E009E3A60 /* Sources */,
+				D1CA2E7E2A66592E009E3A60 /* Frameworks */,
+				D1CA2E7F2A66592E009E3A60 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "WatchRoamr Watch App";
+			productName = "WatchRoamr Watch App";
+			productReference = D1CA2E812A66592E009E3A60 /* WatchRoamr Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D1CA2E8F2A665931009E3A60 /* WatchRoamr Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1CA2EA82A665931009E3A60 /* Build configuration list for PBXNativeTarget "WatchRoamr Watch AppTests" */;
+			buildPhases = (
+				D1CA2E8C2A665931009E3A60 /* Sources */,
+				D1CA2E8D2A665931009E3A60 /* Frameworks */,
+				D1CA2E8E2A665931009E3A60 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D1CA2E922A665931009E3A60 /* PBXTargetDependency */,
+			);
+			name = "WatchRoamr Watch AppTests";
+			productName = "WatchRoamr Watch AppTests";
+			productReference = D1CA2E902A665931009E3A60 /* WatchRoamr Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D1CA2E992A665931009E3A60 /* WatchRoamr Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1CA2EAB2A665931009E3A60 /* Build configuration list for PBXNativeTarget "WatchRoamr Watch AppUITests" */;
+			buildPhases = (
+				D1CA2E962A665931009E3A60 /* Sources */,
+				D1CA2E972A665931009E3A60 /* Frameworks */,
+				D1CA2E982A665931009E3A60 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D1CA2E9C2A665931009E3A60 /* PBXTargetDependency */,
+			);
+			name = "WatchRoamr Watch AppUITests";
+			productName = "WatchRoamr Watch AppUITests";
+			productReference = D1CA2E9A2A665931009E3A60 /* WatchRoamr Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		DF2514DF2A2585CE0075EB42 /* Roamr */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DF25150A2A2585D00075EB42 /* Build configuration list for PBXNativeTarget "Roamr" */;
@@ -152,10 +463,14 @@
 				DF2514DC2A2585CE0075EB42 /* Sources */,
 				DF2514DD2A2585CE0075EB42 /* Frameworks */,
 				DF2514DE2A2585CE0075EB42 /* Resources */,
+				D13856F32A664199005A2518 /* Embed Foundation Extensions */,
+				D138571F2A6641C4005A2518 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D13856EE2A664199005A2518 /* PBXTargetDependency */,
+				D1CA2EA32A665931009E3A60 /* PBXTargetDependency */,
 			);
 			name = Roamr;
 			productName = Browser;
@@ -205,9 +520,29 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					D13856DA2A664196005A2518 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					D13857272A6651C4005A2518 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					D138572A2A6651C4005A2518 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					D1CA2E802A66592E009E3A60 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					D1CA2E8F2A665931009E3A60 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = D1CA2E802A66592E009E3A60;
+					};
+					D1CA2E992A665931009E3A60 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = D1CA2E802A66592E009E3A60;
+					};
 					DF2514DF2A2585CE0075EB42 = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -237,11 +572,64 @@
 				DF2514DF2A2585CE0075EB42 /* Roamr */,
 				DF2514F52A2585D00075EB42 /* RoamrTests */,
 				DF2514FF2A2585D00075EB42 /* RoamrUITests */,
+				D13856DA2A664196005A2518 /* RoamrWidgetsExtension */,
+				D13857272A6651C4005A2518 /* RoamrStickers */,
+				D138572A2A6651C4005A2518 /* RoamrStickers StickerPackExtension */,
+				D1CA2E802A66592E009E3A60 /* WatchRoamr Watch App */,
+				D1CA2E8F2A665931009E3A60 /* WatchRoamr Watch AppTests */,
+				D1CA2E992A665931009E3A60 /* WatchRoamr Watch AppUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D13856D92A664196005A2518 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D13856EB2A664199005A2518 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D13857262A6651C4005A2518 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D13857312A6651C4005A2518 /* Stickers.xcstickers in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D13857292A6651C4005A2518 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D13857302A6651C4005A2518 /* Stickers.xcstickers in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1CA2E7F2A66592E009E3A60 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1CA2E8B2A665931009E3A60 /* Preview Assets.xcassets in Resources */,
+				D1CA2E882A665931009E3A60 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1CA2E8E2A665931009E3A60 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1CA2E982A665931009E3A60 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DF2514DE2A2585CE0075EB42 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -269,6 +657,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D13856D72A664196005A2518 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D13856E92A664196005A2518 /* AppIntent.swift in Sources */,
+				D13856E72A664196005A2518 /* RoamrWidgets.swift in Sources */,
+				D13856E32A664196005A2518 /* RoamrWidgetsBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1CA2E7D2A66592E009E3A60 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1CA2E862A66592E009E3A60 /* ContentView.swift in Sources */,
+				D1CA2E842A66592E009E3A60 /* WatchRoamrApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1CA2E8C2A665931009E3A60 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1CA2E952A665931009E3A60 /* WatchRoamr_Watch_AppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1CA2E962A665931009E3A60 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1CA2EA12A665931009E3A60 /* WatchRoamr_Watch_AppUITestsLaunchTests.swift in Sources */,
+				D1CA2E9F2A665931009E3A60 /* WatchRoamr_Watch_AppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DF2514DC2A2585CE0075EB42 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -304,6 +728,31 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D13856EE2A664199005A2518 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D13856DA2A664196005A2518 /* RoamrWidgetsExtension */;
+			targetProxy = D13856ED2A664199005A2518 /* PBXContainerItemProxy */;
+		};
+		D138572E2A6651C4005A2518 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D138572A2A6651C4005A2518 /* RoamrStickers StickerPackExtension */;
+			targetProxy = D138572D2A6651C4005A2518 /* PBXContainerItemProxy */;
+		};
+		D1CA2E922A665931009E3A60 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D1CA2E802A66592E009E3A60 /* WatchRoamr Watch App */;
+			targetProxy = D1CA2E912A665931009E3A60 /* PBXContainerItemProxy */;
+		};
+		D1CA2E9C2A665931009E3A60 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D1CA2E802A66592E009E3A60 /* WatchRoamr Watch App */;
+			targetProxy = D1CA2E9B2A665931009E3A60 /* PBXContainerItemProxy */;
+		};
+		D1CA2EA32A665931009E3A60 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D1CA2E802A66592E009E3A60 /* WatchRoamr Watch App */;
+			targetProxy = D1CA2EA22A665931009E3A60 /* PBXContainerItemProxy */;
+		};
 		DF2514F82A2585D00075EB42 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DF2514DF2A2585CE0075EB42 /* Roamr */;
@@ -336,6 +785,346 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D13856F12A664199005A2518 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6GQMCZS5X3;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RoamrWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RoamrWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Aydanhawken.Browser.RoamrWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D13856F22A664199005A2518 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6GQMCZS5X3;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RoamrWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RoamrWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Aydanhawken.Browser.RoamrWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D13857332A6651C4005A2518 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6GQMCZS5X3;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "RoamrStickers StickerPackExtension/Info.plist";
+				INFOPLIST_KEY_NSStickerSharingLevel = OS;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aydanhawken.RoamrStickers.StickerPackExtension;
+				PRODUCT_NAME = Roamr;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D13857342A6651C4005A2518 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6GQMCZS5X3;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "RoamrStickers StickerPackExtension/Info.plist";
+				INFOPLIST_KEY_NSStickerSharingLevel = OS;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aydanhawken.RoamrStickers.StickerPackExtension;
+				PRODUCT_NAME = Roamr;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D13857372A6651C4005A2518 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6GQMCZS5X3;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RoamrStickers/Info.plist;
+				INFOPLIST_KEY_NSStickerSharingLevel = OS;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aydanhawken.RoamrStickers;
+				PRODUCT_NAME = Roamr;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D13857382A6651C4005A2518 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6GQMCZS5X3;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RoamrStickers/Info.plist;
+				INFOPLIST_KEY_NSStickerSharingLevel = OS;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aydanhawken.RoamrStickers;
+				PRODUCT_NAME = Roamr;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D1CA2EA62A665931009E3A60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WatchRoamr Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 6GQMCZS5X3;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchRoamr;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.Aydanhawken.Browser;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Aydanhawken.Browser.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		D1CA2EA72A665931009E3A60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WatchRoamr Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 6GQMCZS5X3;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchRoamr;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.Aydanhawken.Browser;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Aydanhawken.Browser.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		D1CA2EA92A665931009E3A60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6GQMCZS5X3;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aydanhawken.WatchRoamr-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchRoamr Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WatchRoamr Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		D1CA2EAA2A665931009E3A60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6GQMCZS5X3;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aydanhawken.WatchRoamr-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchRoamr Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WatchRoamr Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		D1CA2EAC2A665931009E3A60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6GQMCZS5X3;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aydanhawken.WatchRoamr-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "WatchRoamr Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		D1CA2EAD2A665931009E3A60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6GQMCZS5X3;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aydanhawken.WatchRoamr-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "WatchRoamr Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
 		DF2515082A2585D00075EB42 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -386,7 +1175,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -440,7 +1229,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -453,6 +1242,7 @@
 		DF25150B2A2585D00075EB42 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -487,6 +1277,7 @@
 		DF25150C2A2585D00075EB42 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -530,6 +1321,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Aydanhawken.BrowserTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -549,6 +1343,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Aydanhawken.BrowserTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -566,6 +1363,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Aydanhawken.BrowserUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -583,6 +1383,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Aydanhawken.BrowserUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -593,6 +1396,60 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D13856F02A664199005A2518 /* Build configuration list for PBXNativeTarget "RoamrWidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D13856F12A664199005A2518 /* Debug */,
+				D13856F22A664199005A2518 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D13857322A6651C4005A2518 /* Build configuration list for PBXNativeTarget "RoamrStickers StickerPackExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D13857332A6651C4005A2518 /* Debug */,
+				D13857342A6651C4005A2518 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D13857362A6651C4005A2518 /* Build configuration list for PBXNativeTarget "RoamrStickers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D13857372A6651C4005A2518 /* Debug */,
+				D13857382A6651C4005A2518 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1CA2EA52A665931009E3A60 /* Build configuration list for PBXNativeTarget "WatchRoamr Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1CA2EA62A665931009E3A60 /* Debug */,
+				D1CA2EA72A665931009E3A60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1CA2EA82A665931009E3A60 /* Build configuration list for PBXNativeTarget "WatchRoamr Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1CA2EA92A665931009E3A60 /* Debug */,
+				D1CA2EAA2A665931009E3A60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1CA2EAB2A665931009E3A60 /* Build configuration list for PBXNativeTarget "WatchRoamr Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1CA2EAC2A665931009E3A60 /* Debug */,
+				D1CA2EAD2A665931009E3A60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DF2514DB2A2585CE0075EB42 /* Build configuration list for PBXProject "Roamr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
