@@ -13,7 +13,6 @@
 		D13856E72A664196005A2518 /* RoamrWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13856E62A664196005A2518 /* RoamrWidgets.swift */; };
 		D13856E92A664196005A2518 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13856E82A664196005A2518 /* AppIntent.swift */; };
 		D13856EB2A664199005A2518 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D13856EA2A664199005A2518 /* Assets.xcassets */; };
-		D13856EF2A664199005A2518 /* RoamrWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D13856DB2A664196005A2518 /* RoamrWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D1B359202A64DA190003D227 /* ThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B3591F2A64DA190003D227 /* ThemeTableViewController.swift */; };
 		D1B359222A64F00C0003D227 /* TabTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B359212A64F00C0003D227 /* TabTableViewCell.swift */; };
 		D1CA2E842A66592E009E3A60 /* WatchRoamrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CA2E832A66592E009E3A60 /* WatchRoamrApp.swift */; };
@@ -39,13 +38,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D13856ED2A664199005A2518 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DF2514D82A2585CE0075EB42 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D13856DA2A664196005A2518;
-			remoteInfo = RoamrWidgetsExtension;
-		};
 		D1CA2E912A665931009E3A60 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DF2514D82A2585CE0075EB42 /* Project object */;
@@ -84,17 +76,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D13856F32A664199005A2518 /* Embed Foundation Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				D13856EF2A664199005A2518 /* RoamrWidgetsExtension.appex in Embed Foundation Extensions */,
-			);
-			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D138571F2A6641C4005A2518 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -404,13 +385,11 @@
 				DF2514DC2A2585CE0075EB42 /* Sources */,
 				DF2514DD2A2585CE0075EB42 /* Frameworks */,
 				DF2514DE2A2585CE0075EB42 /* Resources */,
-				D13856F32A664199005A2518 /* Embed Foundation Extensions */,
 				D138571F2A6641C4005A2518 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D13856EE2A664199005A2518 /* PBXTargetDependency */,
 				D1CA2EA32A665931009E3A60 /* PBXTargetDependency */,
 			);
 			name = Roamr;
@@ -645,11 +624,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D13856EE2A664199005A2518 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D13856DA2A664196005A2518 /* RoamrWidgetsExtension */;
-			targetProxy = D13856ED2A664199005A2518 /* PBXContainerItemProxy */;
-		};
 		D1CA2E922A665931009E3A60 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D1CA2E802A66592E009E3A60 /* Roamr Watch App */;
