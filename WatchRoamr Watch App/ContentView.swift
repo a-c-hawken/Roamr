@@ -21,7 +21,8 @@ struct ContentView: View {
     }
     
     func signInWithGoogle() {
-        guard let url = URL(string: "https://www.google.com/search?q=" + name) else { return }
+        let textSearch = name.replacingOccurrences(of: " ", with: "+")
+        guard let url = URL(string: "https://www.google.com/search?q=" + textSearch) else { return }
         
         // Initialize an ASWebAuthenticationSession
         let session = ASWebAuthenticationSession(url: url, callbackURLScheme: nil) { callbackURL, error in
