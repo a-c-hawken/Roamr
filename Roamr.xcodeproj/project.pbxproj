@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D12248D02A666A4D005C5461 /* Roamr Stickers StickerPackExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D12248CF2A666A4D005C5461 /* Roamr Stickers StickerPackExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D12248D42A666A4D005C5461 /* Stickers.xcstickers in Resources */ = {isa = PBXBuildFile; fileRef = D12248D32A666A4D005C5461 /* Stickers.xcstickers */; };
-		D12248D52A666A4D005C5461 /* Stickers.xcstickers in Resources */ = {isa = PBXBuildFile; fileRef = D12248D32A666A4D005C5461 /* Stickers.xcstickers */; };
 		D13856DE2A664196005A2518 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13856DD2A664196005A2518 /* WidgetKit.framework */; };
 		D13856E02A664196005A2518 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13856DF2A664196005A2518 /* SwiftUI.framework */; };
 		D13856E32A664196005A2518 /* RoamrWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13856E22A664196005A2518 /* RoamrWidgetsBundle.swift */; };
@@ -42,13 +39,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D12248D12A666A4D005C5461 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DF2514D82A2585CE0075EB42 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D12248CE2A666A4D005C5461;
-			remoteInfo = "Roamr Stickers StickerPackExtension";
-		};
 		D13856ED2A664199005A2518 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DF2514D82A2585CE0075EB42 /* Project object */;
@@ -94,17 +84,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D12248D82A666A4D005C5461 /* Embed Foundation Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				D12248D02A666A4D005C5461 /* Roamr Stickers StickerPackExtension.appex in Embed Foundation Extensions */,
-			);
-			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D13856F32A664199005A2518 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -130,9 +109,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D12248CC2A666A4D005C5461 /* Roamr Stickers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Roamr Stickers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D12248CF2A666A4D005C5461 /* Roamr Stickers StickerPackExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Roamr Stickers StickerPackExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D12248D32A666A4D005C5461 /* Stickers.xcstickers */ = {isa = PBXFileReference; lastKnownFileType = folder.stickers; name = Stickers.xcstickers; path = "Roamr Stickers StickerPackExtension/Stickers.xcstickers"; sourceTree = "<group>"; };
 		D13856DB2A664196005A2518 /* RoamrWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RoamrWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D13856DD2A664196005A2518 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		D13856DF2A664196005A2518 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -286,7 +262,6 @@
 		DF2514D72A2585CE0075EB42 = {
 			isa = PBXGroup;
 			children = (
-				D12248D32A666A4D005C5461 /* Stickers.xcstickers */,
 				DF2514E22A2585CE0075EB42 /* Browser */,
 				DF2514F92A2585D00075EB42 /* BrowserTests */,
 				DF2515032A2585D00075EB42 /* BrowserUITests */,
@@ -309,8 +284,6 @@
 				D1CA2E812A66592E009E3A60 /* Roamr.app */,
 				D1CA2E902A665931009E3A60 /* WatchRoamr Watch AppTests.xctest */,
 				D1CA2E9A2A665931009E3A60 /* WatchRoamr Watch AppUITests.xctest */,
-				D12248CC2A666A4D005C5461 /* Roamr Stickers.app */,
-				D12248CF2A666A4D005C5461 /* Roamr Stickers StickerPackExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -354,38 +327,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D12248CB2A666A4D005C5461 /* Roamr Stickers */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D12248DC2A666A4D005C5461 /* Build configuration list for PBXNativeTarget "Roamr Stickers" */;
-			buildPhases = (
-				D12248CA2A666A4D005C5461 /* Resources */,
-				D12248D82A666A4D005C5461 /* Embed Foundation Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D12248D22A666A4D005C5461 /* PBXTargetDependency */,
-			);
-			name = "Roamr Stickers";
-			productName = "Roamr Stickers";
-			productReference = D12248CC2A666A4D005C5461 /* Roamr Stickers.app */;
-			productType = "com.apple.product-type.application.messages";
-		};
-		D12248CE2A666A4D005C5461 /* Roamr Stickers StickerPackExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D12248DB2A666A4D005C5461 /* Build configuration list for PBXNativeTarget "Roamr Stickers StickerPackExtension" */;
-			buildPhases = (
-				D12248CD2A666A4D005C5461 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Roamr Stickers StickerPackExtension";
-			productName = "Roamr Stickers StickerPackExtension";
-			productReference = D12248CF2A666A4D005C5461 /* Roamr Stickers StickerPackExtension.appex */;
-			productType = "com.apple.product-type.app-extension.messages-sticker-pack";
-		};
 		D13856DA2A664196005A2518 /* RoamrWidgetsExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D13856F02A664199005A2518 /* Build configuration list for PBXNativeTarget "RoamrWidgetsExtension" */;
@@ -523,12 +464,6 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					D12248CB2A666A4D005C5461 = {
-						CreatedOnToolsVersion = 15.0;
-					};
-					D12248CE2A666A4D005C5461 = {
-						CreatedOnToolsVersion = 15.0;
-					};
 					D13856DA2A664196005A2518 = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -576,29 +511,11 @@
 				D1CA2E802A66592E009E3A60 /* Roamr Watch App */,
 				D1CA2E8F2A665931009E3A60 /* WatchRoamr Watch AppTests */,
 				D1CA2E992A665931009E3A60 /* WatchRoamr Watch AppUITests */,
-				D12248CB2A666A4D005C5461 /* Roamr Stickers */,
-				D12248CE2A666A4D005C5461 /* Roamr Stickers StickerPackExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D12248CA2A666A4D005C5461 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D12248D52A666A4D005C5461 /* Stickers.xcstickers in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D12248CD2A666A4D005C5461 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D12248D42A666A4D005C5461 /* Stickers.xcstickers in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D13856D92A664196005A2518 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -728,11 +645,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D12248D22A666A4D005C5461 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D12248CE2A666A4D005C5461 /* Roamr Stickers StickerPackExtension */;
-			targetProxy = D12248D12A666A4D005C5461 /* PBXContainerItemProxy */;
-		};
 		D13856EE2A664199005A2518 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D13856DA2A664196005A2518 /* RoamrWidgetsExtension */;
@@ -785,106 +697,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		D12248D62A666A4D005C5461 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6GQMCZS5X3;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Roamr Stickers/Info.plist";
-				INFOPLIST_KEY_NSStickerSharingLevel = OS;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.aydanhawken.Roamr-Stickers";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		D12248D72A666A4D005C5461 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6GQMCZS5X3;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Roamr Stickers/Info.plist";
-				INFOPLIST_KEY_NSStickerSharingLevel = OS;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.aydanhawken.Roamr-Stickers";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		D12248D92A666A4D005C5461 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6GQMCZS5X3;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Roamr Stickers StickerPackExtension/Info.plist";
-				INFOPLIST_KEY_NSStickerSharingLevel = OS;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.aydanhawken.Roamr-Stickers.StickerPackExtension";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		D12248DA2A666A4D005C5461 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6GQMCZS5X3;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Roamr Stickers StickerPackExtension/Info.plist";
-				INFOPLIST_KEY_NSStickerSharingLevel = OS;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.aydanhawken.Roamr-Stickers.StickerPackExtension";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		D13856F12A664199005A2518 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1394,24 +1206,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D12248DB2A666A4D005C5461 /* Build configuration list for PBXNativeTarget "Roamr Stickers StickerPackExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D12248D92A666A4D005C5461 /* Debug */,
-				D12248DA2A666A4D005C5461 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D12248DC2A666A4D005C5461 /* Build configuration list for PBXNativeTarget "Roamr Stickers" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D12248D62A666A4D005C5461 /* Debug */,
-				D12248D72A666A4D005C5461 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		D13856F02A664199005A2518 /* Build configuration list for PBXNativeTarget "RoamrWidgetsExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
