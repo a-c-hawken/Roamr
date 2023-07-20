@@ -428,12 +428,27 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
         return []
     }
+    func retrieveDataBookmarks() -> [Bookmark]
+    {
+        let defaults = UserDefaults.standard
+        if let encodedBookmarks = defaults.data(forKey: "bookmarkData") {
+            let decoder = JSONDecoder()
+            if let decodedBookmarks = try? decoder.decode([Bookmark].self, from: encodedBookmarks) {
+                return decodedBookmarks
+            }
+        }
+        return []
+    }
+    
+    
     
     func loadAndSetData() {
         let savedTabs = retrieveData()
         let savedHistory = retrieveDataHistory()
+        let savedBookmarks = retrieveDataBookmarks()
         tab = savedTabs
         history = savedHistory
+        bookmarks = savedBookmarks
     }
 
     func saveData() {
@@ -447,6 +462,10 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         if let encodedHistory = try? encoder.encode(history) {
             defaults.set(encodedHistory, forKey: "historyData")
             print("History data saved")
+        }
+        if let encodedBookmarks = try? encoder.encode(bookmarks) {
+            defaults.set(encodedBookmarks, forKey: "bookmarkData")
+            print("Bookmark data saved")
         }
     }
     
