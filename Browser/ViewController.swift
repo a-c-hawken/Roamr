@@ -1,5 +1,7 @@
 import UIKit
+import DrawerView
 import WebKit
+import SwiftUI
 
 protocol HistoryDelegate {
     func didSelectHistory(url: URL)
@@ -9,7 +11,12 @@ protocol TabDelegate {
     func didSelectTabView(url: URL, title: String)
 }
 
-class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate, ParentViewControllerTabsDelegate {
+protocol BookmarkDelegate {
+    func didSelectBookmark(url: URL, title: String)
+}
+
+
+class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate, ParentViewControllerTabsDelegate, DrawerViewDelegate {
     func didSelectTabView(url: URL) {
         let request = URLRequest(url: url)
         webView.load(request)
@@ -24,18 +31,23 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var forwardButton: UIBarButtonItem!
     
-    @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var textInput: UITextField!
+    @IBOutlet weak var reloadButton: UIButton!
+    
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
     
     @IBOutlet weak var progressBar: UIProgressView!
+
+    @IBOutlet weak var webViewBottom: NSLayoutConstraint!
     var newWebView: WKWebView!
     var window: UIWindow?
     var adBlockArray: [String] = []
     
     var tab: [Tab] = []
     var history: [Tab] = []
+    var bookmarks: [Bookmark] = []
+    
     
     class Tab: Codable {
         var url: URL?
@@ -48,6 +60,16 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
     }
     
+    class Bookmark: Codable {
+        var title: String?
+        var url: URL?
+
+        init(title: String?, url: URL?) {
+            self.title = title
+            self.url = url
+        }
+    }
+
     
     // Enable or disable the back and fo    rward buttons based on the web view's navigation state
     func updateNavigationButtons() {
@@ -57,6 +79,74 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        let drawerView = DrawerView()
+//            drawerView.attachTo(view: self.view)
+//
+//            // Set up the drawer here
+//        drawerView.snapPositions = [.closed, .collapsed, .partiallyOpen, .open]
+//        drawerView.delegate = self
+//        
+//        let xOffset: CGFloat = 10
+//        var yOffset: CGFloat = 10
+//        let buttonWidth: CGFloat = 40
+//        let buttonHeight: CGFloat = 40
+//        let spacing: CGFloat = 10
+//
+//        let backButton = UIButton(frame: CGRect(x: xOffset, y: yOffset, width: buttonWidth, height: buttonHeight))
+//        let imageBack = UIImage(systemName: "chevron.backward")
+//        backButton.setImage(imageBack, for: .normal)
+//        backButton.setTitleColor(.blue, for: .normal)
+//        drawerView.addSubview(backButton)
+//
+//        let newTabButton = UIButton(frame: CGRect(x: backButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+//        let imageNewTab = UIImage(systemName: "plus")
+//        newTabButton.setImage(imageNewTab, for: .normal)
+//        newTabButton.setTitleColor(.blue, for: .normal)
+//        drawerView.addSubview(newTabButton)
+//
+//        let shareButton = UIButton(frame: CGRect(x: newTabButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+//        let image = UIImage(systemName: "square.and.arrow.up")
+//        shareButton.setImage(image, for: .normal)
+//        shareButton.setTitleColor(.blue, for: .normal)
+//        drawerView.addSubview(shareButton)
+//        
+//        let textInput = UITextField(frame: CGRect(x: shareButton.frame.maxX + spacing, y: yOffset, width: 200, height: buttonHeight))
+//        textInput.placeholder = "Search"
+//        textInput.font = UIFont.systemFont(ofSize: 15)
+//        textInput.borderStyle = UITextField.BorderStyle.roundedRect
+//        drawerView.addSubview(textInput)
+//
+//        let reloadButton = UIButton(frame: CGRect(x: textInput.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+//        let imageReload = UIImage(systemName: "arrow.clockwise")
+//        reloadButton.setImage(imageReload, for: .normal)
+//        reloadButton.setTitleColor(.blue, for: .normal)
+//        drawerView.addSubview(reloadButton)
+//        
+//        for data in tab {
+//            let tabViewButton = UIButton(frame: CGRect(x: reloadButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+//            let imageTabView = UIImage(systemName: "square.and.arrow.up")
+//            tabViewButton.setImage(imageTabView, for: .normal)
+//            tabViewButton.setTitleColor(.blue, for: .normal)
+//
+//            // Use 'data' to configure the button, such as setting a title or other properties
+//            tabViewButton.setTitle(data.title, for: .normal)
+//            // Assuming 'data' contains the target action for the button
+//            tabViewButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+//
+//            drawerView.addSubview(tabViewButton)
+//
+//            // Update yOffset for the next button (if needed)
+//            yOffset += buttonHeight + spacing
+//        }
+        
+//        
+//        let menuButton = UIButton(frame: CGRect(x: reloadButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+//        let imageMenu = UIImage(systemName: "ellipsis")
+//        menuButton.setImage(imageMenu, for: .normal)
+//        menuButton.setTitleColor(.blue, for: .normal)
+//        drawerView.addSubview(menuButton)
+
         loadAndSetData()
         DispatchQueue.main.async { [self] in
             if let url = URL(string: "https://google.com") {
@@ -64,7 +154,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 webView.load(request)
             }
         }
-        view.addSubview(webView)
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardNotification(notification:)),
@@ -76,15 +165,15 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 UIAction(title: "Settings", image: UIImage(systemName: "gearshape"), handler: { (_) in
                     self.performSegue(withIdentifier: "settingsSegue", sender: self)
                 }),
-                UIAction(title: "Security", image: UIImage(systemName: "lock.fill"), handler: { (_) in
-                    self.performSegue(withIdentifier: "securitySegue", sender: self)
-                }),
-                UIAction(title: "Extensions", image: UIImage(systemName: "puzzlepiece.extension"), handler: { (_) in
-                    self.performSegue(withIdentifier: "ExtensionsSegue", sender: self)
-                }),
-                UIAction(title: "Themes", image: UIImage(systemName: "paintbrush"), handler: { (_) in
-                    self.performSegue(withIdentifier: "ThemesSegue", sender: self)
-                }),
+//                UIAction(title: "Security", image: UIImage(systemName: "lock.fill"), handler: { (_) in
+//                    self.performSegue(withIdentifier: "securitySegue", sender: self)
+//                }),
+//                UIAction(title: "Extensions", image: UIImage(systemName: "puzzlepiece.extension"), handler: { (_) in
+//                    self.performSegue(withIdentifier: "ExtensionsSegue", sender: self)
+//                }),
+//                UIAction(title: "Themes", image: UIImage(systemName: "paintbrush"), handler: { (_) in
+//                    self.performSegue(withIdentifier: "ThemesSegue", sender: self)
+//                }),
                 UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up"), handler: { (_) in
                     if let urlString = self.webView.url?.absoluteString {
                         let message = "Check out this link:"
@@ -97,19 +186,21 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 //                UIAction(title: "Split View", image: UIImage(systemName: "square.bottomhalf.filled"), handler: { [self] (_) in
                 //                    self.performSegue(withIdentifier: "splitView", sender: self)
                 //                }),
-                UIAction(title: "Find on Page", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
-                    // Handle the action for the standard item
-                }),
-                UIAction(title: "Zoom", image: UIImage(systemName: "arrow.up.left.and.down.right.magnifyingglass"), handler: { (_) in
-                    // Handle the action for the standard item
-                }),
-                UIAction(title: "Request Desktop Browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
-                    // Handle the action for the standard item
-                }),
-                UIAction(title: "Private Mode", image: UIImage(systemName: "eye.slash"), handler: { (_) in
-                    // Handle the action for the standard item
-                }),
+//                UIAction(title: "Find on Page", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
+//                    // Handle the action for the standard item
+//                }),
+//                UIAction(title: "Zoom", image: UIImage(systemName: "arrow.up.left.and.down.right.magnifyingglass"), handler: { (_) in
+//                    // Handle the action for the standard item
+//                }),
+//                UIAction(title: "Request Desktop Browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
+//                    // Handle the action for the standard item
+//                }),
+//                UIAction(title: "Private Mode", image: UIImage(systemName: "eye.slash"), handler: { (_) in
+//                    // Handle the action for the standard item
+//                }),
                 UIAction(title: "Add Bookmark", image: UIImage(systemName: "star"), handler: { (_) in
+                    self.bookmarks.append(Bookmark(title: self.webView.title ?? "No Title", url: self.webView.url))
+                    print("Adding Bookmark", self.webView.title ?? "No Title", self.webView.url?.absoluteString ?? "No URL")
                 }),
                 UIAction(title: "Bookmarks", image: UIImage(systemName: "book"), handler: { (_) in
                     self.performSegue(withIdentifier: "bookmarksSegue", sender: self)
@@ -187,7 +278,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     
     // Go back to the previous web page
-    @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
+    func backButtonTapped() {
         if webView.canGoBack {
             webView.goBack()
             print("Go Back")
@@ -237,7 +328,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         progressBar.setProgress(0.0, animated: false)
         print("Reload Button isHidden, loading wheel isShown")
     }
-    
+    @objc func buttonTapped(_ sender: UIButton) {
+        
+    }
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         progressBar.setProgress(0.5, animated: true)
     }
@@ -285,6 +378,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 let title = tab.title
                 destination.didSelectTabView(url: url!, title: title!)
                 print("Preparing to transfer to tab view: ", url!, " With title: ", title)
+            }
+        }
+        if let destination = segue.destination as? BookmarkDelegate {
+            print("bookmark good")
+            for bookmark in self.bookmarks {
+                let url = bookmark.url
+                let title = bookmark.title
+                destination.didSelectBookmark(url: url!, title: title!)
             }
         }
     }
@@ -348,6 +449,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             print("History data saved")
         }
     }
+    
 //    //To reduce data save this instead of refetching it every time
 //    func updateAdBlockArray(){
 //        let url = URL(string: "https://hosts.anudeep.me/mirror/adservers.txt")!

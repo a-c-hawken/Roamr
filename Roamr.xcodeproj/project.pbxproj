@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26B602C988EFECD46D740EE9 /* Pods_RoamrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8EE66519C2411098C88911C /* Pods_RoamrTests.framework */; };
+		7DB3CDBBAAEB580B958959D8 /* Pods_Roamr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 419F5FCEE96C3E883FF36275 /* Pods_Roamr.framework */; };
+		9B018087DA749BE350721203 /* Pods_Roamr_RoamrUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15536BDDE3775DC633EAE954 /* Pods_Roamr_RoamrUITests.framework */; };
+		D1AD22852A68E3E4008E21DB /* BookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD22842A68E3E4008E21DB /* BookmarkTableViewCell.swift */; };
+		D1AD22872A68E40F008E21DB /* BookmarksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD22862A68E40F008E21DB /* BookmarksTableViewController.swift */; };
 		D1B359202A64DA190003D227 /* ThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B3591F2A64DA190003D227 /* ThemeTableViewController.swift */; };
 		D1B359222A64F00C0003D227 /* TabTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B359212A64F00C0003D227 /* TabTableViewCell.swift */; };
 		D1CA2E842A66592E009E3A60 /* WatchRoamrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CA2E832A66592E009E3A60 /* WatchRoamrApp.swift */; };
@@ -29,6 +34,7 @@
 		DF4183182A3915BC00BA2B6D /* TabCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4183172A3915BC00BA2B6D /* TabCollectionViewController.swift */; };
 		DFBC4EA52A41439D00C0160D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBC4EA42A41439D00C0160D /* TableViewCell.swift */; };
 		DFBC4EA72A41468E00C0160D /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBC4EA62A41468E00C0160D /* HistoryTableViewController.swift */; };
+		FBB66133DBA703029B43A552 /* Pods_Roamr_Watch_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7E2134AF562796670BFB16 /* Pods_Roamr_Watch_App.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,8 +100,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D13856DD2A664196005A2518 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		13C5F2035DF289513A4E257F /* Pods-RoamrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamrTests.release.xcconfig"; path = "Target Support Files/Pods-RoamrTests/Pods-RoamrTests.release.xcconfig"; sourceTree = "<group>"; };
+		15536BDDE3775DC633EAE954 /* Pods_Roamr_RoamrUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roamr_RoamrUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F7E2134AF562796670BFB16 /* Pods_Roamr_Watch_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roamr_Watch_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		419F5FCEE96C3E883FF36275 /* Pods_Roamr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roamr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5931D59F98D16558A93B0483 /* Pods-Roamr-RoamrUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roamr-RoamrUITests.release.xcconfig"; path = "Target Support Files/Pods-Roamr-RoamrUITests/Pods-Roamr-RoamrUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5ADD2EF19E90D39062A20689 /* Pods-Roamr-RoamrUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roamr-RoamrUITests.debug.xcconfig"; path = "Target Support Files/Pods-Roamr-RoamrUITests/Pods-Roamr-RoamrUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		81C5B5A88B14149439C96368 /* Pods-Roamr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roamr.release.xcconfig"; path = "Target Support Files/Pods-Roamr/Pods-Roamr.release.xcconfig"; sourceTree = "<group>"; };
+		A119BCB1FD452E36FC16C164 /* Pods-Roamr Watch App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roamr Watch App.release.xcconfig"; path = "Target Support Files/Pods-Roamr Watch App/Pods-Roamr Watch App.release.xcconfig"; sourceTree = "<group>"; };
+		A8EE66519C2411098C88911C /* Pods_RoamrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoamrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0C2C3AFB0034DC3FAAB7389 /* Pods-Roamr Watch App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roamr Watch App.debug.xcconfig"; path = "Target Support Files/Pods-Roamr Watch App/Pods-Roamr Watch App.debug.xcconfig"; sourceTree = "<group>"; };
+		B734C30B360EC41AA7A0121C /* Pods-Roamr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roamr.debug.xcconfig"; path = "Target Support Files/Pods-Roamr/Pods-Roamr.debug.xcconfig"; sourceTree = "<group>"; };
 		D13856DF2A664196005A2518 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		D1AD22842A68E3E4008E21DB /* BookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTableViewCell.swift; sourceTree = "<group>"; };
+		D1AD22862A68E40F008E21DB /* BookmarksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTableViewController.swift; sourceTree = "<group>"; };
 		D1B3591F2A64DA190003D227 /* ThemeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTableViewController.swift; sourceTree = "<group>"; };
 		D1B359212A64F00C0003D227 /* TabTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabTableViewCell.swift; sourceTree = "<group>"; };
 		D1CA2E812A66592E009E3A60 /* Roamr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roamr.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +126,7 @@
 		D1CA2E9A2A665931009E3A60 /* WatchRoamr Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WatchRoamr Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CA2E9E2A665931009E3A60 /* WatchRoamr_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRoamr_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		D1CA2EA02A665931009E3A60 /* WatchRoamr_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRoamr_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D8C946EA64504415D1A5FFB0 /* Pods-RoamrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamrTests.debug.xcconfig"; path = "Target Support Files/Pods-RoamrTests/Pods-RoamrTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DF2514E02A2585CE0075EB42 /* Roamr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roamr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF2514E32A2585CE0075EB42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF2514E52A2585CE0075EB42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBB66133DBA703029B43A552 /* Pods_Roamr_Watch_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DB3CDBBAAEB580B958959D8 /* Pods_Roamr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26B602C988EFECD46D740EE9 /* Pods_RoamrTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,17 +188,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B018087DA749BE350721203 /* Pods_Roamr_RoamrUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0899EE8C9D55936463907B95 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B734C30B360EC41AA7A0121C /* Pods-Roamr.debug.xcconfig */,
+				81C5B5A88B14149439C96368 /* Pods-Roamr.release.xcconfig */,
+				B0C2C3AFB0034DC3FAAB7389 /* Pods-Roamr Watch App.debug.xcconfig */,
+				A119BCB1FD452E36FC16C164 /* Pods-Roamr Watch App.release.xcconfig */,
+				5ADD2EF19E90D39062A20689 /* Pods-Roamr-RoamrUITests.debug.xcconfig */,
+				5931D59F98D16558A93B0483 /* Pods-Roamr-RoamrUITests.release.xcconfig */,
+				D8C946EA64504415D1A5FFB0 /* Pods-RoamrTests.debug.xcconfig */,
+				13C5F2035DF289513A4E257F /* Pods-RoamrTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D13856DC2A664196005A2518 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D13856DD2A664196005A2518 /* WidgetKit.framework */,
 				D13856DF2A664196005A2518 /* SwiftUI.framework */,
+				419F5FCEE96C3E883FF36275 /* Pods_Roamr.framework */,
+				3F7E2134AF562796670BFB16 /* Pods_Roamr_Watch_App.framework */,
+				15536BDDE3775DC633EAE954 /* Pods_Roamr_RoamrUITests.framework */,
+				A8EE66519C2411098C88911C /* Pods_RoamrTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -228,6 +269,7 @@
 				D1CA2E9D2A665931009E3A60 /* WatchRoamr Watch AppUITests */,
 				D13856DC2A664196005A2518 /* Frameworks */,
 				DF2514E12A2585CE0075EB42 /* Products */,
+				0899EE8C9D55936463907B95 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -249,6 +291,8 @@
 			children = (
 				DF2514E32A2585CE0075EB42 /* AppDelegate.swift */,
 				DF2514E52A2585CE0075EB42 /* SceneDelegate.swift */,
+				D1AD22842A68E3E4008E21DB /* BookmarkTableViewCell.swift */,
+				D1AD22862A68E40F008E21DB /* BookmarksTableViewController.swift */,
 				DF2514E72A2585CE0075EB42 /* ViewController.swift */,
 				DF2514E92A2585CE0075EB42 /* Main.storyboard */,
 				DF4183172A3915BC00BA2B6D /* TabCollectionViewController.swift */,
@@ -287,6 +331,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D1CA2EA52A665931009E3A60 /* Build configuration list for PBXNativeTarget "Roamr Watch App" */;
 			buildPhases = (
+				10A415F379975211CE296FCE /* [CP] Check Pods Manifest.lock */,
 				D1CA2E7D2A66592E009E3A60 /* Sources */,
 				D1CA2E7E2A66592E009E3A60 /* Frameworks */,
 				D1CA2E7F2A66592E009E3A60 /* Resources */,
@@ -340,11 +385,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DF25150A2A2585D00075EB42 /* Build configuration list for PBXNativeTarget "Roamr" */;
 			buildPhases = (
+				F950B8D8D1C8E18A2F6FB3FF /* [CP] Check Pods Manifest.lock */,
 				DF2514DC2A2585CE0075EB42 /* Sources */,
 				DF2514DD2A2585CE0075EB42 /* Frameworks */,
 				DF2514DE2A2585CE0075EB42 /* Resources */,
 				D138571F2A6641C4005A2518 /* Embed Watch Content */,
 				D12248E62A6671D9005C5461 /* Embed Foundation Extensions */,
+				3CB7E6C5CA71CE23F72835C0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -360,6 +407,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DF25150D2A2585D00075EB42 /* Build configuration list for PBXNativeTarget "RoamrTests" */;
 			buildPhases = (
+				4206741938232706CB668FEB /* [CP] Check Pods Manifest.lock */,
 				DF2514F22A2585D00075EB42 /* Sources */,
 				DF2514F32A2585D00075EB42 /* Frameworks */,
 				DF2514F42A2585D00075EB42 /* Resources */,
@@ -378,9 +426,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DF2515102A2585D00075EB42 /* Build configuration list for PBXNativeTarget "RoamrUITests" */;
 			buildPhases = (
+				00ED5E134D94CBC7BADBF2B7 /* [CP] Check Pods Manifest.lock */,
 				DF2514FC2A2585D00075EB42 /* Sources */,
 				DF2514FD2A2585D00075EB42 /* Frameworks */,
 				DF2514FE2A2585D00075EB42 /* Resources */,
+				EC360F187D05A4D5EF2FCEFA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -499,6 +549,131 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		00ED5E134D94CBC7BADBF2B7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Roamr-RoamrUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		10A415F379975211CE296FCE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Roamr Watch App-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3CB7E6C5CA71CE23F72835C0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Roamr/Pods-Roamr-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Roamr/Pods-Roamr-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Roamr/Pods-Roamr-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4206741938232706CB668FEB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RoamrTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC360F187D05A4D5EF2FCEFA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Roamr-RoamrUITests/Pods-Roamr-RoamrUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Roamr-RoamrUITests/Pods-Roamr-RoamrUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Roamr-RoamrUITests/Pods-Roamr-RoamrUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F950B8D8D1C8E18A2F6FB3FF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Roamr-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D1CA2E7D2A66592E009E3A60 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -531,7 +706,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFBC4EA52A41439D00C0160D /* TableViewCell.swift in Sources */,
+				D1AD22872A68E40F008E21DB /* BookmarksTableViewController.swift in Sources */,
 				DF2514E82A2585CE0075EB42 /* ViewController.swift in Sources */,
+				D1AD22852A68E3E4008E21DB /* BookmarkTableViewCell.swift in Sources */,
 				DFBC4EA72A41468E00C0160D /* HistoryTableViewController.swift in Sources */,
 				D1B359222A64F00C0003D227 /* TabTableViewCell.swift in Sources */,
 				D1B359202A64DA190003D227 /* ThemeTableViewController.swift in Sources */,
@@ -610,6 +787,7 @@
 /* Begin XCBuildConfiguration section */
 		D1CA2EA62A665931009E3A60 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0C2C3AFB0034DC3FAAB7389 /* Pods-Roamr Watch App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -644,6 +822,7 @@
 		};
 		D1CA2EA72A665931009E3A60 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A119BCB1FD452E36FC16C164 /* Pods-Roamr Watch App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -891,6 +1070,7 @@
 		};
 		DF25150B2A2585D00075EB42 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B734C30B360EC41AA7A0121C /* Pods-Roamr.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -926,6 +1106,7 @@
 		};
 		DF25150C2A2585D00075EB42 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81C5B5A88B14149439C96368 /* Pods-Roamr.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -961,6 +1142,7 @@
 		};
 		DF25150E2A2585D00075EB42 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8C946EA64504415D1A5FFB0 /* Pods-RoamrTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -983,6 +1165,7 @@
 		};
 		DF25150F2A2585D00075EB42 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13C5F2035DF289513A4E257F /* Pods-RoamrTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1005,6 +1188,7 @@
 		};
 		DF2515112A2585D00075EB42 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5ADD2EF19E90D39062A20689 /* Pods-Roamr-RoamrUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1025,6 +1209,7 @@
 		};
 		DF2515122A2585D00075EB42 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5931D59F98D16558A93B0483 /* Pods-Roamr-RoamrUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

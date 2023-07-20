@@ -27,7 +27,7 @@ struct ContentView: View {
         }
         }
     }
-    
+  
     func signInWithGoogle() {
         loadHistory()
         let textSearch = name.replacingOccurrences(of: " ", with: "+")
