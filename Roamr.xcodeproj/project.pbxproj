@@ -10,6 +10,7 @@
 		26B602C988EFECD46D740EE9 /* Pods_RoamrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8EE66519C2411098C88911C /* Pods_RoamrTests.framework */; };
 		7DB3CDBBAAEB580B958959D8 /* Pods_Roamr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 419F5FCEE96C3E883FF36275 /* Pods_Roamr.framework */; };
 		9B018087DA749BE350721203 /* Pods_Roamr_RoamrUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15536BDDE3775DC633EAE954 /* Pods_Roamr_RoamrUITests.framework */; };
+		D105B0402A690D9C003ADDEC /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D105B03F2A690D9C003ADDEC /* SettingsTableViewController.swift */; };
 		D1AD22852A68E3E4008E21DB /* BookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD22842A68E3E4008E21DB /* BookmarkTableViewCell.swift */; };
 		D1AD22872A68E40F008E21DB /* BookmarksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD22862A68E40F008E21DB /* BookmarksTableViewController.swift */; };
 		D1B359202A64DA190003D227 /* ThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B3591F2A64DA190003D227 /* ThemeTableViewController.swift */; };
@@ -111,6 +112,7 @@
 		A8EE66519C2411098C88911C /* Pods_RoamrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoamrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0C2C3AFB0034DC3FAAB7389 /* Pods-Roamr Watch App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roamr Watch App.debug.xcconfig"; path = "Target Support Files/Pods-Roamr Watch App/Pods-Roamr Watch App.debug.xcconfig"; sourceTree = "<group>"; };
 		B734C30B360EC41AA7A0121C /* Pods-Roamr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roamr.debug.xcconfig"; path = "Target Support Files/Pods-Roamr/Pods-Roamr.debug.xcconfig"; sourceTree = "<group>"; };
+		D105B03F2A690D9C003ADDEC /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		D13856DF2A664196005A2518 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		D1AD22842A68E3E4008E21DB /* BookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		D1AD22862A68E40F008E21DB /* BookmarksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTableViewController.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				D1AD22862A68E40F008E21DB /* BookmarksTableViewController.swift */,
 				DF2514E72A2585CE0075EB42 /* ViewController.swift */,
 				DF2514E92A2585CE0075EB42 /* Main.storyboard */,
+				D105B03F2A690D9C003ADDEC /* SettingsTableViewController.swift */,
 				DF4183172A3915BC00BA2B6D /* TabCollectionViewController.swift */,
 				D1B359212A64F00C0003D227 /* TabTableViewCell.swift */,
 				D1B3591F2A64DA190003D227 /* ThemeTableViewController.swift */,
@@ -708,6 +711,7 @@
 				DFBC4EA52A41439D00C0160D /* TableViewCell.swift in Sources */,
 				D1AD22872A68E40F008E21DB /* BookmarksTableViewController.swift in Sources */,
 				DF2514E82A2585CE0075EB42 /* ViewController.swift in Sources */,
+				D105B0402A690D9C003ADDEC /* SettingsTableViewController.swift in Sources */,
 				D1AD22852A68E3E4008E21DB /* BookmarkTableViewCell.swift in Sources */,
 				DFBC4EA72A41468E00C0160D /* HistoryTableViewController.swift in Sources */,
 				D1B359222A64F00C0003D227 /* TabTableViewCell.swift in Sources */,

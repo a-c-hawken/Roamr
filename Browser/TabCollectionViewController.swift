@@ -15,7 +15,7 @@ private let reuseIdentifier = "Cell"
 
 class TabTableViewController: UITableViewController, TabDelegate {
     
-    class Tab {
+    class Tab : Codable {
         var url: URL?
         var title: String?
         // Add any additional properties as needed
@@ -82,7 +82,11 @@ class TabTableViewController: UITableViewController, TabDelegate {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: TabTableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
+            tab.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            saveTabList()
+            print("deleted tab")
+        
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
@@ -90,14 +94,22 @@ class TabTableViewController: UITableViewController, TabDelegate {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected", tab[indexPath.row].url!.absoluteString)
-        if let destination =  presentingViewController as? ParentViewControllerTabsDelegate
-        {
-            destination.didSelectTabView(url: tab[indexPath.row].url!)
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(tab) {
+                UserDefaults.standard.set(encoded, forKey: "tabSelectedData")
+                print("saved tab list")
+            }
             self.dismiss(animated: true, completion: nil)
-            print("tab transfered")
-        } else{
-            print("uh oh something about transferring the selected tab is wrong")
-                  }
+    }
+    
+    func saveTabList() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(tab) {
+            UserDefaults.standard.set(encoded, forKey: "tabData")
+            print("saved tab list")
+        } else {
+            print("failed to save tab list")
+        }
     }
     
     func updateAdBlockerList(){

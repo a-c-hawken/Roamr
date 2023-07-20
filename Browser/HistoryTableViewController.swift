@@ -17,7 +17,7 @@ class HistoryTableViewController: UITableViewController, HistoryDelegate {
 
     var history: [Tab] = []
     
-    class Tab {
+    class Tab : Codable {
         var url: URL?
         // Add any additional properties as needed
         
@@ -71,7 +71,14 @@ class HistoryTableViewController: UITableViewController, HistoryDelegate {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-
+    
+    func updateHistoryList(){
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(history) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: "historyData")
+        }
+    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

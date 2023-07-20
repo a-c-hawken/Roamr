@@ -1,7 +1,6 @@
 import UIKit
 import DrawerView
 import WebKit
-import SwiftUI
 
 protocol HistoryDelegate {
     func didSelectHistory(url: URL)
@@ -32,6 +31,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var forwardButton: UIBarButtonItem!
     
     @IBOutlet weak var textInput: UITextField!
+
     @IBOutlet weak var reloadButton: UIButton!
     
     @IBOutlet weak var webView: WKWebView!
@@ -40,6 +40,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var progressBar: UIProgressView!
 
     @IBOutlet weak var webViewBottom: NSLayoutConstraint!
+    
+    var lightmode: Bool = true
     var newWebView: WKWebView!
     var window: UIWindow?
     var adBlockArray: [String] = []
@@ -47,6 +49,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     var tab: [Tab] = []
     var history: [Tab] = []
     var bookmarks: [Bookmark] = []
+    
+    var privateMode: Bool = false
     
     
     class Tab: Codable {
@@ -73,13 +77,16 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     // Enable or disable the back and fo    rward buttons based on the web view's navigation state
     func updateNavigationButtons() {
-        backButton.isEnabled = webView.canGoBack
-        forwardButton.isEnabled = webView.canGoForward
+        if privateMode == true {}
+        else {
+            backButton.isEnabled = webView.canGoBack
+            forwardButton.isEnabled = webView.canGoForward
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        progressBar.progress = 0.0
 //        let drawerView = DrawerView()
 //            drawerView.attachTo(view: self.view)
 //
@@ -111,13 +118,13 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
 //        shareButton.setTitleColor(.blue, for: .normal)
 //        drawerView.addSubview(shareButton)
 //        
-//        let textInput = UITextField(frame: CGRect(x: shareButton.frame.maxX + spacing, y: yOffset, width: 200, height: buttonHeight))
-//        textInput.placeholder = "Search"
-//        textInput.font = UIFont.systemFont(ofSize: 15)
-//        textInput.borderStyle = UITextField.BorderStyle.roundedRect
-//        drawerView.addSubview(textInput)
+//        let textField = UITextField(frame: CGRect(x: shareButton.frame.maxX + spacing, y: yOffset, width: 200, height: buttonHeight))
+//        textField.placeholder = "Search"
+//        textField.font = UIFont.systemFont(ofSize: 15)
+//        textField.borderStyle = UITextField.BorderStyle.roundedRect
+//        drawerView.addSubview(textField)
 //
-//        let reloadButton = UIButton(frame: CGRect(x: textInput.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+//        let reloadButton = UIButton(frame: CGRect(x: textField.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
 //        let imageReload = UIImage(systemName: "arrow.clockwise")
 //        reloadButton.setImage(imageReload, for: .normal)
 //        reloadButton.setTitleColor(.blue, for: .normal)
@@ -149,9 +156,10 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
 
         loadAndSetData()
         DispatchQueue.main.async { [self] in
-            if let url = URL(string: "https://google.com") {
-                let request = URLRequest(url: url)
-                webView.load(request)
+            if let url = history.last?.url {
+                webView.load(URLRequest(url: url))
+            } else {
+                webView.load(URLRequest(url: URL(string: "https://www.google.com")!))
             }
         }
         
@@ -183,6 +191,25 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                         }
                     }
                 }),
+                UIAction(title: "Dark Mode", image: UIImage(systemName: "moon"), handler: { [self] (_) in
+                    if lightmode == true {
+                        if #available(iOS 13.0, *) {
+                            overrideUserInterfaceStyle = .dark
+                        } else {
+                            //this is here so older versiosn don't crash
+                        }
+                        lightmode = false
+                        print("Night Mode")
+                    } else {
+                        if #available(iOS 13.0, *) {
+                            overrideUserInterfaceStyle = .light
+                        } else {
+                            //this is here so older versiosn don't crash
+                        }
+                        lightmode = true
+                        print("Light Mode")
+                    }
+                }),
                 //                UIAction(title: "Split View", image: UIImage(systemName: "square.bottomhalf.filled"), handler: { [self] (_) in
                 //                    self.performSegue(withIdentifier: "splitView", sender: self)
                 //                }),
@@ -195,9 +222,15 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
 //                UIAction(title: "Request Desktop Browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
 //                    // Handle the action for the standard item
 //                }),
-//                UIAction(title: "Private Mode", image: UIImage(systemName: "eye.slash"), handler: { (_) in
-//                    // Handle the action for the standard item
-//                }),
+                UIAction(title: "Private Mode", image: UIImage(systemName: "eye.slash"), handler: { [self] (_) in
+                    if privateMode == false {
+                        privateMode = true
+                        print("Private Mode")
+                    } else {
+                        privateMode = false
+                        print("Public Mode")
+                    }
+                }),
                 UIAction(title: "Add Bookmark", image: UIImage(systemName: "star"), handler: { (_) in
                     self.bookmarks.append(Bookmark(title: self.webView.title ?? "No Title", url: self.webView.url))
                     print("Adding Bookmark", self.webView.title ?? "No Title", self.webView.url?.absoluteString ?? "No URL")
@@ -206,11 +239,15 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                     self.performSegue(withIdentifier: "bookmarksSegue", sender: self)
                 }),
                 UIAction(title: "History", image: UIImage(systemName: "clock.arrow.circlepath"), handler: { (_) in
+                    self.loadAndSetData()
                     self.performSegue(withIdentifier: "historySegue", sender: self)
                 }),
                 UIAction(title: "Delete all data", image: UIImage(systemName: "trash"), attributes: .destructive, handler: { (_) in
                     self.history.removeAll()
                     self.tab.removeAll()
+                    self.bookmarks.removeAll()
+                    self.clearSaveData()
+                    self.clearCache()
                     print("Deleting All History")
                 })
             ]
@@ -230,9 +267,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     
     // Trigger the search when the Return key is pressed
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder() // Dismiss the keyboard
-        if let searchText = textField.text, !searchText.isEmpty {
+    func textFieldShouldReturn(_ textInput: UITextField) -> Bool {
+        textInput.resignFirstResponder() // Dismiss the keyboard
+        if let searchText = textInput.text, !searchText.isEmpty {
             // Check if the input is a valid URL
             if let url = URL(string: searchText), url.scheme != nil {
                 let request = URLRequest(url: url)
@@ -294,13 +331,19 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     @IBAction func createNewTabButtonPressed(_ sender: UIButton) {
-        let newTab = Tab(url: webView.url, title: webView.title)
-        tab.append(newTab)
-        if let url = URL(string: "https://google.com") {
-            let request = URLRequest(url: url)
-            webView.load(request)
-            webView.backForwardList.perform(Selector(("_removeAllItems")))
-        }
+        if privateMode == true {
+            
+        } else {
+            
+            loadAndSetData()
+            let newTab = Tab(url: webView.url, title: webView.title)
+            tab.append(newTab)
+            if let url = URL(string: "https://google.com") {
+                let request = URLRequest(url: url)
+                webView.load(request)
+                webView.backForwardList.perform(Selector(("_removeAllItems")))
+            }}
+        
     }
     
     @IBAction func reloadWebView() {
@@ -310,15 +353,29 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     
     func history(url: URL?) {
-        let historyTab = Tab(url: url, title: "")
-        history.append(historyTab)
-        for tab in history{
-            print("History", tab.url!)
+        if privateMode == true {
+            
+        } else {
+            let historyTab = Tab(url: url, title: "")
+            history.append(historyTab)
+            for tab in history{
+                print("History", tab.url!)
+            }
         }
     }
     
     @IBAction func openTabView(){
-        performSegue(withIdentifier: "tabViewSegue", sender: self)
+        if privateMode == true {
+            
+        }else {
+            if tab.contains(where: {$0.url == webView.url}) == false {
+                let newTab = Tab(url: webView.url, title: webView.title)
+                tab.append(newTab)
+            }
+            
+            loadAndSetData()
+            performSegue(withIdentifier: "tabViewSegue", sender: self)
+        }
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
@@ -333,6 +390,24 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         progressBar.setProgress(0.5, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            if self.progressBar.progress == 0.5 {
+                self.progressBar.setProgress(0.65, animated: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    if self.progressBar.progress == 0.65 {
+                        self.progressBar.setProgress(0.9, animated: true)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            if self.progressBar.progress == 0.9 {
+                                self.progressBar.setProgress(0.95, animated: true)
+                            }
+                        }
+                    
+                    }
+                
+                }
+            }
+        }
+    
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -349,6 +424,11 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             }
             saveData()
         }
+        if lightmode == false {
+            let cssString = "@media (prefers-color-scheme: dark) {body {color: white;}a:link {color: #0096e2;}a:visited {color: #9d57df;}}"
+            let jsString = "var style = document.createElement('style'); style.innerHTML = '\(cssString)'; document.head.appendChild(style);"
+            webView.evaluateJavaScript(jsString, completionHandler: nil)
+        }
         progressBar.setProgress(1.0, animated: true)
         //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
         //            self.progressBar.isHidden = true
@@ -356,8 +436,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         updateNavigationButtons()
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.selectedTextRange = textField.textRange(from: textField.beginningOfDocument, to: textField.endOfDocument)
+    func textFieldDidBeginEditing(_ textInput: UITextField) {
+        textInput.selectedTextRange = textInput.textRange(from: textInput.beginningOfDocument, to: textInput.endOfDocument)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -391,6 +471,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     @IBAction func goBackToLastTab(segue: UIStoryboardSegue){
+        loadAndSetData()
         let tabCount = tab.count
         print(tab.count)
         if tabCount > 0 {
@@ -439,6 +520,16 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
         return []
     }
+    func retrieveSelectedTabData() -> [Tab]{
+        let defaults = UserDefaults.standard
+        if let encodedSelectedTab = defaults.data(forKey: "selectedTabData") {
+            let decoder = JSONDecoder()
+            if let decodedSelectedTab = try? decoder.decode([Tab].self, from: encodedSelectedTab) {
+                return decodedSelectedTab
+            }
+        }
+        return []
+    }
     
     
     
@@ -467,6 +558,19 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             defaults.set(encodedBookmarks, forKey: "bookmarkData")
             print("Bookmark data saved")
         }
+    }
+    
+    func clearSaveData() {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "tabData")
+        defaults.removeObject(forKey: "historyData")
+        defaults.removeObject(forKey: "bookmarkData")
+    }
+    
+    func clearCache() {
+        let websiteDataTypes = NSSet(array: [WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache])
+        let date = NSDate(timeIntervalSince1970: 0)
+        WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes as! Set<String>, modifiedSince: date as Date, completionHandler:{ })
     }
     
 //    //To reduce data save this instead of refetching it every time
