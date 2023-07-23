@@ -28,7 +28,7 @@
 			<string>CustomBrowser</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>your_custom_scheme</string>
+				<string>Main</string>
 			</array>
 		</dict>
 	</array>
