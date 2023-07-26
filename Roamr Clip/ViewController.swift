@@ -242,12 +242,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                     self.performSegue(withIdentifier: "historySegue", sender: self)
                 }),
                 UIAction(title: "Delete all data", image: UIImage(systemName: "trash"), attributes: .destructive, handler: { (_) in
-                    self.history.removeAll()
-                    self.tab.removeAll()
-                    self.bookmarks.removeAll()
-                    self.clearSaveData()
-                    self.clearCache()
-                    print("Deleting All History")
+                    UIAlertController.confirmation(title: "Delete All Data", message: "Are you sure you want to delete all data?", from: self, actionHandler: { (_) in
+                        self.history.removeAll()
+                        self.tab.removeAll()
+                        self.bookmarks.removeAll()
+                        self.clearSaveData()
+                        self.clearCache()
+                        print("Deleting All History")
+                    })
                 })
             ]
         }
@@ -277,6 +279,15 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                     print("Opening URL", request)
                 }
             } else {
+                if (searchText.contains(".") || searchText.contains("/") || searchText.contains(".com")) && !searchText.contains(" ") {
+                    let request = URLRequest(url: URL(string: "https://\(searchText)")!)
+                    DispatchQueue.main.async {
+                        self.webView.load(request)
+                        print("Opening URL", request)
+                    }
+                }
+            }
+            else {
                 let textSearch = searchText.replacingOccurrences(of: " ", with: "+")
                 let urlString = "https://www.google.com/search?q=\(textSearch)"
                 if let url = URL(string: urlString) {
