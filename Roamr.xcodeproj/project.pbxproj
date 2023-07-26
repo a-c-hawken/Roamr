@@ -56,13 +56,6 @@
 			remoteGlobalIDString = D1CA2E802A66592E009E3A60;
 			remoteInfo = "WatchRoamr Watch App";
 		};
-		D1CA2EA22A665931009E3A60 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DF2514D82A2585CE0075EB42 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D1CA2E802A66592E009E3A60;
-			remoteInfo = "WatchRoamr Watch App";
-		};
 		DF2514F72A2585D00075EB42 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DF2514D82A2585CE0075EB42 /* Project object */;
@@ -426,7 +419,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				D1CA2EA32A665931009E3A60 /* PBXTargetDependency */,
 			);
 			name = Roamr;
 			productName = Browser;
@@ -834,11 +826,6 @@
 			isa = PBXTargetDependency;
 			target = D1CA2E802A66592E009E3A60 /* Roamr Watch App */;
 			targetProxy = D1CA2E9B2A665931009E3A60 /* PBXContainerItemProxy */;
-		};
-		D1CA2EA32A665931009E3A60 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D1CA2E802A66592E009E3A60 /* Roamr Watch App */;
-			targetProxy = D1CA2EA22A665931009E3A60 /* PBXContainerItemProxy */;
 		};
 		DF2514F82A2585D00075EB42 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
