@@ -1,14 +1,14 @@
 //
-//  WatchRoamr_Watch_AppTests.swift
-//  WatchRoamr Watch AppTests
+//  Watch_Roamr_Watch_AppTests.swift
+//  Watch Roamr Watch AppTests
 //
-//  Created by Aydan Hawken on 18/07/23.
+//  Created by Aydan Hawken on 27/07/23.
 //
 
 import XCTest
-@testable import WatchRoamr_Watch_App
+@testable import Watch_Roamr_Watch_App
 
-final class WatchRoamr_Watch_AppTests: XCTestCase {
+final class Watch_Roamr_Watch_AppTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

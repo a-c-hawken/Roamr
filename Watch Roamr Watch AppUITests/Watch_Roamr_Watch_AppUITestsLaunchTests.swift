@@ -1,13 +1,13 @@
 //
-//  WatchRoamr_Watch_AppUITestsLaunchTests.swift
-//  WatchRoamr Watch AppUITests
+//  Watch_Roamr_Watch_AppUITestsLaunchTests.swift
+//  Watch Roamr Watch AppUITests
 //
-//  Created by Aydan Hawken on 18/07/23.
+//  Created by Aydan Hawken on 27/07/23.
 //
 
 import XCTest
 
-final class WatchRoamr_Watch_AppUITestsLaunchTests: XCTestCase {
+final class Watch_Roamr_Watch_AppUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
