@@ -94,19 +94,13 @@
                                 </connections>
                             </button>
                             <wkWebView tag="-1" contentMode="scaleToFill" allowsBackForwardNavigationGestures="YES" findInteractionEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iQ5-Ip-pqd">
-                                <rect key="frame" x="0.0" y="53" width="430" height="753"/>
+                                <rect key="frame" x="0.0" y="51" width="430" height="755"/>
                                 <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="753" id="Uub-vc-NGy"/>
-                                </constraints>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" audio="YES" video="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="qdU-wC-Jgv" appends="YES" id="qOP-CS-9B3"/>
-                                </connections>
                             </wkWebView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="i0A-vn-rZL">
                                 <rect key="frame" x="0.0" y="804" width="430" height="4"/>
@@ -118,14 +112,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="InH-aX-CH3" firstAttribute="top" secondItem="iQ5-Ip-pqd" secondAttribute="bottom" constant="2" id="3G4-Qt-ZBg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="65V-hc-H9R" secondAttribute="trailing" constant="19" id="3UU-6f-sr3"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="4AB-eE-LB3"/>
                             <constraint firstItem="azF-c6-c9e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="-2" id="4DS-ME-WPe"/>
-                            <constraint firstItem="iQ5-Ip-pqd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="6" id="5qd-FD-3sd"/>
                             <constraint firstItem="InH-aX-CH3" firstAttribute="leading" secondItem="azF-c6-c9e" secondAttribute="trailing" constant="6" id="AUZ-Gi-nS4"/>
                             <constraint firstItem="InH-aX-CH3" firstAttribute="bottom" secondItem="p8X-dL-z4d" secondAttribute="top" id="AeG-78-wyC"/>
-                            <constraint firstItem="iQ5-Ip-pqd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Asg-yX-pyY"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DGR-j3-G1J"/>
                             <constraint firstItem="wDn-tj-MiJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="Ea0-en-WR6"/>
                             <constraint firstItem="InH-aX-CH3" firstAttribute="trailing" secondItem="wDn-tj-MiJ" secondAttribute="trailing" constant="-47" id="GGi-Pj-EN2"/>
@@ -133,15 +124,17 @@
                                 <variation key="heightClass=compact-widthClass=regular" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="top" secondItem="65V-hc-H9R" secondAttribute="bottom" constant="14" id="Iyo-iC-2h4"/>
+                            <constraint firstItem="InH-aX-CH3" firstAttribute="top" secondItem="iQ5-Ip-pqd" secondAttribute="bottom" constant="2" id="KXg-O4-ZR8"/>
+                            <constraint firstItem="iQ5-Ip-pqd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="L10-2f-8sn"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="MUZ-QH-n0x"/>
                             <constraint firstItem="i0A-vn-rZL" firstAttribute="top" secondItem="3KV-Hl-mCf" secondAttribute="top" constant="-4" id="Tf6-2d-cTi"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VJb-5d-4Z4"/>
-                            <constraint firstItem="i0A-vn-rZL" firstAttribute="leading" secondItem="Hx7-QB-Kgd" secondAttribute="leading" constant="-55" id="Zgp-5u-gqk"/>
-                            <constraint firstItem="InH-aX-CH3" firstAttribute="top" secondItem="iQ5-Ip-pqd" secondAttribute="bottom" constant="2" id="aTh-Vo-dIS"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="top" secondItem="wDn-tj-MiJ" secondAttribute="bottom" constant="6.6666666666666288" id="cyS-VJ-p7d"/>
-                            <constraint firstItem="iQ5-Ip-pqd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gaH-KD-Aaa"/>
+                            <constraint firstItem="i0A-vn-rZL" firstAttribute="leading" secondItem="p8X-dL-z4d" secondAttribute="leading" id="kPH-yZ-Bhj"/>
                             <constraint firstItem="p8X-dL-z4d" firstAttribute="top" secondItem="azF-c6-c9e" secondAttribute="bottom" constant="5" id="kdX-8r-HRf"/>
+                            <constraint firstItem="iQ5-Ip-pqd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="51" id="ldr-6X-5nu"/>
                             <constraint firstItem="InH-aX-CH3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="55" id="mb3-sM-2hF"/>
+                            <constraint firstItem="iQ5-Ip-pqd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xK8-g4-eVH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="LbT-vJ-HGm"/>
@@ -158,7 +151,6 @@
                         <outlet property="tabViewButton" destination="p8X-dL-z4d" id="L7r-f6-k4j"/>
                         <outlet property="textInput" destination="Hx7-QB-Kgd" id="lv9-p7-UG6"/>
                         <outlet property="webView" destination="iQ5-Ip-pqd" id="hbf-Nj-yWB"/>
-                        <outlet property="webViewBottom" destination="3G4-Qt-ZBg" id="Xad-RT-ex8"/>
                         <outletCollection property="textInput" destination="Hx7-QB-Kgd" collectionClass="NSMutableArray" id="UCd-m7-qqI"/>
                         <segue destination="RF4-aA-Mm7" kind="show" identifier="settingsSegue" id="vM3-q0-UPE"/>
                         <segue destination="GvX-F0-zgJ" kind="show" identifier="ThemesSegue" id="d5Y-pT-WvE"/>
@@ -170,7 +162,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer cancelsTouchesInView="NO" direction="down" id="qdU-wC-Jgv">
+                <swipeGestureRecognizer cancelsTouchesInView="NO" delaysTouchesEnded="NO" requiresExclusiveTouchType="NO" direction="down" id="qdU-wC-Jgv">
                     <connections>
                         <action selector="pullDown:" destination="BYZ-38-t0r" id="huY-zQ-lil"/>
                     </connections>
@@ -603,20 +595,20 @@
                             <tableViewSection headerTitle="" id="eFO-vU-V3k">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Rh2-hS-rxy">
-                                        <rect key="frame" x="0.0" y="50" width="430" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="430" height="43.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rh2-hS-rxy" id="HDv-GS-H6K">
-                                            <rect key="frame" x="0.0" y="0.0" width="430" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="43.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cookies in use:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNU-Sz-X8f">
-                                                    <rect key="frame" x="20" y="11.000000000000002" width="116" height="21.666666666666671"/>
+                                                    <rect key="frame" x="20" y="10.999999999999998" width="116" height="21.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsD-FN-KaD">
-                                                    <rect key="frame" x="390" y="11.000000000000002" width="20" height="21.666666666666671"/>
+                                                    <rect key="frame" x="390" y="10.999999999999998" width="20" height="21.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -633,7 +625,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="LGE-Kr-x3F">
-                                        <rect key="frame" x="0.0" y="93.666667938232422" width="430" height="43.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="93.333332061767578" width="430" height="43.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LGE-Kr-x3F" id="rpa-mn-1ST">
                                             <rect key="frame" x="0.0" y="0.0" width="430" height="43.333332061767578"/>

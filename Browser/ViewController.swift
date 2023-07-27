@@ -503,6 +503,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     @IBAction func pullDown(_ sender: Any) {
+        print("pull down")
         webView.reload()
     }
     
@@ -591,7 +592,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         let date = NSDate(timeIntervalSince1970: 0)
         WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes as! Set<String>, modifiedSince: date as Date, completionHandler:{ })
     }
-    
+
 //    //To reduce data save this instead of refetching it every time
 //    func updateAdBlockArray(){
 //        let url = URL(string: "https://hosts.anudeep.me/mirror/adservers.txt")!
