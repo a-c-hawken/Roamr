@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "Logo (3).png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
@@ -37,6 +38,7 @@
       "size" : "74x55"
     },
     {
+      "filename" : "Logo.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"

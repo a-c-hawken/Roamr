@@ -11,6 +11,7 @@
 		7DB3CDBBAAEB580B958959D8 /* Pods_Roamr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 419F5FCEE96C3E883FF36275 /* Pods_Roamr.framework */; };
 		9B018087DA749BE350721203 /* Pods_Roamr_RoamrUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15536BDDE3775DC633EAE954 /* Pods_Roamr_RoamrUITests.framework */; };
 		D105B0402A690D9C003ADDEC /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D105B03F2A690D9C003ADDEC /* SettingsTableViewController.swift */; };
+		D11898A02A724A4000CD365B /* Roamr Stickers.app in Resources */ = {isa = PBXBuildFile; fileRef = DFF3A1752A6F2DAA00451AB8 /* Roamr Stickers.app */; };
 		D1AD22852A68E3E4008E21DB /* BookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD22842A68E3E4008E21DB /* BookmarkTableViewCell.swift */; };
 		D1AD22872A68E40F008E21DB /* BookmarksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD22862A68E40F008E21DB /* BookmarksTableViewController.swift */; };
 		D1B359202A64DA190003D227 /* ThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B3591F2A64DA190003D227 /* ThemeTableViewController.swift */; };
@@ -42,6 +43,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D11898A12A724A4000CD365B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF2514D82A2585CE0075EB42 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFF3A1742A6F2DAA00451AB8;
+			remoteInfo = "Roamr Stickers";
+		};
 		D1CA2E912A665931009E3A60 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DF2514D82A2585CE0075EB42 /* Project object */;
@@ -80,16 +88,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D12248E62A6671D9005C5461 /* Embed Foundation Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-			);
-			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D138571F2A6641C4005A2518 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -413,12 +411,12 @@
 				DF2514DD2A2585CE0075EB42 /* Frameworks */,
 				DF2514DE2A2585CE0075EB42 /* Resources */,
 				D138571F2A6641C4005A2518 /* Embed Watch Content */,
-				D12248E62A6671D9005C5461 /* Embed Foundation Extensions */,
 				3CB7E6C5CA71CE23F72835C0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D11898A22A724A4000CD365B /* PBXTargetDependency */,
 			);
 			name = Roamr;
 			productName = Browser;
@@ -591,6 +589,7 @@
 			files = (
 				DF2514F02A2585D00075EB42 /* LaunchScreen.storyboard in Resources */,
 				DF2514ED2A2585D00075EB42 /* Assets.xcassets in Resources */,
+				D11898A02A724A4000CD365B /* Roamr Stickers.app in Resources */,
 				DF2514EB2A2585CE0075EB42 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -817,6 +816,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D11898A22A724A4000CD365B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DFF3A1742A6F2DAA00451AB8 /* Roamr Stickers */;
+			targetProxy = D11898A12A724A4000CD365B /* PBXContainerItemProxy */;
+		};
 		D1CA2E922A665931009E3A60 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D1CA2E802A66592E009E3A60 /* Roamr Watch App */;
