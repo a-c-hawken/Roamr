@@ -334,7 +334,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     
     // Go back to the previous web page
-    func backButtonTapped() {
+    @IBAction func backButtonTapped() {
         if webView.canGoBack {
             webView.goBack()
             print("Go Back")
@@ -400,7 +400,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         loadingWheel.startAnimating()
         reloadButton.isHidden = true
-        //progressBar.isHidden = false
+        progressBar.isHidden = false
         progressBar.setProgress(0.0, animated: false)
         print("Reload Button isHidden, loading wheel isShown")
     }
@@ -449,9 +449,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             webView.evaluateJavaScript(jsString, completionHandler: nil)
         }
         progressBar.setProgress(1.0, animated: true)
-        //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-        //            self.progressBar.isHidden = true
-        //        }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                    self.progressBar.isHidden = true
+                }
         updateNavigationButtons()
     }
     
