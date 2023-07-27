@@ -31,14 +31,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var forwardButton: UIBarButtonItem!
     
     @IBOutlet weak var textInput: UITextField!
-
+    
     @IBOutlet weak var reloadButton: UIButton!
     
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
     
     @IBOutlet weak var progressBar: UIProgressView!
-
+    
     @IBOutlet weak var webViewBottom: NSLayoutConstraint!
     
     var lightmode: Bool = true
@@ -67,13 +67,13 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     class Bookmark: Codable {
         var title: String?
         var url: URL?
-
+        
         init(title: String?, url: URL?) {
             self.title = title
             self.url = url
         }
     }
-
+    
     
     // Enable or disable the back and fo    rward buttons based on the web view's navigation state
     func updateNavigationButtons() {
@@ -87,73 +87,73 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         progressBar.progress = 0.0
-//        let drawerView = DrawerView()
-//            drawerView.attachTo(view: self.view)
-//
-//            // Set up the drawer here
-//        drawerView.snapPositions = [.closed, .collapsed, .partiallyOpen, .open]
-//        drawerView.delegate = self
-//        
-//        let xOffset: CGFloat = 10
-//        var yOffset: CGFloat = 10
-//        let buttonWidth: CGFloat = 40
-//        let buttonHeight: CGFloat = 40
-//        let spacing: CGFloat = 10
-//
-//        let backButton = UIButton(frame: CGRect(x: xOffset, y: yOffset, width: buttonWidth, height: buttonHeight))
-//        let imageBack = UIImage(systemName: "chevron.backward")
-//        backButton.setImage(imageBack, for: .normal)
-//        backButton.setTitleColor(.blue, for: .normal)
-//        drawerView.addSubview(backButton)
-//
-//        let newTabButton = UIButton(frame: CGRect(x: backButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
-//        let imageNewTab = UIImage(systemName: "plus")
-//        newTabButton.setImage(imageNewTab, for: .normal)
-//        newTabButton.setTitleColor(.blue, for: .normal)
-//        drawerView.addSubview(newTabButton)
-//
-//        let shareButton = UIButton(frame: CGRect(x: newTabButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
-//        let image = UIImage(systemName: "square.and.arrow.up")
-//        shareButton.setImage(image, for: .normal)
-//        shareButton.setTitleColor(.blue, for: .normal)
-//        drawerView.addSubview(shareButton)
-//        
-//        let textField = UITextField(frame: CGRect(x: shareButton.frame.maxX + spacing, y: yOffset, width: 200, height: buttonHeight))
-//        textField.placeholder = "Search"
-//        textField.font = UIFont.systemFont(ofSize: 15)
-//        textField.borderStyle = UITextField.BorderStyle.roundedRect
-//        drawerView.addSubview(textField)
-//
-//        let reloadButton = UIButton(frame: CGRect(x: textField.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
-//        let imageReload = UIImage(systemName: "arrow.clockwise")
-//        reloadButton.setImage(imageReload, for: .normal)
-//        reloadButton.setTitleColor(.blue, for: .normal)
-//        drawerView.addSubview(reloadButton)
-//        
-//        for data in tab {
-//            let tabViewButton = UIButton(frame: CGRect(x: reloadButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
-//            let imageTabView = UIImage(systemName: "square.and.arrow.up")
-//            tabViewButton.setImage(imageTabView, for: .normal)
-//            tabViewButton.setTitleColor(.blue, for: .normal)
-//
-//            // Use 'data' to configure the button, such as setting a title or other properties
-//            tabViewButton.setTitle(data.title, for: .normal)
-//            // Assuming 'data' contains the target action for the button
-//            tabViewButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
-//
-//            drawerView.addSubview(tabViewButton)
-//
-//            // Update yOffset for the next button (if needed)
-//            yOffset += buttonHeight + spacing
-//        }
+        //        let drawerView = DrawerView()
+        //            drawerView.attachTo(view: self.view)
+        //
+        //            // Set up the drawer here
+        //        drawerView.snapPositions = [.closed, .collapsed, .partiallyOpen, .open]
+        //        drawerView.delegate = self
+        //        
+        //        let xOffset: CGFloat = 10
+        //        var yOffset: CGFloat = 10
+        //        let buttonWidth: CGFloat = 40
+        //        let buttonHeight: CGFloat = 40
+        //        let spacing: CGFloat = 10
+        //
+        //        let backButton = UIButton(frame: CGRect(x: xOffset, y: yOffset, width: buttonWidth, height: buttonHeight))
+        //        let imageBack = UIImage(systemName: "chevron.backward")
+        //        backButton.setImage(imageBack, for: .normal)
+        //        backButton.setTitleColor(.blue, for: .normal)
+        //        drawerView.addSubview(backButton)
+        //
+        //        let newTabButton = UIButton(frame: CGRect(x: backButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+        //        let imageNewTab = UIImage(systemName: "plus")
+        //        newTabButton.setImage(imageNewTab, for: .normal)
+        //        newTabButton.setTitleColor(.blue, for: .normal)
+        //        drawerView.addSubview(newTabButton)
+        //
+        //        let shareButton = UIButton(frame: CGRect(x: newTabButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+        //        let image = UIImage(systemName: "square.and.arrow.up")
+        //        shareButton.setImage(image, for: .normal)
+        //        shareButton.setTitleColor(.blue, for: .normal)
+        //        drawerView.addSubview(shareButton)
+        //        
+        //        let textField = UITextField(frame: CGRect(x: shareButton.frame.maxX + spacing, y: yOffset, width: 200, height: buttonHeight))
+        //        textField.placeholder = "Search"
+        //        textField.font = UIFont.systemFont(ofSize: 15)
+        //        textField.borderStyle = UITextField.BorderStyle.roundedRect
+        //        drawerView.addSubview(textField)
+        //
+        //        let reloadButton = UIButton(frame: CGRect(x: textField.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+        //        let imageReload = UIImage(systemName: "arrow.clockwise")
+        //        reloadButton.setImage(imageReload, for: .normal)
+        //        reloadButton.setTitleColor(.blue, for: .normal)
+        //        drawerView.addSubview(reloadButton)
+        //        
+        //        for data in tab {
+        //            let tabViewButton = UIButton(frame: CGRect(x: reloadButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+        //            let imageTabView = UIImage(systemName: "square.and.arrow.up")
+        //            tabViewButton.setImage(imageTabView, for: .normal)
+        //            tabViewButton.setTitleColor(.blue, for: .normal)
+        //
+        //            // Use 'data' to configure the button, such as setting a title or other properties
+        //            tabViewButton.setTitle(data.title, for: .normal)
+        //            // Assuming 'data' contains the target action for the button
+        //            tabViewButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        //
+        //            drawerView.addSubview(tabViewButton)
+        //
+        //            // Update yOffset for the next button (if needed)
+        //            yOffset += buttonHeight + spacing
+        //        }
         
-//        
-//        let menuButton = UIButton(frame: CGRect(x: reloadButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
-//        let imageMenu = UIImage(systemName: "ellipsis")
-//        menuButton.setImage(imageMenu, for: .normal)
-//        menuButton.setTitleColor(.blue, for: .normal)
-//        drawerView.addSubview(menuButton)
-
+        //        
+        //        let menuButton = UIButton(frame: CGRect(x: reloadButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+        //        let imageMenu = UIImage(systemName: "ellipsis")
+        //        menuButton.setImage(imageMenu, for: .normal)
+        //        menuButton.setTitleColor(.blue, for: .normal)
+        //        drawerView.addSubview(menuButton)
+        
         loadAndSetData()
         DispatchQueue.main.async { [self] in
             if let url = history.last?.url {
@@ -173,15 +173,15 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 UIAction(title: "Settings", image: UIImage(systemName: "gearshape"), handler: { (_) in
                     self.performSegue(withIdentifier: "settingsSegue", sender: self)
                 }),
-//                UIAction(title: "Security", image: UIImage(systemName: "lock.fill"), handler: { (_) in
-//                    self.performSegue(withIdentifier: "securitySegue", sender: self)
-//                }),
-//                UIAction(title: "Extensions", image: UIImage(systemName: "puzzlepiece.extension"), handler: { (_) in
-//                    self.performSegue(withIdentifier: "ExtensionsSegue", sender: self)
-//                }),
-//                UIAction(title: "Themes", image: UIImage(systemName: "paintbrush"), handler: { (_) in
-//                    self.performSegue(withIdentifier: "ThemesSegue", sender: self)
-//                }),
+                //                UIAction(title: "Security", image: UIImage(systemName: "lock.fill"), handler: { (_) in
+                //                    self.performSegue(withIdentifier: "securitySegue", sender: self)
+                //                }),
+                //                UIAction(title: "Extensions", image: UIImage(systemName: "puzzlepiece.extension"), handler: { (_) in
+                //                    self.performSegue(withIdentifier: "ExtensionsSegue", sender: self)
+                //                }),
+                //                UIAction(title: "Themes", image: UIImage(systemName: "paintbrush"), handler: { (_) in
+                //                    self.performSegue(withIdentifier: "ThemesSegue", sender: self)
+                //                }),
                 UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up"), handler: { (_) in
                     if let urlString = self.webView.url?.absoluteString {
                         let message = "Check out this link:"
@@ -213,15 +213,15 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 //                UIAction(title: "Split View", image: UIImage(systemName: "square.bottomhalf.filled"), handler: { [self] (_) in
                 //                    self.performSegue(withIdentifier: "splitView", sender: self)
                 //                }),
-//                UIAction(title: "Find on Page", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
-//                    // Handle the action for the standard item
-//                }),
-//                UIAction(title: "Zoom", image: UIImage(systemName: "arrow.up.left.and.down.right.magnifyingglass"), handler: { (_) in
-//                    // Handle the action for the standard item
-//                }),
-//                UIAction(title: "Request Desktop Browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
-//                    // Handle the action for the standard item
-//                }),
+                //                UIAction(title: "Find on Page", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
+                //                    // Handle the action for the standard item
+                //                }),
+                //                UIAction(title: "Zoom", image: UIImage(systemName: "arrow.up.left.and.down.right.magnifyingglass"), handler: { (_) in
+                //                    // Handle the action for the standard item
+                //                }),
+                //                UIAction(title: "Request Desktop Browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
+                //                    // Handle the action for the standard item
+                //                }),
                 UIAction(title: "Private Mode", image: UIImage(systemName: "eye.slash"), handler: { [self] (_) in
                     if privateMode == false {
                         privateMode = true
@@ -243,12 +243,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                     self.performSegue(withIdentifier: "historySegue", sender: self)
                 }),
                 UIAction(title: "Delete all data", image: UIImage(systemName: "trash"), attributes: .destructive, handler: { (_) in
-                    self.history.removeAll()
-                    self.tab.removeAll()
-                    self.bookmarks.removeAll()
-                    self.clearSaveData()
-                    self.clearCache()
-                    print("Deleting All History")
+                    self.deleteMenu()
                 })
             ]
         }
@@ -265,7 +260,24 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         loadingWheel.hidesWhenStopped = true
     }
     
-    
+    func deleteMenu() {
+        let alert = UIAlertController(title: "Delete All Data", message: "Would you like to delete all browsing data including; tabs, history, bookmarks, and cache.", preferredStyle: .alert)
+               alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+               alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                   self.history.removeAll()
+                   self.tab.removeAll()
+                   self.bookmarks.removeAll()
+                   self.clearSaveData()
+                   self.clearCache()
+                   print("Deleting All Data")
+                   let alert = UIAlertController(title: "Deleted", message: "All data has been deleted.", preferredStyle: .alert)
+                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+               }))
+               self.present(alert, animated: true, completion: nil)
+    }
+
+
     // Trigger the search when the Return key is pressed
     func textFieldShouldReturn(_ textInput: UITextField) -> Bool {
         textInput.resignFirstResponder() // Dismiss the keyboard
@@ -277,7 +289,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                     self.webView.load(request)
                     print("Opening URL", request)
                 }
-            } else {
+            }else if (searchText.contains(".") || searchText.contains("/") || searchText.contains(".com")) && !searchText.contains(" ") {
+                let request = URLRequest(url: URL(string: "https://\(searchText)")!)
+                DispatchQueue.main.async {
+                    self.webView.load(request)
+                    print("Opening URL", request)
+                }
+            }
+         else {
                 let textSearch = searchText.replacingOccurrences(of: " ", with: "+")
                 let urlString = "https://www.google.com/search?q=\(textSearch)"
                 if let url = URL(string: urlString) {
