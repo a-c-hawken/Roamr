@@ -432,7 +432,11 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
     
     }
-    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation: WKNavigation!, withError: Error){
+	    let alert = UIAlertController(title: "Failed", message: "Webpage failed to load.", preferredStyle: .alert)
+                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+    }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("Finished Navigation")
         if let pageTitle = webView.title {
