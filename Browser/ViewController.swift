@@ -30,16 +30,15 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var forwardButton: UIBarButtonItem!
     
+    @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var textInput: UITextField!
     
     @IBOutlet weak var reloadButton: UIButton!
     
     @IBOutlet weak var webView: WKWebView!
-    @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
     
     @IBOutlet weak var progressBar: UIProgressView!
     
-    @IBOutlet weak var webViewBottom: NSLayoutConstraint!
     
     var lightmode: Bool = true
     var newWebView: WKWebView!
@@ -87,6 +86,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         progressBar.progress = 0.0
+        stopButton.isHidden = true
         //        let drawerView = DrawerView()
         //            drawerView.attachTo(view: self.view)
         //
@@ -256,8 +256,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         textInput.delegate = self
         webView.navigationDelegate = self
         updateNavigationButtons()
-        
-        loadingWheel.hidesWhenStopped = true
     }
     
     func deleteMenu() {
@@ -398,15 +396,21 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        loadingWheel.startAnimating()
+        stopButton.isHidden = false
         reloadButton.isHidden = true
         progressBar.isHidden = false
         progressBar.setProgress(0.0, animated: false)
         print("Reload Button isHidden, loading wheel isShown")
     }
-    @objc func buttonTapped(_ sender: UIButton) {
-        
+    @IBAction func stopLoading(_ sender: Any) {
+        webView.stopLoading()
+        stopButton.isHidden = true
+        reloadButton.isHidden = false
+        progressBar.isHidden = true
+        progressBar.setProgress(0.0, animated: false)
+        print("Reload Button isShown, loading wheel isHidden")
     }
+    
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         progressBar.setProgress(0.5, animated: true)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -433,8 +437,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         print("Finished Navigation")
         if let pageTitle = webView.title {
             textInput.text = pageTitle
-            loadingWheel.stopAnimating()
             reloadButton.isHidden = false
+            stopButton.isHidden = true
             if let urlString = webView.url?.absoluteString {
                 print("URL: ", urlString)
                 if let url = URL(string: urlString) {
