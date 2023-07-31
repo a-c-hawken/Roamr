@@ -15,7 +15,19 @@ protocol BookmarkDelegate {
 }
 
 
-class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate, ParentViewControllerTabsDelegate, DrawerViewDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate, UITableViewDataSource, UITableViewDelegate, ParentViewControllerTabsDelegate, DrawerViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = tab[indexPath.row].title
+        return cell
+    }
+    
+
+    
     func didSelectTabView(url: URL) {
         let request = URLRequest(url: url)
         webView.load(request)
@@ -87,72 +99,58 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         super.viewDidLoad()
         progressBar.progress = 0.0
         stopButton.isHidden = true
-        //        let drawerView = DrawerView()
-        //            drawerView.attachTo(view: self.view)
-        //
-        //            // Set up the drawer here
-        //        drawerView.snapPositions = [.closed, .collapsed, .partiallyOpen, .open]
-        //        drawerView.delegate = self
-        //        
-        //        let xOffset: CGFloat = 10
-        //        var yOffset: CGFloat = 10
-        //        let buttonWidth: CGFloat = 40
-        //        let buttonHeight: CGFloat = 40
-        //        let spacing: CGFloat = 10
-        //
-        //        let backButton = UIButton(frame: CGRect(x: xOffset, y: yOffset, width: buttonWidth, height: buttonHeight))
-        //        let imageBack = UIImage(systemName: "chevron.backward")
-        //        backButton.setImage(imageBack, for: .normal)
-        //        backButton.setTitleColor(.blue, for: .normal)
-        //        drawerView.addSubview(backButton)
-        //
-        //        let newTabButton = UIButton(frame: CGRect(x: backButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
-        //        let imageNewTab = UIImage(systemName: "plus")
-        //        newTabButton.setImage(imageNewTab, for: .normal)
-        //        newTabButton.setTitleColor(.blue, for: .normal)
-        //        drawerView.addSubview(newTabButton)
-        //
-        //        let shareButton = UIButton(frame: CGRect(x: newTabButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
-        //        let image = UIImage(systemName: "square.and.arrow.up")
-        //        shareButton.setImage(image, for: .normal)
-        //        shareButton.setTitleColor(.blue, for: .normal)
-        //        drawerView.addSubview(shareButton)
-        //        
-        //        let textField = UITextField(frame: CGRect(x: shareButton.frame.maxX + spacing, y: yOffset, width: 200, height: buttonHeight))
-        //        textField.placeholder = "Search"
-        //        textField.font = UIFont.systemFont(ofSize: 15)
-        //        textField.borderStyle = UITextField.BorderStyle.roundedRect
-        //        drawerView.addSubview(textField)
-        //
-        //        let reloadButton = UIButton(frame: CGRect(x: textField.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
-        //        let imageReload = UIImage(systemName: "arrow.clockwise")
-        //        reloadButton.setImage(imageReload, for: .normal)
-        //        reloadButton.setTitleColor(.blue, for: .normal)
-        //        drawerView.addSubview(reloadButton)
-        //        
-        //        for data in tab {
-        //            let tabViewButton = UIButton(frame: CGRect(x: reloadButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
-        //            let imageTabView = UIImage(systemName: "square.and.arrow.up")
-        //            tabViewButton.setImage(imageTabView, for: .normal)
-        //            tabViewButton.setTitleColor(.blue, for: .normal)
-        //
-        //            // Use 'data' to configure the button, such as setting a title or other properties
-        //            tabViewButton.setTitle(data.title, for: .normal)
-        //            // Assuming 'data' contains the target action for the button
-        //            tabViewButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
-        //
-        //            drawerView.addSubview(tabViewButton)
-        //
-        //            // Update yOffset for the next button (if needed)
-        //            yOffset += buttonHeight + spacing
-        //        }
+                let drawerView = DrawerView()
+                    drawerView.attachTo(view: self.view)
         
-        //        
-        //        let menuButton = UIButton(frame: CGRect(x: reloadButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
-        //        let imageMenu = UIImage(systemName: "ellipsis")
-        //        menuButton.setImage(imageMenu, for: .normal)
-        //        menuButton.setTitleColor(.blue, for: .normal)
-        //        drawerView.addSubview(menuButton)
+                    // Set up the drawer here
+                drawerView.snapPositions = [.collapsed, .partiallyOpen, .open]
+                drawerView.delegate = self
+                
+                let xOffset: CGFloat = 10
+                var yOffset: CGFloat = 10
+                let buttonWidth: CGFloat = 40
+                let buttonHeight: CGFloat = 40
+                let spacing: CGFloat = 10
+        
+                let backButton = UIButton(frame: CGRect(x: xOffset, y: yOffset, width: buttonWidth, height: buttonHeight))
+                let imageBack = UIImage(systemName: "chevron.backward")
+                backButton.setImage(imageBack, for: .normal)
+                backButton.setTitleColor(.blue, for: .normal)
+                drawerView.addSubview(backButton)
+        
+                let newTabButton = UIButton(frame: CGRect(x: backButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+                let imageNewTab = UIImage(systemName: "plus")
+                newTabButton.setImage(imageNewTab, for: .normal)
+                newTabButton.setTitleColor(.blue, for: .normal)
+                drawerView.addSubview(newTabButton)
+        
+                let shareButton = UIButton(frame: CGRect(x: newTabButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+                let image = UIImage(systemName: "square.and.arrow.up")
+                shareButton.setImage(image, for: .normal)
+                shareButton.setTitleColor(.blue, for: .normal)
+                drawerView.addSubview(shareButton)
+                
+                let textField = UITextField(frame: CGRect(x: shareButton.frame.maxX + spacing, y: yOffset, width: 180, height: buttonHeight))
+                textField.placeholder = "Search"
+                textField.font = UIFont.systemFont(ofSize: 15)
+                textField.borderStyle = UITextField.BorderStyle.roundedRect
+                drawerView.addSubview(textField)
+        
+                let reloadButton = UIButton(frame: CGRect(x: textField.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+                let imageReload = UIImage(systemName: "arrow.clockwise")
+                reloadButton.setImage(imageReload, for: .normal)
+                reloadButton.setTitleColor(.blue, for: .normal)
+                drawerView.addSubview(reloadButton)
+        
+                
+            
+        //tableView contain each tab
+        let tableView = UITableView(frame: CGRect(x: xOffset, y: backButton.frame.maxY + spacing, width: 370, height: 300))
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.dataSource = self
+        tableView.delegate = self
+        drawerView.addSubview(tableView)
+        
         
         loadAndSetData()
         DispatchQueue.main.async { [self] in
@@ -162,6 +160,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 webView.load(URLRequest(url: URL(string: "https://www.google.com")!))
             }
         }
+        
+        let menuButton = UIButton(frame: CGRect(x: reloadButton.frame.maxX + spacing, y: 350, width: buttonWidth, height: buttonHeight))
+        let imageMenu = UIImage(systemName: "ellipsis")
+        menuButton.setImage(imageMenu, for: .normal)
+        menuButton.setTitleColor(.blue, for: .normal)
+        drawerView.addSubview(menuButton)
+        
+        
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardNotification(notification:)),
