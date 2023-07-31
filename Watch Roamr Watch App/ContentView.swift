@@ -26,6 +26,9 @@ struct ContentView: View {
                     .cornerRadius(90)
         }
         }
+        .onAppear {
+                loadHistory()
+            }
     }
   
     func signInWithGoogle() {
