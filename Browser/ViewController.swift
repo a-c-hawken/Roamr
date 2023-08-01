@@ -168,14 +168,21 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
         shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         
-        
         textInput = UITextField(frame: CGRect(x: shareButton.frame.maxX + spacing, y: yOffset, width: maxwidth / 2, height: buttonHeight))
         textInput.placeholder = "Search"
+        let image2 = UIImage(named: "Image")
+        
+        let leftPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: textInput.frame.height))
+        textInput.leftView = leftPaddingView
+        textInput.leftViewMode = .always
+        
         textInput.font = UIFont.systemFont(ofSize: 15)
-        textInput.borderStyle = UITextField.BorderStyle.roundedRect
+        textInput.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: textInput.frame.height))
+        textInput.borderStyle = UITextField.BorderStyle.none
+        textInput.background = image2
         drawerView.addSubview(textInput)
         
-        reloadButton = UIButton(frame: CGRect(x: textInput.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+        reloadButton = UIButton(frame: CGRect(x: textInput.frame.maxX + spacing - 5, y: yOffset, width: buttonWidth, height: buttonHeight))
         let imageReload = UIImage(systemName: "arrow.clockwise")
         reloadButton.setImage(imageReload, for: .normal)
         reloadButton.setTitleColor(.blue, for: .normal)
@@ -183,7 +190,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
         reloadButton.addTarget(self, action: #selector(reloadWebView), for: .touchUpInside)
         
-        stopButton = UIButton(frame: CGRect(x: textInput.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+        stopButton = UIButton(frame: CGRect(x: textInput.frame.maxX + spacing - 5, y: yOffset, width: buttonWidth, height: buttonHeight))
         let imageStop = UIImage(systemName: "xmark")
         stopButton.setImage(imageStop, for: .normal)
         stopButton.setTitleColor(.blue, for: .normal)
@@ -191,7 +198,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
         
         //tableView contain each tab
-        tableView = UITableView(frame: CGRect(x: xOffset, y: backButton.frame.maxY + spacing, width: maxwidth, height: 800))
+        tableView = UITableView(frame: CGRect(x: xOffset, y: backButton.frame.maxY + spacing, width: maxwidth, height: 650))
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.backgroundColor = UIColor.clear
         tableView.dataSource = self
@@ -217,19 +224,108 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         progressBar.progress = 0.0
         stopButton.isHidden = true
         
-//        let menuButton = UIButton(frame: CGRect(x: reloadButton.frame.maxX + spacing, y: 670, width: buttonWidth, height: buttonHeight))
-//        let imageMenu = UIImage(systemName: "ellipsis")
-//        menuButton.setImage(imageMenu, for: .normal)
-//        menuButton.setTitleColor(.blue, for: .normal)
-//        drawerView.addSubview(menuButton)
+        let menuButton = UIButton(frame: CGRect(x: textInput.frame.maxX, y: tableView.frame.maxY - 30, width: buttonWidth, height: buttonHeight))
+        let imageMenu = UIImage(systemName: "ellipsis")
+        menuButton.setImage(imageMenu, for: .normal)
+        menuButton.setTitleColor(.blue, for: .normal)
+        drawerView.addSubview(menuButton)
         
-        
+        menuButton.addTarget(self, action: #selector(menuOpen), for: .touchUpInside)
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardNotification(notification:)),
                                                name: UIResponder.keyboardWillChangeFrameNotification,
                                                object: nil)
         
+        
+        //menuButton.menu = mainMenu
+        textInput.delegate = self
+        webView.navigationDelegate = self
+        updateNavigationButtons()
+    }
+    
+    func deleteMenu() {
+        let alert = UIAlertController(title: "Delete All Data", message: "Would you like to delete all browsing data including; tabs, history, bookmarks, and cache.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+            self.history.removeAll()
+            self.tab.removeAll()
+            self.bookmarks.removeAll()
+            self.clearSaveData()
+            self.clearCache()
+            print("Deleting All Data")
+            let alert = UIAlertController(title: "Deleted", message: "All data has been deleted.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    // Trigger the search when the Return key is pressed
+    func textFieldShouldReturn(_ textInput: UITextField) -> Bool {
+        textInput.resignFirstResponder() // Dismiss the keyboard
+        if let searchText = textInput.text, !searchText.isEmpty {
+            // Check if the input is a valid URL
+            if let url = URL(string: searchText), url.scheme != nil {
+                let request = URLRequest(url: url)
+                DispatchQueue.main.async {
+                    self.webView.load(request)
+                    print("Opening URL", request)
+                    self.drawerView?.setPosition(.collapsed, animated: true)
+                }
+            }else if (searchText.contains(".") || searchText.contains("/") || searchText.contains(".com")) && !searchText.contains(" ") {
+                let request = URLRequest(url: URL(string: "https://\(searchText)")!)
+                DispatchQueue.main.async {
+                    self.webView.load(request)
+                    print("Opening URL", request)
+                    self.drawerView?.setPosition(.collapsed, animated: true)
+                }
+            }
+            else {
+                let textSearch = searchText.replacingOccurrences(of: " ", with: "+")
+                let urlString = "https://www.google.com/search?q=\(textSearch)"
+                if let url = URL(string: urlString) {
+                    let request = URLRequest(url: url)
+                    DispatchQueue.main.async {
+                        self.webView.load(request)
+                        print("Searching", request)
+                        self.drawerView?.setPosition(.collapsed, animated: true)
+                    }
+                }
+            }
+        }
+        updateNavigationButtons()
+        return true
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func keyboardNotification(notification: NSNotification) {
+        drawerView?.setPosition(.open, animated: true)
+    }
+    
+    
+    // Go back to the previous web page
+    @objc func backButtonTapped() {
+        if webView.canGoBack {
+            webView.goBack()
+            print("Go Back")
+        }
+    }
+    
+    // Go forward to the next web page
+//    @IBAction func forwardButtonTapped(_ sender: UIBarButtonItem) {
+//        if webView.canGoForward {
+//            webView.goForward()
+//            print("Go Forward")
+//        }
+//    }
+    
+    @objc func menuOpen(){
+        print("menuOpen")
         var menuItems: [UIAction] {
             return [
                 UIAction(title: "Settings", image: UIImage(systemName: "gearshape"), handler: { (_) in
@@ -313,91 +409,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         var mainMenu: UIMenu {
             return UIMenu(title: "", image: nil, identifier: nil, options: [], children: menuItems)
         }
+        let menu = UIMenu(title: "", children: menuItems)
         
-        //menuButton.menu = mainMenu
-        textInput.delegate = self
-        webView.navigationDelegate = self
-        updateNavigationButtons()
-    }
-    
-    func deleteMenu() {
-        let alert = UIAlertController(title: "Delete All Data", message: "Would you like to delete all browsing data including; tabs, history, bookmarks, and cache.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
-            self.history.removeAll()
-            self.tab.removeAll()
-            self.bookmarks.removeAll()
-            self.clearSaveData()
-            self.clearCache()
-            print("Deleting All Data")
-            let alert = UIAlertController(title: "Deleted", message: "All data has been deleted.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    
-    // Trigger the search when the Return key is pressed
-    func textFieldShouldReturn(_ textInput: UITextField) -> Bool {
-        textInput.resignFirstResponder() // Dismiss the keyboard
-        if let searchText = textInput.text, !searchText.isEmpty {
-            // Check if the input is a valid URL
-            if let url = URL(string: searchText), url.scheme != nil {
-                let request = URLRequest(url: url)
-                DispatchQueue.main.async {
-                    self.webView.load(request)
-                    print("Opening URL", request)
-                    self.drawerView?.setPosition(.collapsed, animated: true)
-                }
-            }else if (searchText.contains(".") || searchText.contains("/") || searchText.contains(".com")) && !searchText.contains(" ") {
-                let request = URLRequest(url: URL(string: "https://\(searchText)")!)
-                DispatchQueue.main.async {
-                    self.webView.load(request)
-                    print("Opening URL", request)
-                    self.drawerView?.setPosition(.collapsed, animated: true)
-                }
-            }
-            else {
-                let textSearch = searchText.replacingOccurrences(of: " ", with: "+")
-                let urlString = "https://www.google.com/search?q=\(textSearch)"
-                if let url = URL(string: urlString) {
-                    let request = URLRequest(url: url)
-                    DispatchQueue.main.async {
-                        self.webView.load(request)
-                        print("Searching", request)
-                        self.drawerView?.setPosition(.collapsed, animated: true)
-                    }
-                }
-            }
-        }
-        updateNavigationButtons()
-        return true
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    @objc func keyboardNotification(notification: NSNotification) {
-        drawerView?.setPosition(.open, animated: true)
-    }
-    
-    
-    // Go back to the previous web page
-    @objc func backButtonTapped() {
-        if webView.canGoBack {
-            webView.goBack()
-            print("Go Back")
-        }
-    }
-    
-    // Go forward to the next web page
-    @IBAction func forwardButtonTapped(_ sender: UIBarButtonItem) {
-        if webView.canGoForward {
-            webView.goForward()
-            print("Go Forward")
-        }
     }
     
     @objc func createNewTabButtonPressed(_ sender: UIButton) {
