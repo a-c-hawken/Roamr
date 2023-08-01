@@ -26,7 +26,15 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         return cell
     }
     
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let url = tab[indexPath.row].url {
+            webView.load(URLRequest(url: url))
+            drawerView?.setPosition(.collapsed, animated: true)
+        }
+    }
+    
+    
+    
     
     func didSelectTabView(url: URL) {
         let request = URLRequest(url: url)
@@ -35,21 +43,24 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     
+
     
-    @IBOutlet weak var backButton: UIBarButtonItem!
-    @IBOutlet weak var newTabButton: UIToolbar!
+    var backButton: UIButton!
+    var newTabButton: UIButton!
     @IBOutlet weak var tabViewButton: UIToolbar!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var forwardButton: UIBarButtonItem!
     
     @IBOutlet weak var stopButton: UIButton!
-    @IBOutlet weak var textInput: UITextField!
+    var textInput: UITextField!
     
-    @IBOutlet weak var reloadButton: UIButton!
+    var tableView: UITableView!
+    var reloadButton: UIButton!
     
     @IBOutlet weak var webView: WKWebView!
     
     @IBOutlet weak var progressBar: UIProgressView!
+    var drawerView: DrawerView!
     
     
     var lightmode: Bool = true
@@ -86,7 +97,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     
-    // Enable or disable the back and fo    rward buttons based on the web view's navigation state
+    // Enable or disable the back and forward buttons based on the web view's navigation state
     func updateNavigationButtons() {
         if privateMode == true {}
         else {
@@ -99,57 +110,72 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         super.viewDidLoad()
         progressBar.progress = 0.0
         stopButton.isHidden = true
-                let drawerView = DrawerView()
-                    drawerView.attachTo(view: self.view)
+        drawerView = DrawerView()
+        drawerView.attachTo(view: self.view)
         
-                    // Set up the drawer here
-                drawerView.snapPositions = [.collapsed, .partiallyOpen, .open]
-                drawerView.delegate = self
-                
-                let xOffset: CGFloat = 10
-                var yOffset: CGFloat = 10
-                let buttonWidth: CGFloat = 40
-                let buttonHeight: CGFloat = 40
-                let spacing: CGFloat = 10
+        // Set up the drawer here
+        drawerView.snapPositions = [.collapsed, .partiallyOpen, .open]
+        drawerView.delegate = self
         
-                let backButton = UIButton(frame: CGRect(x: xOffset, y: yOffset, width: buttonWidth, height: buttonHeight))
-                let imageBack = UIImage(systemName: "chevron.backward")
-                backButton.setImage(imageBack, for: .normal)
-                backButton.setTitleColor(.blue, for: .normal)
-                drawerView.addSubview(backButton)
+        let xOffset: CGFloat = 10
+        var yOffset: CGFloat = 10
+        let buttonWidth: CGFloat = 40
+        let buttonHeight: CGFloat = 40
+        let spacing: CGFloat = 10
         
-                let newTabButton = UIButton(frame: CGRect(x: backButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
-                let imageNewTab = UIImage(systemName: "plus")
-                newTabButton.setImage(imageNewTab, for: .normal)
-                newTabButton.setTitleColor(.blue, for: .normal)
-                drawerView.addSubview(newTabButton)
+        backButton = UIButton(frame: CGRect(x: xOffset, y: yOffset, width: buttonWidth, height: buttonHeight))
+        let imageBack = UIImage(systemName: "chevron.backward")
+        backButton.setImage(imageBack, for: .normal)
+        backButton.setTitleColor(.blue, for: .normal)
+        drawerView.addSubview(backButton)
         
-                let shareButton = UIButton(frame: CGRect(x: newTabButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
-                let image = UIImage(systemName: "square.and.arrow.up")
-                shareButton.setImage(image, for: .normal)
-                shareButton.setTitleColor(.blue, for: .normal)
-                drawerView.addSubview(shareButton)
-                
-                let textField = UITextField(frame: CGRect(x: shareButton.frame.maxX + spacing, y: yOffset, width: 180, height: buttonHeight))
-                textField.placeholder = "Search"
-                textField.font = UIFont.systemFont(ofSize: 15)
-                textField.borderStyle = UITextField.BorderStyle.roundedRect
-                drawerView.addSubview(textField)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         
-                let reloadButton = UIButton(frame: CGRect(x: textField.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
-                let imageReload = UIImage(systemName: "arrow.clockwise")
-                reloadButton.setImage(imageReload, for: .normal)
-                reloadButton.setTitleColor(.blue, for: .normal)
-                drawerView.addSubview(reloadButton)
         
-                
-            
+        newTabButton = UIButton(frame: CGRect(x: backButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+        let imageNewTab = UIImage(systemName: "plus")
+        newTabButton.setImage(imageNewTab, for: .normal)
+        newTabButton.setTitleColor(.blue, for: .normal)
+        drawerView.addSubview(newTabButton)
+        
+        newTabButton.addTarget(self, action: #selector(createNewTabButtonPressed), for: .touchUpInside)
+        
+        let shareButton = UIButton(frame: CGRect(x: newTabButton.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+        let image = UIImage(systemName: "square.and.arrow.up")
+        shareButton.setImage(image, for: .normal)
+        shareButton.setTitleColor(.blue, for: .normal)
+        drawerView.addSubview(shareButton)
+        
+        shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
+        
+        
+        textInput = UITextField(frame: CGRect(x: shareButton.frame.maxX + spacing, y: yOffset, width: 180, height: buttonHeight))
+        textInput.placeholder = "Search"
+        textInput.font = UIFont.systemFont(ofSize: 15)
+        textInput.borderStyle = UITextField.BorderStyle.roundedRect
+        drawerView.addSubview(textInput)
+        
+        reloadButton = UIButton(frame: CGRect(x: textInput.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+        let imageReload = UIImage(systemName: "arrow.clockwise")
+        reloadButton.setImage(imageReload, for: .normal)
+        reloadButton.setTitleColor(.blue, for: .normal)
+        drawerView.addSubview(reloadButton)
+        
+        shareButton.addTarget(self, action: #selector(reloadWebView), for: .touchUpInside)
+        
+        
         //tableView contain each tab
-        let tableView = UITableView(frame: CGRect(x: xOffset, y: backButton.frame.maxY + spacing, width: 370, height: 300))
+        tableView = UITableView(frame: CGRect(x: xOffset, y: backButton.frame.maxY + spacing, width: 370, height: 370))
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.dataSource = self
         tableView.delegate = self
         drawerView.addSubview(tableView)
+        
+        let bookmarkTableView = UITableView(frame: CGRect(x: xOffset, y: tableView.frame.maxY + spacing, width: 370, height: 300))
+        bookmarkTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        bookmarkTableView.dataSource = self
+        bookmarkTableView.delegate = self
+        drawerView.addSubview(bookmarkTableView)
         
         
         loadAndSetData()
@@ -266,22 +292,22 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     func deleteMenu() {
         let alert = UIAlertController(title: "Delete All Data", message: "Would you like to delete all browsing data including; tabs, history, bookmarks, and cache.", preferredStyle: .alert)
-               alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-               alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
-                   self.history.removeAll()
-                   self.tab.removeAll()
-                   self.bookmarks.removeAll()
-                   self.clearSaveData()
-                   self.clearCache()
-                   print("Deleting All Data")
-                   let alert = UIAlertController(title: "Deleted", message: "All data has been deleted.", preferredStyle: .alert)
-                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
-               }))
-               self.present(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+            self.history.removeAll()
+            self.tab.removeAll()
+            self.bookmarks.removeAll()
+            self.clearSaveData()
+            self.clearCache()
+            print("Deleting All Data")
+            let alert = UIAlertController(title: "Deleted", message: "All data has been deleted.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
-
-
+    
+    
     // Trigger the search when the Return key is pressed
     func textFieldShouldReturn(_ textInput: UITextField) -> Bool {
         textInput.resignFirstResponder() // Dismiss the keyboard
@@ -300,7 +326,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                     print("Opening URL", request)
                 }
             }
-         else {
+            else {
                 let textSearch = searchText.replacingOccurrences(of: " ", with: "+")
                 let urlString = "https://www.google.com/search?q=\(textSearch)"
                 if let url = URL(string: urlString) {
@@ -338,7 +364,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     
     // Go back to the previous web page
-    @IBAction func backButtonTapped() {
+    @objc func backButtonTapped() {
         if webView.canGoBack {
             webView.goBack()
             print("Go Back")
@@ -353,12 +379,13 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
     }
     
-    @IBAction func createNewTabButtonPressed(_ sender: UIButton) {
+    @objc func createNewTabButtonPressed(_ sender: UIButton) {
         if privateMode == true {
             
         } else {
             
             loadAndSetData()
+            tableView.reloadData()
             let newTab = Tab(url: webView.url, title: webView.title)
             tab.append(newTab)
             if let url = URL(string: "https://google.com") {
@@ -369,7 +396,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
     }
     
-    @IBAction func reloadWebView() {
+    @objc func reloadWebView() {
         webView.reload()
         print("Reload")
     }
@@ -415,6 +442,16 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         progressBar.isHidden = true
         progressBar.setProgress(0.0, animated: false)
         print("Reload Button isShown, loading wheel isHidden")
+    }
+    
+    @objc func shareButtonTapped(){
+        if let urlString = self.webView.url?.absoluteString {
+            let message = "Check out this link:"
+            if let url = URL(string: urlString) {
+                let activityViewController = UIActivityViewController(activityItems: [message, url], applicationActivities: nil)
+                self.present(activityViewController, animated: true, completion: nil)
+            }
+        }
     }
     
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {

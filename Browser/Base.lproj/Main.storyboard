@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22138.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="42f-s0-R2I">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="42f-s0-R2I">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22113"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -47,11 +47,7 @@
                                     <constraint firstAttribute="height" constant="49" id="Gi2-Ll-Qqx"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="Back" image="chevron.backward" catalog="system" width="50" id="9qL-yV-Js7">
-                                        <connections>
-                                            <action selector="backButtonTapped" destination="BYZ-38-t0r" id="frM-gO-aAX"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem title="Back" image="chevron.backward" catalog="system" width="50" id="9qL-yV-Js7"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="EYX-UA-5Dc"/>
                                     <barButtonItem title="Forward" image="chevron.right" catalog="system" width="50" id="el6-mS-cgl">
                                         <connections>
@@ -59,11 +55,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="k1Y-Ep-EvG"/>
-                                    <barButtonItem title="newTab" image="plus" catalog="system" width="50" id="ST2-Ye-BOo">
-                                        <connections>
-                                            <action selector="createNewTabButtonPressed:" destination="BYZ-38-t0r" id="61i-6J-MIK"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem title="newTab" image="plus" catalog="system" width="50" id="ST2-Ye-BOo"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ziS-Kt-O8c"/>
                                     <barButtonItem title="tabView" image="square.on.square" catalog="system" width="50" id="8je-W5-L3E">
                                         <connections>
@@ -84,11 +76,11 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDn-tj-MiJ">
                                 <rect key="frame" x="378" y="808" width="47" height="34.333333333333371"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="47" id="Wn5-qP-99z"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise" catalog="system"/>
-                                <connections>
-                                    <action selector="reloadWebView" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="Q5m-Nz-T2d"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MUD-Fi-Gfd">
                                 <rect key="frame" x="378" y="808" width="47" height="34.333333333333371"/>
@@ -153,17 +145,12 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="backButton" destination="9qL-yV-Js7" id="PbY-Gv-UCQ"/>
                         <outlet property="forwardButton" destination="el6-mS-cgl" id="5bt-le-bRq"/>
                         <outlet property="menuButton" destination="LZS-uQ-8Fi" id="ifo-eM-S5M"/>
-                        <outlet property="newTabButton" destination="p8X-dL-z4d" id="8vq-gX-cZl"/>
                         <outlet property="progressBar" destination="i0A-vn-rZL" id="XCd-sa-afB"/>
-                        <outlet property="reloadButton" destination="wDn-tj-MiJ" id="mPq-eH-eGr"/>
                         <outlet property="stopButton" destination="MUD-Fi-Gfd" id="qht-YD-EgK"/>
                         <outlet property="tabViewButton" destination="p8X-dL-z4d" id="L7r-f6-k4j"/>
-                        <outlet property="textInput" destination="Hx7-QB-Kgd" id="lv9-p7-UG6"/>
                         <outlet property="webView" destination="iQ5-Ip-pqd" id="hbf-Nj-yWB"/>
-                        <outletCollection property="textInput" destination="Hx7-QB-Kgd" collectionClass="NSMutableArray" id="UCd-m7-qqI"/>
                         <segue destination="RF4-aA-Mm7" kind="show" identifier="settingsSegue" id="vM3-q0-UPE"/>
                         <segue destination="GvX-F0-zgJ" kind="show" identifier="ThemesSegue" id="d5Y-pT-WvE"/>
                         <segue destination="UAD-ma-paK" kind="show" identifier="ExtensionsSegue" id="HW8-m5-mul"/>
@@ -394,20 +381,20 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="NHH-E5-t2D">
-                                        <rect key="frame" x="0.0" y="138.66666412353516" width="430" height="44.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="138.66666412353516" width="430" height="44.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NHH-E5-t2D" id="CY0-gm-QLp">
-                                            <rect key="frame" x="0.0" y="0.0" width="430" height="44.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="44.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text Colour" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Swu-L5-gok">
-                                                    <rect key="frame" x="20" y="11" width="87" height="21"/>
+                                                    <rect key="frame" x="20" y="10.999999999999998" width="87" height="21.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <colorWell contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Goy-6P-Xdx">
-                                                    <rect key="frame" x="382" y="7.9999999999999982" width="28" height="28.333333333333329"/>
+                                                    <rect key="frame" x="382" y="8.0000000000000018" width="28" height="28.666666666666671"/>
                                                 </colorWell>
                                             </subviews>
                                             <constraints>
@@ -422,20 +409,20 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Ana-Hg-ifG">
-                                        <rect key="frame" x="0.0" y="182.99999618530273" width="430" height="44.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="183.33333206176758" width="430" height="44.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ana-Hg-ifG" id="f01-LH-3WM">
-                                            <rect key="frame" x="0.0" y="0.0" width="430" height="44.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="44.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text Colour Dark Theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Lr-Ia-ljR">
-                                                    <rect key="frame" x="20" y="11" width="184" height="21"/>
+                                                    <rect key="frame" x="20" y="10.999999999999998" width="184" height="21.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <colorWell contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BO8-bL-z7m">
-                                                    <rect key="frame" x="382" y="7.9999999999999982" width="28" height="28.333333333333329"/>
+                                                    <rect key="frame" x="382" y="8.0000000000000018" width="28" height="28.666666666666671"/>
                                                 </colorWell>
                                             </subviews>
                                             <constraints>
@@ -692,7 +679,7 @@
         <image name="square.on.square" catalog="system" width="128" height="116"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
