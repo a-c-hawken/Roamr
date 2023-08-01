@@ -17,19 +17,34 @@ protocol BookmarkDelegate {
 
 class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate, UITableViewDataSource, UITableViewDelegate, ParentViewControllerTabsDelegate, DrawerViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return tab.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let reversedIndex = tab.count - 1 - indexPath.row
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = tab[indexPath.row].title
+        if tab.count > 0 {
+            cell.textLabel?.text = tab[reversedIndex].title
+            cell.backgroundColor = UIColor.clear
+        }
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let url = tab[indexPath.row].url {
+        let reversedIndex = tab.count - 1 - indexPath.row
+        if let url = tab[reversedIndex].url {
             webView.load(URLRequest(url: url))
             drawerView?.setPosition(.collapsed, animated: true)
+        }
+    }
+    
+    //delete
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let reversedIndex = tab.count - 1 - indexPath.row
+        if editingStyle == .delete {
+            tab.remove(at: reversedIndex)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            saveData()
         }
     }
     
@@ -47,11 +62,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     var backButton: UIButton!
     var newTabButton: UIButton!
-    @IBOutlet weak var tabViewButton: UIToolbar!
-    @IBOutlet weak var menuButton: UIBarButtonItem!
-    @IBOutlet weak var forwardButton: UIBarButtonItem!
+    //var menuButton: UIBarButtonItem!
     
-    @IBOutlet weak var stopButton: UIButton!
+    var stopButton: UIButton!
     var textInput: UITextField!
     
     var tableView: UITableView!
@@ -59,7 +72,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     @IBOutlet weak var webView: WKWebView!
     
-    @IBOutlet weak var progressBar: UIProgressView!
+    var progressBar: UIProgressView!
     var drawerView: DrawerView!
     
     
@@ -102,14 +115,12 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         if privateMode == true {}
         else {
             backButton.isEnabled = webView.canGoBack
-            forwardButton.isEnabled = webView.canGoForward
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        progressBar.progress = 0.0
-        stopButton.isHidden = true
+        
         drawerView = DrawerView()
         drawerView.attachTo(view: self.view)
         
@@ -119,9 +130,18 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
         let xOffset: CGFloat = 10
         var yOffset: CGFloat = 10
-        let buttonWidth: CGFloat = 40
-        let buttonHeight: CGFloat = 40
-        let spacing: CGFloat = 10
+        var buttonWidth = view.frame.width / 12
+        var buttonHeight = buttonWidth
+        var spacing = view.frame.width / 26
+        
+        var maxwidth = view.frame.width - 20
+        
+        //progressBar
+        progressBar = UIProgressView(frame: CGRect(x: xOffset, y: 0, width: maxwidth, height: buttonHeight))
+        progressBar.progressTintColor = UIColor.blue
+        progressBar.trackTintColor = UIColor.lightGray
+        drawerView.addSubview(progressBar)
+        
         
         backButton = UIButton(frame: CGRect(x: xOffset, y: yOffset, width: buttonWidth, height: buttonHeight))
         let imageBack = UIImage(systemName: "chevron.backward")
@@ -149,7 +169,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         
         
-        textInput = UITextField(frame: CGRect(x: shareButton.frame.maxX + spacing, y: yOffset, width: 180, height: buttonHeight))
+        textInput = UITextField(frame: CGRect(x: shareButton.frame.maxX + spacing, y: yOffset, width: maxwidth / 2, height: buttonHeight))
         textInput.placeholder = "Search"
         textInput.font = UIFont.systemFont(ofSize: 15)
         textInput.borderStyle = UITextField.BorderStyle.roundedRect
@@ -161,21 +181,28 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         reloadButton.setTitleColor(.blue, for: .normal)
         drawerView.addSubview(reloadButton)
         
-        shareButton.addTarget(self, action: #selector(reloadWebView), for: .touchUpInside)
+        reloadButton.addTarget(self, action: #selector(reloadWebView), for: .touchUpInside)
+        
+        stopButton = UIButton(frame: CGRect(x: textInput.frame.maxX + spacing, y: yOffset, width: buttonWidth, height: buttonHeight))
+        let imageStop = UIImage(systemName: "xmark")
+        stopButton.setImage(imageStop, for: .normal)
+        stopButton.setTitleColor(.blue, for: .normal)
+        drawerView.addSubview(stopButton)
         
         
         //tableView contain each tab
-        tableView = UITableView(frame: CGRect(x: xOffset, y: backButton.frame.maxY + spacing, width: 370, height: 370))
+        tableView = UITableView(frame: CGRect(x: xOffset, y: backButton.frame.maxY + spacing, width: maxwidth, height: 800))
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.backgroundColor = UIColor.clear
         tableView.dataSource = self
         tableView.delegate = self
         drawerView.addSubview(tableView)
         
-        let bookmarkTableView = UITableView(frame: CGRect(x: xOffset, y: tableView.frame.maxY + spacing, width: 370, height: 300))
-        bookmarkTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        bookmarkTableView.dataSource = self
-        bookmarkTableView.delegate = self
-        drawerView.addSubview(bookmarkTableView)
+//        let bookmarkTableView = UITableView(frame: CGRect(x: xOffset, y: tableView.frame.maxY + spacing, width: 370, height: 300))
+//        bookmarkTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+//        bookmarkTableView.dataSource = self
+//        bookmarkTableView.delegate = self
+//        drawerView.addSubview(bookmarkTableView)
         
         
         loadAndSetData()
@@ -187,11 +214,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             }
         }
         
-        let menuButton = UIButton(frame: CGRect(x: reloadButton.frame.maxX + spacing, y: 350, width: buttonWidth, height: buttonHeight))
-        let imageMenu = UIImage(systemName: "ellipsis")
-        menuButton.setImage(imageMenu, for: .normal)
-        menuButton.setTitleColor(.blue, for: .normal)
-        drawerView.addSubview(menuButton)
+        progressBar.progress = 0.0
+        stopButton.isHidden = true
+        
+//        let menuButton = UIButton(frame: CGRect(x: reloadButton.frame.maxX + spacing, y: 670, width: buttonWidth, height: buttonHeight))
+//        let imageMenu = UIImage(systemName: "ellipsis")
+//        menuButton.setImage(imageMenu, for: .normal)
+//        menuButton.setTitleColor(.blue, for: .normal)
+//        drawerView.addSubview(menuButton)
         
         
         
@@ -284,7 +314,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             return UIMenu(title: "", image: nil, identifier: nil, options: [], children: menuItems)
         }
         
-        menuButton.menu = mainMenu
+        //menuButton.menu = mainMenu
         textInput.delegate = self
         webView.navigationDelegate = self
         updateNavigationButtons()
@@ -318,12 +348,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 DispatchQueue.main.async {
                     self.webView.load(request)
                     print("Opening URL", request)
+                    self.drawerView?.setPosition(.collapsed, animated: true)
                 }
             }else if (searchText.contains(".") || searchText.contains("/") || searchText.contains(".com")) && !searchText.contains(" ") {
                 let request = URLRequest(url: URL(string: "https://\(searchText)")!)
                 DispatchQueue.main.async {
                     self.webView.load(request)
                     print("Opening URL", request)
+                    self.drawerView?.setPosition(.collapsed, animated: true)
                 }
             }
             else {
@@ -334,6 +366,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                     DispatchQueue.main.async {
                         self.webView.load(request)
                         print("Searching", request)
+                        self.drawerView?.setPosition(.collapsed, animated: true)
                     }
                 }
             }
@@ -347,19 +380,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     @objc func keyboardNotification(notification: NSNotification) {
-        guard let userInfo = notification.userInfo else { return }
-        
-        let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-        let endFrameY = endFrame?.origin.y ?? 0
-        let duration:TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
-        let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
-        let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
-        let animationCurve:UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
-        if endFrameY >= UIScreen.main.bounds.size.height {
-            self.view.frame.origin.y = 0.0
-        } else {
-            self.view.frame.origin.y = -300
-        }
+        drawerView?.setPosition(.open, animated: true)
     }
     
     
