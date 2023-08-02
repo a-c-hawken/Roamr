@@ -194,7 +194,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
         reloadButton.addTarget(self, action: #selector(reloadWebView), for: .touchUpInside)
         
-        stopButton = UIButton(frame: CGRect(x: textInput.frame.maxX + spacing - 5, y: yOffset, width: buttonWidth, height: buttonHeight))
+//        stopButton = UIButton(frame: CGRect(x: textInput.frame.maxX + spacing - 5, y: yOffset, width: buttonWidth, height: buttonHeight))
         let imageStop = UIImage(systemName: "xmark")
         stopButton.setImage(imageStop, for: .normal)
         stopButton.setTitleColor(.blue, for: .normal)
@@ -347,16 +347,16 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     func addExistingTab(){
-        if tab.contains(where: {$0.url == webView.url}) {
-            print("Tab already exists")
-            //delete current tab from array
-            tab.removeAll(where: {$0.url == webView.url})
-            //add current tab to array
-            tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
-        } else {
-            tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
-            print("Adding Tab", webView.title ?? "No Title", webView.url?.absoluteString ?? "No URL")
-        }
+//        if tab.contains(where: {$0.url == webView.url}) {
+//            print("Tab already exists")
+//            //delete current tab from array
+//            tab.removeAll(where: {$0.url == webView.url})
+//            //add current tab to array
+//            tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
+//        } else {
+//            tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
+//            print("Adding Tab", webView.title ?? "No Title", webView.url?.absoluteString ?? "No URL")
+//        }
     }
     
     func tempAddOpenTab(){
