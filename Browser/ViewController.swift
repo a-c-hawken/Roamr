@@ -34,6 +34,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         let reversedIndex = tab.count - 1 - indexPath.row
         if let url = tab[reversedIndex].url {
             webView.load(URLRequest(url: url))
+            tableView.deselectRow(at: indexPath, animated: true)
             drawerView?.setPosition(.collapsed, animated: true)
         }
     }
@@ -57,6 +58,10 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         print ("recieved and loaded url: ", request.url!.absoluteString)
     }
     
+    func cacheWebsite(){
+        let configuration = WKWebViewConfiguration()
+        configuration.websiteDataStore = WKWebsiteDataStore.nonPersistent()
+    }
     
 
     
@@ -68,6 +73,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     var textInput: UITextField!
     
     var tableView: UITableView!
+    var bookmarkTableView: UITableView!
     var reloadButton: UIButton!
     
     @IBOutlet weak var webView: WKWebView!
@@ -75,7 +81,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     var progressBar: UIProgressView!
     var drawerView: DrawerView!
     
-    
+    var menuButton: UIButton!
     var lightmode: Bool = true
     var newWebView: WKWebView!
     var window: UIWindow?
@@ -119,7 +125,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        
         
         drawerView = DrawerView()
         drawerView.attachTo(view: self.view)
@@ -130,9 +136,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
         let xOffset: CGFloat = 10
         var yOffset: CGFloat = 10
-        var buttonWidth = view.frame.width / 12
+        var buttonWidth = view.frame.width / 15
         var buttonHeight = buttonWidth
-        var spacing = view.frame.width / 26
+        var spacing = view.frame.width / 35
         
         var maxwidth = view.frame.width - 20
         
@@ -168,7 +174,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
         shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         
-        textInput = UITextField(frame: CGRect(x: shareButton.frame.maxX + spacing, y: yOffset, width: maxwidth / 2, height: buttonHeight))
+        textInput = UITextField(frame: CGRect(x: shareButton.frame.maxX + spacing, y: yOffset, width: maxwidth / 1.65, height: buttonHeight * 1.2))
         textInput.placeholder = "Search"
         let image2 = UIImage(named: "Image")
         
@@ -205,11 +211,12 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         tableView.delegate = self
         drawerView.addSubview(tableView)
         
-//        let bookmarkTableView = UITableView(frame: CGRect(x: xOffset, y: tableView.frame.maxY + spacing, width: 370, height: 300))
-//        bookmarkTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-//        bookmarkTableView.dataSource = self
-//        bookmarkTableView.delegate = self
-//        drawerView.addSubview(bookmarkTableView)
+        bookmarkTableView = UITableView(frame: CGRect(x: xOffset, y: tableView.frame.maxY + 10 + spacing, width: maxwidth, height: 650))
+        bookmarkTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        bookmarkTableView.dataSource = self
+        bookmarkTableView.delegate = self
+        bookmarkTableView.backgroundColor = UIColor.clear
+        drawerView.addSubview(bookmarkTableView)
         
         
         loadAndSetData()
@@ -224,13 +231,13 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         progressBar.progress = 0.0
         stopButton.isHidden = true
         
-        let menuButton = UIButton(frame: CGRect(x: textInput.frame.maxX, y: tableView.frame.maxY - 30, width: buttonWidth, height: buttonHeight))
-        let imageMenu = UIImage(systemName: "ellipsis")
-        menuButton.setImage(imageMenu, for: .normal)
-        menuButton.setTitleColor(.blue, for: .normal)
-        drawerView.addSubview(menuButton)
-        
-        menuButton.addTarget(self, action: #selector(menuOpen), for: .touchUpInside)
+//        menuButton = UIButton(frame: CGRect(x: textInput.frame.maxX, y: tableView.frame.maxY - 30, width: buttonWidth, height: buttonHeight))
+//        let imageMenu = UIImage(systemName: "ellipsis")
+//        menuButton.setImage(imageMenu, for: .normal)
+//        menuButton.setTitleColor(.blue, for: .normal)
+//        drawerView.addSubview(menuButton)
+//
+//        menuButton.addTarget(self, action: #selector(menuButtonPressed), for: .touchUpInside)
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardNotification(notification:)),
@@ -307,25 +314,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         drawerView?.setPosition(.open, animated: true)
     }
     
-    
-    // Go back to the previous web page
-    @objc func backButtonTapped() {
-        if webView.canGoBack {
-            webView.goBack()
-            print("Go Back")
-        }
-    }
-    
-    // Go forward to the next web page
-//    @IBAction func forwardButtonTapped(_ sender: UIBarButtonItem) {
-//        if webView.canGoForward {
-//            webView.goForward()
-//            print("Go Forward")
-//        }
-//    }
-    
-    @objc func menuOpen(){
-        print("menuOpen")
+    @objc func menuButtonPressed() {
+        super.viewDidLoad()
+        
         var menuItems: [UIAction] {
             return [
                 UIAction(title: "Settings", image: UIImage(systemName: "gearshape"), handler: { (_) in
@@ -410,14 +401,30 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             return UIMenu(title: "", image: nil, identifier: nil, options: [], children: menuItems)
         }
         let menu = UIMenu(title: "", children: menuItems)
-        
     }
+    
+    
+    // Go back to the previous web page
+    @objc func backButtonTapped() {
+        if webView.canGoBack {
+            webView.goBack()
+            print("Go Back")
+        }
+    }
+    
+    // Go forward to the next web page
+//    @IBAction func forwardButtonTapped(_ sender: UIBarButtonItem) {
+//        if webView.canGoForward {
+//            webView.goForward()
+//            print("Go Forward")
+//        }
+//    }
     
     @objc func createNewTabButtonPressed(_ sender: UIButton) {
         if privateMode == true {
             
         } else {
-            
+            cacheWebsite()
             loadAndSetData()
             tableView.reloadData()
             let newTab = Tab(url: webView.url, title: webView.title)
