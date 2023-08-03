@@ -194,7 +194,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
         reloadButton.addTarget(self, action: #selector(reloadWebView), for: .touchUpInside)
         
-//        stopButton = UIButton(frame: CGRect(x: textInput.frame.maxX + spacing - 5, y: yOffset, width: buttonWidth, height: buttonHeight))
+        stopButton = UIButton(frame: CGRect(x: textInput.frame.maxX + spacing - 5, y: yOffset, width: buttonWidth, height: buttonHeight))
         let imageStop = UIImage(systemName: "xmark")
         stopButton.setImage(imageStop, for: .normal)
         stopButton.setTitleColor(.blue, for: .normal)
@@ -234,13 +234,24 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: tableView.frame.maxY, width: view.frame.width, height: 60))
         drawerView.addSubview(toolbar)
         
-        let settingsButton = UIButton(frame: CGRect(x: 12.5, y: tableView.frame.maxY + 5, width: view.frame.width - 25, height: 40))
+        let settingsButton = UIButton(frame: CGRect(x: reloadButton.frame.minX - spacing, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
         let imageSettings = UIImage(systemName: "ellipsis")
         settingsButton.setImage(imageSettings, for: .normal)
         
         settingsButton.setTitleColor(.black, for: .normal)
         settingsButton.backgroundColor = .clear
         drawerView.addSubview(settingsButton)
+        
+        let favouriteButton = UIButton(frame: CGRect(x: reloadButton.frame.minX - (spacing * 3) - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
+        let imageStar = UIImage(systemName: "star")
+        favouriteButton.setImage(imageStar, for: .normal)
+        
+        favouriteButton.setTitleColor(.black, for: .normal)
+        favouriteButton.backgroundColor = .clear
+        drawerView.addSubview(favouriteButton)
+        
+        favouriteButton.addTarget(self, action: #selector(addBookmark), for: .touchUpInside)
+        
         
         var menuItems: [UIAction] {
             return [
@@ -284,9 +295,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 //                UIAction(title: "Zoom", image: UIImage(systemName: "arrow.up.left.and.down.right.magnifyingglass"), handler: { (_) in
                 //                    // Handle the action for the standard item
                 //                }),
-                //                UIAction(title: "Request Desktop Browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
-                //                    // Handle the action for the standard item
-                //                }),
+//                UIAction(title: "Request Desktop Browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
+//                }),
                 UIAction(title: "Private Mode", image: UIImage(systemName: "eye.slash"), handler: { [self] (_) in
                     if privateMode == false {
                         privateMode = true
@@ -295,10 +305,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                         privateMode = false
                         print("Public Mode")
                     }
-                }),
-                UIAction(title: "Add Bookmark", image: UIImage(systemName: "star"), handler: { (_) in
-                    self.bookmarks.append(Bookmark(title: self.webView.title ?? "No Title", url: self.webView.url))
-                    print("Adding Bookmark", self.webView.title ?? "No Title", self.webView.url?.absoluteString ?? "No URL")
                 }),
                 UIAction(title: "Bookmarks", image: UIImage(systemName: "book"), handler: { (_) in
                     self.performSegue(withIdentifier: "bookmarksSegue", sender: self)
@@ -458,7 +464,10 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         print("Reload")
     }
     
-    
+    @objc func addBookmark(){
+        self.bookmarks.append(Bookmark(title: self.webView.title ?? "No Title", url: self.webView.url))
+        print("Adding Bookmark", self.webView.title ?? "No Title", self.webView.url?.absoluteString ?? "No URL")
+    }
     func history(url: URL?) {
         if privateMode == true {
             
@@ -598,18 +607,18 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
     }
     
-    @IBAction func goBackToLastTab(segue: UIStoryboardSegue){
-        loadAndSetData()
-        let tabCount = tab.count
-        print(tab.count)
-        if tabCount > 0 {
-            let lastTab = tab[tabCount - 1]
-            let lastTabUrl = lastTab.url
-            let request = URLRequest(url: lastTabUrl!)
-            webView.load(request)
-            saveData()
-        }
-    }
+//    @IBAction func goBackToLastTab(segue: UIStoryboardSegue){
+//        loadAndSetData()
+//        let tabCount = tab.count
+//        print(tab.count)
+//        if tabCount > 0 {
+//            let lastTab = tab[tabCount - 1]
+//            let lastTabUrl = lastTab.url
+//            let request = URLRequest(url: lastTabUrl!)
+//            webView.load(request)
+//            saveData()
+//        }
+//    }
     
     @IBAction func pullDown(_ sender: Any) {
         print("pull down")
