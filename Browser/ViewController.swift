@@ -368,7 +368,12 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     func tempAddOpenTab(){
         //add current tab temp to array
         print("tempAddOpenTab")
-        if webView.canGoBack == true {
+        if tab.count == 0 {
+            tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
+            print("Adding Tab", webView.title ?? "No Title", webView.url?.absoluteString ?? "No URL")
+            self.tableView.reloadData()
+        }
+        else if webView.canGoBack == true {
             tab.removeLast()
             tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
             print("Adding Tab", webView.title ?? "No Title", webView.url?.absoluteString ?? "No URL")
@@ -403,7 +408,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             }
             else {
                 let textSearch = searchText.replacingOccurrences(of: " ", with: "+")
-                let urlString = "https://www.google.com/search?q=\(textSearch)"
+                let textSearch2 = textSearch.replacingOccurrences(of: "-+Google+Search", with: " ")
+                let urlString = "https://www.google.com/search?q=\(textSearch2)"
                 if let url = URL(string: urlString) {
                     let request = URLRequest(url: url)
                     DispatchQueue.main.async {
@@ -423,7 +429,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     @objc func keyboardNotification(notification: NSNotification) {
-        drawerView?.setPosition(.open, animated: true)
+//        drawerView?.setPosition(.open, animated: true)
     }
     
     
@@ -575,6 +581,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     func textFieldDidBeginEditing(_ textInput: UITextField) {
         textInput.selectedTextRange = textInput.textRange(from: textInput.beginningOfDocument, to: textInput.endOfDocument)
+        drawerView?.setPosition(.open, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
