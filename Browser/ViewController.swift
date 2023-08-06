@@ -578,6 +578,10 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     func textFieldDidBeginEditing(_ textInput: UITextField) {
         textInput.selectedTextRange = textInput.textRange(from: textInput.beginningOfDocument, to: textInput.endOfDocument)
         drawerView?.setPosition(.open, animated: true)
+        if let urlString = webView.url?.absoluteString {
+            textInput.text = urlString
+        }
+        textInput.selectedTextRange = textInput.textRange(from: textInput.beginningOfDocument, to: textInput.endOfDocument)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
