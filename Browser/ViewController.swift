@@ -6,16 +6,12 @@ protocol HistoryDelegate {
     func didSelectHistory(url: URL)
 }
 
-protocol TabDelegate {
-    func didSelectTabView(url: URL, title: String)
-}
-
 protocol BookmarkDelegate {
     func didSelectBookmark(url: URL, title: String)
 }
 
 
-class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate, UITableViewDataSource, UITableViewDelegate, ParentViewControllerTabsDelegate, DrawerViewDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate, UITableViewDataSource, UITableViewDelegate, DrawerViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tab.count
     }
@@ -33,8 +29,12 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let reversedIndex = tab.count - 1 - indexPath.row
         if let url = tab[reversedIndex].url {
+            let currentTab = Tab(url: url, title: tab[reversedIndex].title)
+            tab.append(currentTab)
             webView.load(URLRequest(url: url))
             tableView.deselectRow(at: indexPath, animated: true)
+            //delete the tab item at select row
+            tab.remove(at: reversedIndex)
             drawerView?.setPosition(.collapsed, animated: true)
         }
     }
@@ -60,7 +60,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         configuration.websiteDataStore = WKWebsiteDataStore.nonPersistent()
     }
     
-
+    
     
     var backButton: UIButton!
     var newTabButton: UIButton!
@@ -90,6 +90,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     var privateMode: Bool = false
     
+    var defaultSearchEngines: String = "https://www.google.com/search?q="
+    var loadedBookmark: String = ""
     
     
     class Tab: Codable {
@@ -211,18 +213,19 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         tableView.delegate = self
         drawerView.addSubview(tableView)
         
-//        bookmarkTableView = UITableView(frame: CGRect(x: xOffset, y: tableView.frame.maxY + 10, width: maxwidth, height: 650))
-//        bookmarkTableView.register(UITableViewCell.self, forCellReuseIdentifier: "bookmarkCell")
-//        bookmarkTableView.dataSource = self
-//        bookmarkTableView.delegate = self
-//        bookmarkTableView.backgroundColor = UIColor.clear
-//        drawerView.addSubview(bookmarkTableView)
+        //        bookmarkTableView = UITableView(frame: CGRect(x: xOffset, y: tableView.frame.maxY + 10, width: maxwidth, height: 650))
+        //        bookmarkTableView.register(UITableViewCell.self, forCellReuseIdentifier: "bookmarkCell")
+        //        bookmarkTableView.dataSource = self
+        //        bookmarkTableView.delegate = self
+        //        bookmarkTableView.backgroundColor = UIColor.clear
+        //        drawerView.addSubview(bookmarkTableView)
         
         
         loadAndSetData()
         DispatchQueue.main.async { [self] in
-            if let url = history.last?.url {
+            if let url = tab.last?.url {
                 webView.load(URLRequest(url: url))
+                addExistingTab()
             } else {
                 webView.load(URLRequest(url: URL(string: "https://www.google.com")!))
             }
@@ -272,7 +275,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                         if #available(iOS 13.0, *) {
                             overrideUserInterfaceStyle = .dark
                         } else {
-                            //this is here so older versiosn don't crash
+                            //this is here so older versions don't crash
                         }
                         lightmode = false
                         print("Night Mode")
@@ -280,7 +283,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                         if #available(iOS 13.0, *) {
                             overrideUserInterfaceStyle = .light
                         } else {
-                            //this is here so older versiosn don't crash
+                            //this is here so older versions don't crash
                         }
                         lightmode = true
                         print("Light Mode")
@@ -289,14 +292,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 //                UIAction(title: "Split View", image: UIImage(systemName: "square.bottomhalf.filled"), handler: { [self] (_) in
                 //                    self.performSegue(withIdentifier: "splitView", sender: self)
                 //                }),
-                //                UIAction(title: "Find on Page", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
-                //                    // Handle the action for the standard item
+                                UIAction(title: "Find on Page", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
+                                    self.findOnPage()
+                                }),
+//                                UIAction(title: "Zoom", image: UIImage(systemName: "arrow.up.left.and.down.right.magnifyingglass"), handler: { (_) in
+//                                    
+//                                }),
+                //                UIAction(title: "Request Desktop Browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
                 //                }),
-                //                UIAction(title: "Zoom", image: UIImage(systemName: "arrow.up.left.and.down.right.magnifyingglass"), handler: { (_) in
-                //                    // Handle the action for the standard item
-                //                }),
-//                UIAction(title: "Request Desktop Browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
-//                }),
                 UIAction(title: "Private Mode", image: UIImage(systemName: "eye.slash"), handler: { [self] (_) in
                     if privateMode == false {
                         privateMode = true
@@ -307,6 +310,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                     }
                 }),
                 UIAction(title: "Bookmarks", image: UIImage(systemName: "book"), handler: { (_) in
+                    self.loadAndSetData()
                     self.performSegue(withIdentifier: "bookmarksSegue", sender: self)
                 }),
                 UIAction(title: "History", image: UIImage(systemName: "clock.arrow.circlepath"), handler: { (_) in
@@ -321,12 +325,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
         settingsButton.menu = UIMenu(title: "", children: menuItems)
         settingsButton.showsMenuAsPrimaryAction = true
-        
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.keyboardNotification(notification:)),
-                                               name: UIResponder.keyboardWillChangeFrameNotification,
-                                               object: nil)
         
         
         //menuButton.menu = mainMenu
@@ -353,17 +351,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     func addExistingTab(){
-//        if tab.contains(where: {$0.url == webView.url}) {
-//            print("Tab already exists")
-//            //delete current tab from array
-//            tab.removeAll(where: {$0.url == webView.url})
-//            //add current tab to array
-//            tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
-//        } else {
-//            tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
-//            print("Adding Tab", webView.title ?? "No Title", webView.url?.absoluteString ?? "No URL")
-//        }
-    }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
+                if self.tab.contains(where: {$0.url == self.webView.url}) {
+                print("Tab already exists")
+                //delete current tab from array
+                tab.removeAll(where: {$0.url == webView.url})
+            }
+        }}
+    
     
     func tempAddOpenTab(){
         //add current tab temp to array
@@ -383,6 +378,36 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             print("Adding Tab", webView.title ?? "No Title", webView.url?.absoluteString ?? "No URL")
             self.tableView.reloadData()
         }
+    }
+    
+    func findOnPage(){
+                let alert = UIAlertController(title: "Find on Page", message: "Enter the text you would like to find on the page.", preferredStyle: .alert)
+                alert.addTextField { (textField) in
+                    textField.placeholder = "Text"
+                }
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Find", style: .default, handler: { [self] _ in
+                    if let text = alert.textFields?[0].text {
+                        webView.find(text) { (result) in
+                            if result.matchFound {
+                                print("Match found")
+                                self.drawerView?.setPosition(.collapsed, animated: true)
+                                let alert = UIAlertController(title: "Match Found", message: "A match was found for the text you entered.", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                            
+                            } else {
+                                print("No match found")
+                                self.drawerView?.setPosition(.collapsed, animated: true)
+                                let alert = UIAlertController(title: "No Match Found", message: "No matches were found for the text you entered.", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                            
+                            }
+                        }
+                    }
+                }))
+                self.present(alert, animated: true, completion: nil)
     }
     
     
@@ -424,14 +449,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         return true
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    @objc func keyboardNotification(notification: NSNotification) {
-//        drawerView?.setPosition(.open, animated: true)
-    }
-    
     
     // Go back to the previous web page
     @objc func backButtonTapped() {
@@ -441,13 +458,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
     }
     
-    // Go forward to the next web page
-//    @IBAction func forwardButtonTapped(_ sender: UIBarButtonItem) {
-//        if webView.canGoForward {
-//            webView.goForward()
-//            print("Go Forward")
-//        }
-//    }
     
     @objc func createNewTabButtonPressed(_ sender: UIButton) {
         if privateMode == true {
@@ -456,7 +466,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             cacheWebsite()
             loadAndSetData()
             tableView.reloadData()
-            addExistingTab()
             if let url = URL(string: "https://google.com") {
                 let request = URLRequest(url: url)
                 webView.load(request)
@@ -472,6 +481,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     @objc func addBookmark(){
         self.bookmarks.append(Bookmark(title: self.webView.title ?? "No Title", url: self.webView.url))
+        self.saveData()
         print("Adding Bookmark", self.webView.title ?? "No Title", self.webView.url?.absoluteString ?? "No URL")
     }
     func history(url: URL?) {
@@ -480,25 +490,11 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         } else {
             let historyTab = Tab(url: url, title: "")
             history.append(historyTab)
-//            for tab in history{
-//                print("History", tab.url!)
-//            }
+            //            for tab in history{
+            //                print("History", tab.url!)
+            //            }
         }
     }
-    
-//    @IBAction func openTabView(){
-//        if privateMode == true {
-//
-//        }else {
-//            if tab.contains(where: {$0.url == webView.url}) == false {
-//                let newTab = Tab(url: webView.url, title: webView.title)
-//                tab.append(newTab)
-//            }
-//
-//            loadAndSetData()
-//            performSegue(withIdentifier: "tabViewSegue", sender: self)
-//        }
-//    }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         stopButton.isHidden = false
@@ -539,18 +535,18 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                                 self.progressBar.setProgress(0.95, animated: true)
                             }
                         }
-                    
+                        
                     }
-                
+                    
                 }
             }
         }
-    
+        
     }
     func webView(_ webView: WKWebView, didFailProvisionalNavigation: WKNavigation!, withError: Error){
-	    let alert = UIAlertController(title: "Failed", message: "Webpage failed to load.", preferredStyle: .alert)
-                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: "Failed", message: "Webpage failed to load.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("Finished Navigation")
@@ -573,9 +569,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             webView.evaluateJavaScript(jsString, completionHandler: nil)
         }
         progressBar.setProgress(1.0, animated: true)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                    self.progressBar.isHidden = true
-                }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            self.progressBar.isHidden = true
+        }
         updateNavigationButtons()
     }
     
@@ -595,15 +591,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 print("Url preparing to transfer", url!)
             }
         }
-        if let destination = segue.destination as? TabDelegate {
-            print("tab good")
-            for tab in self.tab {
-                let url = tab.url
-                let title = tab.title
-                destination.didSelectTabView(url: url!, title: title!)
-                print("Preparing to transfer to tab view: ", url!, " With title: ", title)
-            }
-        }
         if let destination = segue.destination as? BookmarkDelegate {
             print("bookmark good")
             for bookmark in self.bookmarks {
@@ -613,19 +600,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             }
         }
     }
-    
-//    @IBAction func goBackToLastTab(segue: UIStoryboardSegue){
-//        loadAndSetData()
-//        let tabCount = tab.count
-//        print(tab.count)
-//        if tabCount > 0 {
-//            let lastTab = tab[tabCount - 1]
-//            let lastTabUrl = lastTab.url
-//            let request = URLRequest(url: lastTabUrl!)
-//            webView.load(request)
-//            saveData()
-//        }
-//    }
     
     @IBAction func pullDown(_ sender: Any) {
         print("pull down")
@@ -675,7 +649,27 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
         return []
     }
+    func retrieveSelectedBookmarkData() -> [Bookmark]{
+        let defaults = UserDefaults.standard
+        if let encodedSelectedBookmark = defaults.data(forKey: "selectedBookmarkData") {
+            let decoder = JSONDecoder()
+            if let decodedSelectedBookmark = try? decoder.decode([Bookmark].self, from: encodedSelectedBookmark) {
+                return decodedSelectedBookmark
+            }
+        }
+        return []
+    }
+//    func retrieveSearchEngine(){
+//        let defaults = UserDefaults.standard
+//        
+//    }
     
+    func hideDrawerView(){
+        drawerView?.setPosition(.closed, animated: true)
+    }
+    func showDrawerView(){
+        drawerView?.setPosition(.collapsed, animated: true)
+    }
     
     
     func loadAndSetData() {

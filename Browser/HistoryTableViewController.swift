@@ -67,6 +67,12 @@ class HistoryTableViewController: UITableViewController, HistoryDelegate {
             history.remove(at: indexPath.row)
             print("deleted")
             tableView.deleteRows(at: [indexPath], with: .fade)
+            let encoder = JSONEncoder()
+            if let encodedBookmarks = try? encoder.encode(history) {
+                UserDefaults.standard.set(encodedBookmarks, forKey: "historyData")
+                print("saved historyData list", history)
+            
+            }
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
