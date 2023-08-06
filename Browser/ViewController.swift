@@ -87,6 +87,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     var privateMode: Bool = false
     
     var defaultSearchEngines: String = "https://www.google.com/search?q="
+    var loadedBookmark: String = ""
     
     
     class Tab: Codable {
@@ -218,7 +219,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
         loadAndSetData()
         DispatchQueue.main.async { [self] in
-            if let url = history.last?.url {
+            if let url = tab.last?.url {
                 webView.load(URLRequest(url: url))
             } else {
                 webView.load(URLRequest(url: URL(string: "https://www.google.com")!))
@@ -290,7 +291,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                                     self.findOnPage()
                                 }),
 //                                UIAction(title: "Zoom", image: UIImage(systemName: "arrow.up.left.and.down.right.magnifyingglass"), handler: { (_) in
-//
+//                                    
 //                                }),
                 //                UIAction(title: "Request Desktop Browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
                 //                }),
@@ -304,6 +305,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                     }
                 }),
                 UIAction(title: "Bookmarks", image: UIImage(systemName: "book"), handler: { (_) in
+                    self.loadAndSetData()
                     self.performSegue(withIdentifier: "bookmarksSegue", sender: self)
                 }),
                 UIAction(title: "History", image: UIImage(systemName: "clock.arrow.circlepath"), handler: { (_) in
@@ -344,16 +346,16 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     func addExistingTab(){
-        //        if tab.contains(where: {$0.url == webView.url}) {
-        //            print("Tab already exists")
-        //            //delete current tab from array
-        //            tab.removeAll(where: {$0.url == webView.url})
-        //            //add current tab to array
-        //            tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
-        //        } else {
-        //            tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
-        //            print("Adding Tab", webView.title ?? "No Title", webView.url?.absoluteString ?? "No URL")
-        //        }
+//                if tab.contains(where: {$0.url == webView.url}) {
+//                    print("Tab already exists")
+//                    //delete current tab from array
+//                    tab.removeAll(where: {$0.url == webView.url})
+//                    //add current tab to array
+//                    tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
+//                } else {
+//                  tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
+//                  print("Adding Tab", webView.title ?? "No Title", webView.url?.absoluteString ?? "No URL")
+//                }
     }
     
     func tempAddOpenTab(){
@@ -462,7 +464,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             cacheWebsite()
             loadAndSetData()
             tableView.reloadData()
-            addExistingTab()
             if let url = URL(string: "https://google.com") {
                 let request = URLRequest(url: url)
                 webView.load(request)
@@ -478,6 +479,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     @objc func addBookmark(){
         self.bookmarks.append(Bookmark(title: self.webView.title ?? "No Title", url: self.webView.url))
+        self.saveData()
         print("Adding Bookmark", self.webView.title ?? "No Title", self.webView.url?.absoluteString ?? "No URL")
     }
     func history(url: URL?) {
@@ -645,10 +647,20 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
         return []
     }
-    func retrieveSearchEngine(){
+    func retrieveSelectedBookmarkData() -> [Bookmark]{
         let defaults = UserDefaults.standard
-        
+        if let encodedSelectedBookmark = defaults.data(forKey: "selectedBookmarkData") {
+            let decoder = JSONDecoder()
+            if let decodedSelectedBookmark = try? decoder.decode([Bookmark].self, from: encodedSelectedBookmark) {
+                return decodedSelectedBookmark
+            }
+        }
+        return []
     }
+//    func retrieveSearchEngine(){
+//        let defaults = UserDefaults.standard
+//        
+//    }
     
     func hideDrawerView(){
         drawerView?.setPosition(.closed, animated: true)

@@ -56,6 +56,30 @@ class BookmarksTableViewController: UITableViewController, BookmarkDelegate {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            bookmark.remove(at: indexPath.row)
+            print("deleted")
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            let encoder = JSONEncoder()
+            if let encodedBookmarks = try? encoder.encode(bookmark) {
+                UserDefaults.standard.set(encodedBookmarks, forKey: "bookmarkData")
+                print("saved bookmark list", bookmark)
+            
+            }
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+                let encoder = JSONEncoder()
+                if let encoded = try? encoder.encode(bookmark) {
+                    UserDefaults.standard.set(encoded, forKey: "selectedBookmarkData")
+                    print("saved bookmark list")
+                }
+                self.dismiss(animated: true, completion: nil)
+        }
 
     /*
     // Override to support conditional editing of the table view.
