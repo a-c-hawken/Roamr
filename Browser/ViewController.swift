@@ -125,19 +125,19 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     override func viewDidLoad() {
-        
+        self.clearCache()
         
         drawerView = DrawerView()
         drawerView.attachTo(view: self.view)
         
         // Set up the drawer here
-        drawerView.snapPositions = [.collapsed, .partiallyOpen, .open]
+        drawerView.snapPositions = [.collapsed, .open]
         drawerView.delegate = self
         
         let xOffset: CGFloat = 10
         var yOffset: CGFloat = 10
         var buttonWidth = view.frame.width / 15
-        var buttonHeight = buttonWidth
+        var buttonHeight = buttonWidth + 5
         var spacing = view.frame.width / 35
         
         var maxwidth = view.frame.width - 20
@@ -435,6 +435,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 let textSearch = searchText.replacingOccurrences(of: " ", with: "+")
                 let textSearch2 = textSearch.replacingOccurrences(of: "-+Google+Search", with: " ")
                 let urlString = "https://www.google.com/search?q=\(textSearch2)"
+                autoCompleteResults()
                 if let url = URL(string: urlString) {
                     let request = URLRequest(url: url)
                     DispatchQueue.main.async {
@@ -458,6 +459,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
     }
     
+    func autoCompleteResults(){
+        let autoRequest = URLRequest(url: URL(string: "https://www.google.com/complete/search?client=chrome&q=\(textInput.text ?? "")")!)
+    }
     
     @objc func createNewTabButtonPressed(_ sender: UIButton) {
         if privateMode == true {

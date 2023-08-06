@@ -16,6 +16,7 @@ enum AppIcon: String, CaseIterable, Identifiable {
     case ghost = "AppIcon-Ghost"
     case lime = "AppIcon-lime"
     case red = "AppIcon-Red"
+    case sunset = "AppIcon-sunset"
     
     var id: String { rawValue }
     var iconName: String? {
@@ -45,6 +46,8 @@ enum AppIcon: String, CaseIterable, Identifiable {
             return "Lime"
         case .red:
             return "Red"
+        case .sunset:
+        return "Sunset"
         }
         
         var preview: UIImage {

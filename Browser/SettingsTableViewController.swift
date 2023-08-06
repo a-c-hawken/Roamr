@@ -88,6 +88,10 @@ class SettingsTableViewController: UITableViewController {
                 self.iconButton.setTitle("Red", for: .normal)
                 self.appIconViewModel.updateAppIcon(to: .red)
             }),
+            UIAction(title: "Sunset", handler: { (_) in
+                self.iconButton.setTitle("Sunset", for: .normal)
+                self.appIconViewModel.updateAppIcon(to: .sunset)
+            }),
             ]
         }
         iconButton.menu = UIMenu(title: "Icon", children: iconItems)
