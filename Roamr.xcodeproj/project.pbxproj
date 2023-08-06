@@ -22,7 +22,6 @@
 		D1AD22852A68E3E4008E21DB /* BookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD22842A68E3E4008E21DB /* BookmarkTableViewCell.swift */; };
 		D1AD22872A68E40F008E21DB /* BookmarksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD22862A68E40F008E21DB /* BookmarksTableViewController.swift */; };
 		D1B359202A64DA190003D227 /* ThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B3591F2A64DA190003D227 /* ThemeTableViewController.swift */; };
-		D1B359222A64F00C0003D227 /* TabTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B359212A64F00C0003D227 /* TabTableViewCell.swift */; };
 		DF2514E42A2585CE0075EB42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2514E32A2585CE0075EB42 /* AppDelegate.swift */; };
 		DF2514E62A2585CE0075EB42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2514E52A2585CE0075EB42 /* SceneDelegate.swift */; };
 		DF2514E82A2585CE0075EB42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2514E72A2585CE0075EB42 /* ViewController.swift */; };
@@ -32,7 +31,6 @@
 		DF2514FB2A2585D00075EB42 /* BrowserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2514FA2A2585D00075EB42 /* BrowserTests.swift */; };
 		DF2515052A2585D00075EB42 /* BrowserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2515042A2585D00075EB42 /* BrowserUITests.swift */; };
 		DF2515072A2585D00075EB42 /* BrowserUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2515062A2585D00075EB42 /* BrowserUITestsLaunchTests.swift */; };
-		DF4183182A3915BC00BA2B6D /* TabCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4183172A3915BC00BA2B6D /* TabCollectionViewController.swift */; };
 		DFBC4EA52A41439D00C0160D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBC4EA42A41439D00C0160D /* TableViewCell.swift */; };
 		DFBC4EA72A41468E00C0160D /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBC4EA62A41468E00C0160D /* HistoryTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -116,7 +114,6 @@
 		D1AD22842A68E3E4008E21DB /* BookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		D1AD22862A68E40F008E21DB /* BookmarksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTableViewController.swift; sourceTree = "<group>"; };
 		D1B3591F2A64DA190003D227 /* ThemeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTableViewController.swift; sourceTree = "<group>"; };
-		D1B359212A64F00C0003D227 /* TabTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabTableViewCell.swift; sourceTree = "<group>"; };
 		D8C946EA64504415D1A5FFB0 /* Pods-RoamrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamrTests.debug.xcconfig"; path = "Target Support Files/Pods-RoamrTests/Pods-RoamrTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DF2514E02A2585CE0075EB42 /* Roamr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roamr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF2514E32A2585CE0075EB42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -131,7 +128,6 @@
 		DF2515002A2585D00075EB42 /* RoamrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoamrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF2515042A2585D00075EB42 /* BrowserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserUITests.swift; sourceTree = "<group>"; };
 		DF2515062A2585D00075EB42 /* BrowserUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		DF4183172A3915BC00BA2B6D /* TabCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCollectionViewController.swift; sourceTree = "<group>"; };
 		DFBC4EA42A41439D00C0160D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		DFBC4EA62A41468E00C0160D /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -286,8 +282,6 @@
 				DF2514E72A2585CE0075EB42 /* ViewController.swift */,
 				DF2514E92A2585CE0075EB42 /* Main.storyboard */,
 				D105B03F2A690D9C003ADDEC /* SettingsTableViewController.swift */,
-				DF4183172A3915BC00BA2B6D /* TabCollectionViewController.swift */,
-				D1B359212A64F00C0003D227 /* TabTableViewCell.swift */,
 				D1B3591F2A64DA190003D227 /* ThemeTableViewController.swift */,
 				DF2514EC2A2585D00075EB42 /* Assets.xcassets */,
 				DF2514EE2A2585D00075EB42 /* LaunchScreen.storyboard */,
@@ -439,7 +433,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					D17D77262A7252D50085B9FB = {
 						CreatedOnToolsVersion = 15.0;
@@ -678,10 +672,8 @@
 				D105B0402A690D9C003ADDEC /* SettingsTableViewController.swift in Sources */,
 				D1AD22852A68E3E4008E21DB /* BookmarkTableViewCell.swift in Sources */,
 				DFBC4EA72A41468E00C0160D /* HistoryTableViewController.swift in Sources */,
-				D1B359222A64F00C0003D227 /* TabTableViewCell.swift in Sources */,
 				D1B359202A64DA190003D227 /* ThemeTableViewController.swift in Sources */,
 				DF2514E42A2585CE0075EB42 /* AppDelegate.swift in Sources */,
-				DF4183182A3915BC00BA2B6D /* TabCollectionViewController.swift in Sources */,
 				DF2514E62A2585CE0075EB42 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -924,6 +916,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -985,6 +978,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

@@ -6,16 +6,12 @@ protocol HistoryDelegate {
     func didSelectHistory(url: URL)
 }
 
-protocol TabDelegate {
-    func didSelectTabView(url: URL, title: String)
-}
-
 protocol BookmarkDelegate {
     func didSelectBookmark(url: URL, title: String)
 }
 
 
-class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate, UITableViewDataSource, UITableViewDelegate, ParentViewControllerTabsDelegate, DrawerViewDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate, UITableViewDataSource, UITableViewDelegate, DrawerViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tab.count
     }
@@ -272,7 +268,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                         if #available(iOS 13.0, *) {
                             overrideUserInterfaceStyle = .dark
                         } else {
-                            //this is here so older versiosn don't crash
+                            //this is here so older versions don't crash
                         }
                         lightmode = false
                         print("Night Mode")
@@ -280,7 +276,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                         if #available(iOS 13.0, *) {
                             overrideUserInterfaceStyle = .light
                         } else {
-                            //this is here so older versiosn don't crash
+                            //this is here so older versions don't crash
                         }
                         lightmode = true
                         print("Light Mode")
@@ -321,12 +317,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
         settingsButton.menu = UIMenu(title: "", children: menuItems)
         settingsButton.showsMenuAsPrimaryAction = true
-        
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.keyboardNotification(notification:)),
-                                               name: UIResponder.keyboardWillChangeFrameNotification,
-                                               object: nil)
         
         
         //menuButton.menu = mainMenu
@@ -424,14 +414,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         return true
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    @objc func keyboardNotification(notification: NSNotification) {
-//        drawerView?.setPosition(.open, animated: true)
-    }
-    
     
     // Go back to the previous web page
     @objc func backButtonTapped() {
@@ -441,13 +423,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
     }
     
-    // Go forward to the next web page
-//    @IBAction func forwardButtonTapped(_ sender: UIBarButtonItem) {
-//        if webView.canGoForward {
-//            webView.goForward()
-//            print("Go Forward")
-//        }
-//    }
     
     @objc func createNewTabButtonPressed(_ sender: UIButton) {
         if privateMode == true {
@@ -485,20 +460,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
 //            }
         }
     }
-    
-//    @IBAction func openTabView(){
-//        if privateMode == true {
-//
-//        }else {
-//            if tab.contains(where: {$0.url == webView.url}) == false {
-//                let newTab = Tab(url: webView.url, title: webView.title)
-//                tab.append(newTab)
-//            }
-//
-//            loadAndSetData()
-//            performSegue(withIdentifier: "tabViewSegue", sender: self)
-//        }
-//    }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         stopButton.isHidden = false
@@ -595,15 +556,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 print("Url preparing to transfer", url!)
             }
         }
-        if let destination = segue.destination as? TabDelegate {
-            print("tab good")
-            for tab in self.tab {
-                let url = tab.url
-                let title = tab.title
-                destination.didSelectTabView(url: url!, title: title!)
-                print("Preparing to transfer to tab view: ", url!, " With title: ", title)
-            }
-        }
         if let destination = segue.destination as? BookmarkDelegate {
             print("bookmark good")
             for bookmark in self.bookmarks {
@@ -613,19 +565,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             }
         }
     }
-    
-//    @IBAction func goBackToLastTab(segue: UIStoryboardSegue){
-//        loadAndSetData()
-//        let tabCount = tab.count
-//        print(tab.count)
-//        if tabCount > 0 {
-//            let lastTab = tab[tabCount - 1]
-//            let lastTabUrl = lastTab.url
-//            let request = URLRequest(url: lastTabUrl!)
-//            webView.load(request)
-//            saveData()
-//        }
-//    }
     
     @IBAction func pullDown(_ sender: Any) {
         print("pull down")
