@@ -29,8 +29,12 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let reversedIndex = tab.count - 1 - indexPath.row
         if let url = tab[reversedIndex].url {
+            let currentTab = Tab(url: url, title: tab[reversedIndex].title)
+            tab.append(currentTab)
             webView.load(URLRequest(url: url))
             tableView.deselectRow(at: indexPath, animated: true)
+            //delete the tab item at select row
+            tab.remove(at: reversedIndex)
             drawerView?.setPosition(.collapsed, animated: true)
         }
     }
@@ -221,6 +225,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         DispatchQueue.main.async { [self] in
             if let url = tab.last?.url {
                 webView.load(URLRequest(url: url))
+                addExistingTab()
             } else {
                 webView.load(URLRequest(url: URL(string: "https://www.google.com")!))
             }
@@ -346,17 +351,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     func addExistingTab(){
-//                if tab.contains(where: {$0.url == webView.url}) {
-//                    print("Tab already exists")
-//                    //delete current tab from array
-//                    tab.removeAll(where: {$0.url == webView.url})
-//                    //add current tab to array
-//                    tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
-//                } else {
-//                  tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
-//                  print("Adding Tab", webView.title ?? "No Title", webView.url?.absoluteString ?? "No URL")
-//                }
-    }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
+                if self.tab.contains(where: {$0.url == self.webView.url}) {
+                print("Tab already exists")
+                //delete current tab from array
+                tab.removeAll(where: {$0.url == webView.url})
+            }
+        }}
+    
     
     func tempAddOpenTab(){
         //add current tab temp to array
