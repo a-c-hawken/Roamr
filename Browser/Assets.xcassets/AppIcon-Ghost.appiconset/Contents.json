@@ -1,9 +1,9 @@
 {
   "images" : [
     {
-      "filename" : "DarkLogo.png",
+      "filename" : "GhostIcon.png",
       "idiom" : "universal",
-      "platform" : "watchos",
+      "platform" : "ios",
       "size" : "1024x1024"
     }
   ],
