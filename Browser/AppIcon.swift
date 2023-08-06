@@ -12,7 +12,7 @@ enum AppIcon: String, CaseIterable, Identifiable {
     case primary = "AppIcon-main"
     case dark = "AppIcon-main2"
     case lightMode = "AppIcon-light"
-    case darkBlue = "AppIcon-DarkBlue"
+    case darkBlue = "AppIcon-darkBlue"
     case ghost = "AppIcon-Ghost"
     case lime = "AppIcon-lime"
     case red = "AppIcon-Red"
