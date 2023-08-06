@@ -56,7 +56,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         configuration.websiteDataStore = WKWebsiteDataStore.nonPersistent()
     }
     
-
+    
     
     var backButton: UIButton!
     var newTabButton: UIButton!
@@ -86,6 +86,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     var privateMode: Bool = false
     
+    var defaultSearchEngines: String = "https://www.google.com/search?q="
     
     
     class Tab: Codable {
@@ -207,12 +208,12 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         tableView.delegate = self
         drawerView.addSubview(tableView)
         
-//        bookmarkTableView = UITableView(frame: CGRect(x: xOffset, y: tableView.frame.maxY + 10, width: maxwidth, height: 650))
-//        bookmarkTableView.register(UITableViewCell.self, forCellReuseIdentifier: "bookmarkCell")
-//        bookmarkTableView.dataSource = self
-//        bookmarkTableView.delegate = self
-//        bookmarkTableView.backgroundColor = UIColor.clear
-//        drawerView.addSubview(bookmarkTableView)
+        //        bookmarkTableView = UITableView(frame: CGRect(x: xOffset, y: tableView.frame.maxY + 10, width: maxwidth, height: 650))
+        //        bookmarkTableView.register(UITableViewCell.self, forCellReuseIdentifier: "bookmarkCell")
+        //        bookmarkTableView.dataSource = self
+        //        bookmarkTableView.delegate = self
+        //        bookmarkTableView.backgroundColor = UIColor.clear
+        //        drawerView.addSubview(bookmarkTableView)
         
         
         loadAndSetData()
@@ -285,14 +286,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 //                UIAction(title: "Split View", image: UIImage(systemName: "square.bottomhalf.filled"), handler: { [self] (_) in
                 //                    self.performSegue(withIdentifier: "splitView", sender: self)
                 //                }),
-                //                UIAction(title: "Find on Page", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
-                //                    // Handle the action for the standard item
+                                UIAction(title: "Find on Page", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
+                                    self.findOnPage()
+                                }),
+//                                UIAction(title: "Zoom", image: UIImage(systemName: "arrow.up.left.and.down.right.magnifyingglass"), handler: { (_) in
+//
+//                                }),
+                //                UIAction(title: "Request Desktop Browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
                 //                }),
-                //                UIAction(title: "Zoom", image: UIImage(systemName: "arrow.up.left.and.down.right.magnifyingglass"), handler: { (_) in
-                //                    // Handle the action for the standard item
-                //                }),
-//                UIAction(title: "Request Desktop Browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
-//                }),
                 UIAction(title: "Private Mode", image: UIImage(systemName: "eye.slash"), handler: { [self] (_) in
                     if privateMode == false {
                         privateMode = true
@@ -343,16 +344,16 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     func addExistingTab(){
-//        if tab.contains(where: {$0.url == webView.url}) {
-//            print("Tab already exists")
-//            //delete current tab from array
-//            tab.removeAll(where: {$0.url == webView.url})
-//            //add current tab to array
-//            tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
-//        } else {
-//            tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
-//            print("Adding Tab", webView.title ?? "No Title", webView.url?.absoluteString ?? "No URL")
-//        }
+        //        if tab.contains(where: {$0.url == webView.url}) {
+        //            print("Tab already exists")
+        //            //delete current tab from array
+        //            tab.removeAll(where: {$0.url == webView.url})
+        //            //add current tab to array
+        //            tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
+        //        } else {
+        //            tab.append(Tab(url: webView.url, title: webView.title ?? "No Title"))
+        //            print("Adding Tab", webView.title ?? "No Title", webView.url?.absoluteString ?? "No URL")
+        //        }
     }
     
     func tempAddOpenTab(){
@@ -373,6 +374,36 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             print("Adding Tab", webView.title ?? "No Title", webView.url?.absoluteString ?? "No URL")
             self.tableView.reloadData()
         }
+    }
+    
+    func findOnPage(){
+                let alert = UIAlertController(title: "Find on Page", message: "Enter the text you would like to find on the page.", preferredStyle: .alert)
+                alert.addTextField { (textField) in
+                    textField.placeholder = "Text"
+                }
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Find", style: .default, handler: { [self] _ in
+                    if let text = alert.textFields?[0].text {
+                        webView.find(text) { (result) in
+                            if result.matchFound {
+                                print("Match found")
+                                self.drawerView?.setPosition(.collapsed, animated: true)
+                                let alert = UIAlertController(title: "Match Found", message: "A match was found for the text you entered.", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                            
+                            } else {
+                                print("No match found")
+                                self.drawerView?.setPosition(.collapsed, animated: true)
+                                let alert = UIAlertController(title: "No Match Found", message: "No matches were found for the text you entered.", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                            
+                            }
+                        }
+                    }
+                }))
+                self.present(alert, animated: true, completion: nil)
     }
     
     
@@ -455,9 +486,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         } else {
             let historyTab = Tab(url: url, title: "")
             history.append(historyTab)
-//            for tab in history{
-//                print("History", tab.url!)
-//            }
+            //            for tab in history{
+            //                print("History", tab.url!)
+            //            }
         }
     }
     
@@ -500,18 +531,18 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                                 self.progressBar.setProgress(0.95, animated: true)
                             }
                         }
-                    
+                        
                     }
-                
+                    
                 }
             }
         }
-    
+        
     }
     func webView(_ webView: WKWebView, didFailProvisionalNavigation: WKNavigation!, withError: Error){
-	    let alert = UIAlertController(title: "Failed", message: "Webpage failed to load.", preferredStyle: .alert)
-                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: "Failed", message: "Webpage failed to load.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("Finished Navigation")
@@ -534,9 +565,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             webView.evaluateJavaScript(jsString, completionHandler: nil)
         }
         progressBar.setProgress(1.0, animated: true)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                    self.progressBar.isHidden = true
-                }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            self.progressBar.isHidden = true
+        }
         updateNavigationButtons()
     }
     
@@ -614,7 +645,17 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
         return []
     }
+    func retrieveSearchEngine(){
+        let defaults = UserDefaults.standard
+        
+    }
     
+    func hideDrawerView(){
+        drawerView?.setPosition(.closed, animated: true)
+    }
+    func showDrawerView(){
+        drawerView?.setPosition(.collapsed, animated: true)
+    }
     
     
     func loadAndSetData() {
