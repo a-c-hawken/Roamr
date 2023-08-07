@@ -22,6 +22,7 @@
 		D17D774A2A7252D80085B9FB /* Roamr.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D17D77272A7252D50085B9FB /* Roamr.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D1AD22852A68E3E4008E21DB /* BookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD22842A68E3E4008E21DB /* BookmarkTableViewCell.swift */; };
 		D1AD22872A68E40F008E21DB /* BookmarksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD22862A68E40F008E21DB /* BookmarksTableViewController.swift */; };
+		D1F9DC0A2A80E980001283AE /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F9DC092A80E980001283AE /* WelcomeViewController.swift */; };
 		DF2514E42A2585CE0075EB42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2514E32A2585CE0075EB42 /* AppDelegate.swift */; };
 		DF2514E62A2585CE0075EB42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2514E52A2585CE0075EB42 /* SceneDelegate.swift */; };
 		DF2514E82A2585CE0075EB42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2514E72A2585CE0075EB42 /* ViewController.swift */; };
@@ -114,6 +115,7 @@
 		D17D77462A7252D80085B9FB /* Watch_Roamr_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watch_Roamr_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D1AD22842A68E3E4008E21DB /* BookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		D1AD22862A68E40F008E21DB /* BookmarksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTableViewController.swift; sourceTree = "<group>"; };
+		D1F9DC092A80E980001283AE /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		D8C946EA64504415D1A5FFB0 /* Pods-RoamrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamrTests.debug.xcconfig"; path = "Target Support Files/Pods-RoamrTests/Pods-RoamrTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DF2514E02A2585CE0075EB42 /* Roamr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roamr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF2514E32A2585CE0075EB42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				DF2514E52A2585CE0075EB42 /* SceneDelegate.swift */,
 				D1AD22842A68E3E4008E21DB /* BookmarkTableViewCell.swift */,
 				D1AD22862A68E40F008E21DB /* BookmarksTableViewController.swift */,
+				D1F9DC092A80E980001283AE /* WelcomeViewController.swift */,
 				D104AE432A7F837000BDCFCB /* AppIcon.swift */,
 				DF2514E72A2585CE0075EB42 /* ViewController.swift */,
 				DF2514E92A2585CE0075EB42 /* Main.storyboard */,
@@ -667,6 +670,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D104AE442A7F837000BDCFCB /* AppIcon.swift in Sources */,
+				D1F9DC0A2A80E980001283AE /* WelcomeViewController.swift in Sources */,
 				DFBC4EA52A41439D00C0160D /* TableViewCell.swift in Sources */,
 				D1AD22872A68E40F008E21DB /* BookmarksTableViewController.swift in Sources */,
 				DF2514E82A2585CE0075EB42 /* ViewController.swift in Sources */,
