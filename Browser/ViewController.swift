@@ -87,6 +87,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     var progressBar: UIProgressView!
     var drawerView: DrawerView!
     
+    @IBOutlet weak var launchView: UIView!
+    
     var menuButton: UIButton!
     var lightmode: Bool = true
     var newWebView: WKWebView!
@@ -134,6 +136,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     override func viewDidLoad() {
+        self.hideWebView()
         self.clearCache()
         
         drawerView = DrawerView()
@@ -235,8 +238,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             if let url = tab.last?.url {
                 webView.load(URLRequest(url: url))
                 addExistingTab()
+                showWebView()
             } else {
-                webView.load(URLRequest(url: URL(string: "https://www.google.com")!))
+                
             }
         }
         
@@ -340,6 +344,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         textInput.delegate = self
         webView.navigationDelegate = self
         updateNavigationButtons()
+        progressBar.isHidden = true
     }
     
     func deleteMenu() {
@@ -510,6 +515,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        showWebView()
         stopButton.isHidden = false
         reloadButton.isHidden = true
         progressBar.isHidden = false
@@ -589,13 +595,18 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     func textFieldDidBeginEditing(_ textInput: UITextField) {
-        textInput.selectedTextRange = textInput.textRange(from: textInput.beginningOfDocument, to: textInput.endOfDocument)
         drawerView?.setPosition(.open, animated: true)
-        if let urlString = webView.url?.absoluteString {
-            textInput.text = urlString
-        }
         textInput.selectedTextRange = textInput.textRange(from: textInput.beginningOfDocument, to: textInput.endOfDocument)
+//        if let urlString = webView.url?.absoluteString {
+//            textInput.text = urlString
+//            textInput.selectedTextRange = textInput.textRange(from: textInput.beginningOfDocument, to: textInput.endOfDocument)
+//        }
     }
+    
+    func textFieldDidEndEditing(_ textInput: UITextField) {
+        drawerView?.setPosition(.collapsed, animated: true)
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         saveData()
@@ -728,6 +739,18 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         let date = NSDate(timeIntervalSince1970: 0)
         WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes as! Set<String>, modifiedSince: date as Date, completionHandler:{ })
     }
+    
+    func hideWebView() {
+        webView.isHidden = true
+        launchView.isHidden = false
+    
+    }
+    
+    func showWebView() {
+        webView.isHidden = false
+        launchView.isHidden = true
+    }
+    
 
 //    //To reduce data save this instead of refetching it every time
 //    func updateAdBlockArray(){
