@@ -138,7 +138,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     override func viewDidLoad() {
         self.hideWebView()
         self.clearCache()
-        
+        self.loadAndSetData()
+	    
         drawerView = DrawerView()
         drawerView.attachTo(view: self.view)
         
