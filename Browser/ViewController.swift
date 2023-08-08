@@ -107,6 +107,10 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     var defaultSearchEngines: String = "https://www.google.com/search?q="
     var loadedBookmark: String = ""
     
+    var bigPhone: Bool = false
+    var spacing2: CGFloat = 0
+    
+    
     
     class Tab: Codable {
         var url: URL?
@@ -140,24 +144,56 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     override func viewDidLoad() {
+        //if phone width greater than 375, bigPhone = true
+        if view.frame.width > 375 {
+            bigPhone = true
+        } else{
+            bigPhone = false
+        }
+        self.loadDrawerView()
         self.hideWebView()
         self.clearCache()
         self.loadAndSetData()
         
+        
+        
+        //menuButton.menu = mainMenu
+        textInput.delegate = self
+        webView.navigationDelegate = self
+        updateNavigationButtons()
+        progressBar.isHidden = true
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { context in
+            self.drawerView?.removeFromSuperview()
+            self.loadDrawerView()
+        }, completion: { context in
+            print("rotated")
+        })
+    }
+
+    
+    
+    func loadDrawerView(){
         drawerView = DrawerView()
         drawerView.attachTo(view: self.view)
         
         // Set up the drawer here
         drawerView.snapPositions = [.collapsed, .open]
+        //drawerView color = default light/dark
+        drawerView.backgroundColor = UIColor.white
         drawerView.delegate = self
         
         let xOffset: CGFloat = 10
-        var yOffset: CGFloat = 10
-        var buttonWidth = view.frame.width / 15
-        var buttonHeight = buttonWidth + 5
-        var spacing = view.frame.width / 35
+        let yOffset: CGFloat = 10
+        let buttonWidth = view.frame.width / 15
+        let buttonHeight = buttonWidth + 5
+        let spacing = view.frame.width / 35
         
-        var maxwidth = view.frame.width - 20
+        let maxwidth = view.frame.width - 20
         
         //progressBar
         progressBar = UIProgressView(frame: CGRect(x: xOffset, y: 0, width: maxwidth, height: buttonHeight))
@@ -255,14 +291,21 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: tableView.frame.maxY, width: view.frame.width, height: 60))
         drawerView.addSubview(toolbar)
         
-        let settingsButton = UIButton(frame: CGRect(x: reloadButton.frame.minX - spacing, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
+        if bigPhone == false{
+            spacing2 = view.frame.width / 6
+            print(spacing2)
+        } else {
+             spacing2 = view.frame.width / 12
+        }
+        
+        let settingsButton = UIButton(frame: CGRect(x: reloadButton.frame.minX - 10, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
         let imageSettings = UIImage(systemName: "ellipsis")
         settingsButton.setImage(imageSettings, for: .normal)
         settingsButton.setTitleColor(.black, for: .normal)
         settingsButton.backgroundColor = .clear
         drawerView.addSubview(settingsButton)
         
-        let favouriteButton = UIButton(frame: CGRect(x: reloadButton.frame.minX - (spacing * 3) - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
+        let favouriteButton = UIButton(frame: CGRect(x: reloadButton.frame.minX - spacing2 - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
         let imageStar = UIImage(systemName: "star")
         favouriteButton.setImage(imageStar, for: .normal)
         favouriteButton.setTitleColor(.black, for: .normal)
@@ -272,7 +315,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         favouriteButton.addTarget(self, action: #selector(addBookmark), for: .touchUpInside)
         
         //bookmark button
-        let bookmarkButton = UIButton(frame: CGRect(x: favouriteButton.frame.minX - (spacing * 3) - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
+        let bookmarkButton = UIButton(frame: CGRect(x: favouriteButton.frame.minX - spacing2 - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
         let imageBookmark = UIImage(systemName: "book")
         bookmarkButton.setImage(imageBookmark, for: .normal)
         bookmarkButton.setTitleColor(.black, for: .normal)
@@ -281,7 +324,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         bookmarkButton.addTarget(self, action: #selector(openBookmarks), for: .touchUpInside)
         
         //history button
-        let historyButton = UIButton(frame: CGRect(x: bookmarkButton.frame.minX - (spacing * 3) - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
+        let historyButton = UIButton(frame: CGRect(x: bookmarkButton.frame.minX - spacing2 - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
         let imageHistory = UIImage(systemName: "clock.arrow.circlepath")
         historyButton.setImage(imageHistory, for: .normal)
         historyButton.setTitleColor(.black, for: .normal)
@@ -290,33 +333,37 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
         historyButton.addTarget(self, action: #selector(openHistory), for: .touchUpInside)
         
-        //private button
-        let privateButton = UIButton(frame: CGRect(x: historyButton.frame.minX - (spacing * 3) - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
-        let imagePrivate = UIImage(systemName: "eye.slash")
-        privateButton.setImage(imagePrivate, for: .normal)
-        privateButton.setTitleColor(.black, for: .normal)
-        privateButton.backgroundColor = .clear
-        drawerView.addSubview(privateButton)
-        
-        privateButton.addTarget(self, action: #selector(enablePrivate), for: .touchUpInside)
-        
-        //zoom
-        let zoomButton = UIButton(frame: CGRect(x: privateButton.frame.minX - (spacing * 3) - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
-        let imageZoom = UIImage(systemName: "plus.magnifyingglass")
-        zoomButton.setImage(imageZoom, for: .normal)
-        zoomButton.setTitleColor(.black, for: .normal)
-        zoomButton.backgroundColor = .clear
-        drawerView.addSubview(zoomButton)
+        if bigPhone == true {
+            //private button
+            let privateButton = UIButton(frame: CGRect(x: historyButton.frame.minX - spacing2 - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
+            let imagePrivate = UIImage(systemName: "eye.slash")
+            privateButton.setImage(imagePrivate, for: .normal)
+            privateButton.setTitleColor(.black, for: .normal)
+            privateButton.backgroundColor = .clear
+            drawerView.addSubview(privateButton)
+            
+            privateButton.addTarget(self, action: #selector(enablePrivate), for: .touchUpInside)
+            
+            //zoom
+            let zoomButton = UIButton(frame: CGRect(x: privateButton.frame.minX - spacing2 - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
+            let imageZoom = UIImage(systemName: "plus.magnifyingglass")
+            zoomButton.setImage(imageZoom, for: .normal)
+            zoomButton.setTitleColor(.black, for: .normal)
+            zoomButton.backgroundColor = .clear
+            drawerView.addSubview(zoomButton)
+        }
         
         //forward button
-        forwardButton = UIButton(frame: CGRect(x: zoomButton.frame.minX - (spacing * 2) - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
+        forwardButton = UIButton(frame: CGRect(x: backButton.frame.minX, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
         let imageForward = UIImage(systemName: "chevron.right")
         forwardButton.setImage(imageForward, for: .normal)
         forwardButton.setTitleColor(.black, for: .normal)
         forwardButton.backgroundColor = .clear
         drawerView.addSubview(forwardButton)
-        
+
         forwardButton.addTarget(self, action: #selector(forwardButtonTap), for: .touchUpInside)
+        
+       
         
         
         var menuItems: [UIAction] {
@@ -368,12 +415,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
         settingsButton.menu = UIMenu(title: "", children: menuItems)
         settingsButton.showsMenuAsPrimaryAction = true
-        
-        //menuButton.menu = mainMenu
-        textInput.delegate = self
-        webView.navigationDelegate = self
-        updateNavigationButtons()
-        progressBar.isHidden = true
     }
     
     @objc func openBookmarks(){
