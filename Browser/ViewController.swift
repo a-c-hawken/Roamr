@@ -87,7 +87,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     var progressBar: UIProgressView!
     var drawerView: DrawerView!
     
-    @IBOutlet weak var launchView: UIView!
+    @IBOutlet weak var launchViewImage: UIImageView!
+    
     
     var menuButton: UIButton!
     var lightmode: Bool = true
@@ -485,12 +486,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             cacheWebsite()
             loadAndSetData()
             tableView.reloadData()
-            if let url = URL(string: "https://google.com") {
-                let request = URLRequest(url: url)
-                webView.load(request)
+//            if let url = URL(string: "https://google.com") {
+//                let request = URLRequest(url: url)
+//                webView.load(request)
                 webView.backForwardList.perform(Selector(("_removeAllItems")))
-            }}
-        
+            textInput.text = ""
+            hideWebView()
+            }
+//        }
     }
     
     @objc func reloadWebView() {
@@ -743,13 +746,12 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     func hideWebView() {
         webView.isHidden = true
-        launchView.isHidden = false
-    
+        launchViewImage.isHidden = false
     }
     
     func showWebView() {
         webView.isHidden = false
-        launchView.isHidden = true
+        launchViewImage.isHidden = true
     }
     
 
