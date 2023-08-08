@@ -23,6 +23,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             cell.textLabel?.text = tab[reversedIndex].title
             cell.backgroundColor = UIColor.clear
         }
+        self.loadBookmark()
         return cell
     }
     
@@ -72,6 +73,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     
     var backButton: UIButton!
+    var forwardButton: UIButton!
     var newTabButton: UIButton!
     //var menuButton: UIBarButtonItem!
     
@@ -133,6 +135,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         if privateMode == true {}
         else {
             backButton.isEnabled = webView.canGoBack
+            forwardButton.isEnabled = webView.canGoForward
         }
     }
     
@@ -140,7 +143,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         self.hideWebView()
         self.clearCache()
         self.loadAndSetData()
-	    
+        
         drawerView = DrawerView()
         drawerView.attachTo(view: self.view)
         
@@ -255,7 +258,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         let settingsButton = UIButton(frame: CGRect(x: reloadButton.frame.minX - spacing, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
         let imageSettings = UIImage(systemName: "ellipsis")
         settingsButton.setImage(imageSettings, for: .normal)
-        
         settingsButton.setTitleColor(.black, for: .normal)
         settingsButton.backgroundColor = .clear
         drawerView.addSubview(settingsButton)
@@ -263,12 +265,58 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         let favouriteButton = UIButton(frame: CGRect(x: reloadButton.frame.minX - (spacing * 3) - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
         let imageStar = UIImage(systemName: "star")
         favouriteButton.setImage(imageStar, for: .normal)
-        
         favouriteButton.setTitleColor(.black, for: .normal)
         favouriteButton.backgroundColor = .clear
         drawerView.addSubview(favouriteButton)
         
         favouriteButton.addTarget(self, action: #selector(addBookmark), for: .touchUpInside)
+        
+        //bookmark button
+        let bookmarkButton = UIButton(frame: CGRect(x: favouriteButton.frame.minX - (spacing * 3) - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
+        let imageBookmark = UIImage(systemName: "book")
+        bookmarkButton.setImage(imageBookmark, for: .normal)
+        bookmarkButton.setTitleColor(.black, for: .normal)
+        bookmarkButton.backgroundColor = .clear
+        drawerView.addSubview(bookmarkButton)
+        bookmarkButton.addTarget(self, action: #selector(openBookmarks), for: .touchUpInside)
+        
+        //history button
+        let historyButton = UIButton(frame: CGRect(x: bookmarkButton.frame.minX - (spacing * 3) - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
+        let imageHistory = UIImage(systemName: "clock.arrow.circlepath")
+        historyButton.setImage(imageHistory, for: .normal)
+        historyButton.setTitleColor(.black, for: .normal)
+        historyButton.backgroundColor = .clear
+        drawerView.addSubview(historyButton)
+        
+        historyButton.addTarget(self, action: #selector(openHistory), for: .touchUpInside)
+        
+        //private button
+        let privateButton = UIButton(frame: CGRect(x: historyButton.frame.minX - (spacing * 3) - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
+        let imagePrivate = UIImage(systemName: "eye.slash")
+        privateButton.setImage(imagePrivate, for: .normal)
+        privateButton.setTitleColor(.black, for: .normal)
+        privateButton.backgroundColor = .clear
+        drawerView.addSubview(privateButton)
+        
+        privateButton.addTarget(self, action: #selector(enablePrivate), for: .touchUpInside)
+        
+        //zoom
+        let zoomButton = UIButton(frame: CGRect(x: privateButton.frame.minX - (spacing * 3) - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
+        let imageZoom = UIImage(systemName: "plus.magnifyingglass")
+        zoomButton.setImage(imageZoom, for: .normal)
+        zoomButton.setTitleColor(.black, for: .normal)
+        zoomButton.backgroundColor = .clear
+        drawerView.addSubview(zoomButton)
+        
+        //forward button
+        forwardButton = UIButton(frame: CGRect(x: zoomButton.frame.minX - (spacing * 2) - buttonWidth, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
+        let imageForward = UIImage(systemName: "chevron.right")
+        forwardButton.setImage(imageForward, for: .normal)
+        forwardButton.setTitleColor(.black, for: .normal)
+        forwardButton.backgroundColor = .clear
+        drawerView.addSubview(forwardButton)
+        
+        forwardButton.addTarget(self, action: #selector(forwardButtonTap), for: .touchUpInside)
         
         
         var menuItems: [UIAction] {
@@ -307,31 +355,11 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 //                UIAction(title: "Split View", image: UIImage(systemName: "square.bottomhalf.filled"), handler: { [self] (_) in
                 //                    self.performSegue(withIdentifier: "splitView", sender: self)
                 //                }),
-                                UIAction(title: "Find on Page", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
-                                    self.findOnPage()
-                                }),
-//                                UIAction(title: "Zoom", image: UIImage(systemName: "arrow.up.left.and.down.right.magnifyingglass"), handler: { (_) in
-//                                    
-//                                }),
+                UIAction(title: "Find on Page", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
+                    self.findOnPage()
+                }),
                 //                UIAction(title: "Request Desktop Browsing", image: UIImage(systemName: "desktopcomputer"), handler: { (_) in
                 //                }),
-                UIAction(title: "Private Mode", image: UIImage(systemName: "eye.slash"), handler: { [self] (_) in
-                    if privateMode == false {
-                        privateMode = true
-                        print("Private Mode")
-                    } else {
-                        privateMode = false
-                        print("Public Mode")
-                    }
-                }),
-                UIAction(title: "Bookmarks", image: UIImage(systemName: "book"), handler: { (_) in
-                    self.loadAndSetData()
-                    self.performSegue(withIdentifier: "bookmarksSegue", sender: self)
-                }),
-                UIAction(title: "History", image: UIImage(systemName: "clock.arrow.circlepath"), handler: { (_) in
-                    self.loadAndSetData()
-                    self.performSegue(withIdentifier: "historySegue", sender: self)
-                }),
                 UIAction(title: "Delete all data", image: UIImage(systemName: "trash"), attributes: .destructive, handler: { (_) in
                     self.deleteMenu()
                 })
@@ -341,7 +369,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         settingsButton.menu = UIMenu(title: "", children: menuItems)
         settingsButton.showsMenuAsPrimaryAction = true
         
-        
         //menuButton.menu = mainMenu
         textInput.delegate = self
         webView.navigationDelegate = self
@@ -349,6 +376,24 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         progressBar.isHidden = true
     }
     
+    @objc func openBookmarks(){
+        self.loadAndSetData()
+        self.performSegue(withIdentifier: "bookmarksSegue", sender: self)
+    }
+    
+    @objc func openHistory(){
+        self.loadAndSetData()
+        self.performSegue(withIdentifier: "historySegue", sender: self)
+    }
+    @objc func enablePrivate(){
+        if privateMode == false {
+            privateMode = true
+            print("Private Mode")
+        } else {
+            privateMode = false
+            print("Public Mode")
+        }
+    }
     func deleteMenu() {
         let alert = UIAlertController(title: "Delete All Data", message: "Would you like to delete all browsing data including; tabs, history, bookmarks, and cache.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -368,7 +413,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     func addExistingTab(){
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
-                if self.tab.contains(where: {$0.url == self.webView.url}) {
+            if self.tab.contains(where: {$0.url == self.webView.url}) {
                 print("Tab already exists")
                 //delete current tab from array
                 tab.removeAll(where: {$0.url == webView.url})
@@ -397,33 +442,32 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     func findOnPage(){
-                let alert = UIAlertController(title: "Find on Page", message: "Enter the text you would like to find on the page.", preferredStyle: .alert)
-                alert.addTextField { (textField) in
-                    textField.placeholder = "Text"
-                }
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                alert.addAction(UIAlertAction(title: "Find", style: .default, handler: { [self] _ in
-                    if let text = alert.textFields?[0].text {
-                        webView.find(text) { (result) in
-                            if result.matchFound {
-                                print("Match found")
-                                self.drawerView?.setPosition(.collapsed, animated: true)
-                                let alert = UIAlertController(title: "Match Found", message: "A match was found for the text you entered.", preferredStyle: .alert)
-                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                                self.present(alert, animated: true, completion: nil)
-                            
-                            } else {
-                                print("No match found")
-                                self.drawerView?.setPosition(.collapsed, animated: true)
-                                let alert = UIAlertController(title: "No Match Found", message: "No matches were found for the text you entered.", preferredStyle: .alert)
-                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                                self.present(alert, animated: true, completion: nil)
-                            
-                            }
-                        }
+        let alert = UIAlertController(title: "Find on Page", message: "Enter the text you would like to find on the page.", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "Text"
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Find", style: .default, handler: { [self] _ in
+            if let text = alert.textFields?[0].text {
+                webView.find(text) { (result) in
+                    if result.matchFound {
+                        print("Match found")
+                        self.drawerView?.setPosition(.collapsed, animated: true)
+                        let alert = UIAlertController(title: "Match Found", message: "A match was found for the text you entered.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        print("No match found")
+                        self.drawerView?.setPosition(.collapsed, animated: true)
+                        let alert = UIAlertController(title: "No Match Found", message: "No matches were found for the text you entered.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                        
                     }
-                }))
-                self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     
@@ -475,6 +519,13 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
     }
     
+    @objc func forwardButtonTap(){
+        if webView.canGoForward {
+            webView.goForward()
+            print("Go Forward")
+        }
+    }
+    
     func autoCompleteResults(){
         let autoRequest = URLRequest(url: URL(string: "https://www.google.com/complete/search?client=chrome&q=\(textInput.text ?? "")")!)
     }
@@ -486,16 +537,16 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             cacheWebsite()
             loadAndSetData()
             tableView.reloadData()
-//            if let url = URL(string: "https://google.com") {
-//                let request = URLRequest(url: url)
-//                webView.load(request)ß
+            //            if let url = URL(string: "https://google.com") {
+            //                let request = URLRequest(url: url)
+            //                webView.load(request)ß
             webView.stopLoading()
             progressBar.progress = 0.0
-                webView.backForwardList.perform(Selector(("_removeAllItems")))
+            webView.backForwardList.perform(Selector(("_removeAllItems")))
             textInput.text = ""
             hideWebView()
-            }
-//        }
+        }
+        //        }
     }
     
     @objc func reloadWebView() {
@@ -603,10 +654,10 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     func textFieldDidBeginEditing(_ textInput: UITextField) {
         drawerView?.setPosition(.open, animated: true)
         textInput.selectedTextRange = textInput.textRange(from: textInput.beginningOfDocument, to: textInput.endOfDocument)
-//        if let urlString = webView.url?.absoluteString {
-//            textInput.text = urlString
-//            textInput.selectedTextRange = textInput.textRange(from: textInput.beginningOfDocument, to: textInput.endOfDocument)
-//        }
+        //        if let urlString = webView.url?.absoluteString {
+        //            textInput.text = urlString
+        //            textInput.selectedTextRange = textInput.textRange(from: textInput.beginningOfDocument, to: textInput.endOfDocument)
+        //        }
     }
     
     func textFieldDidEndEditing(_ textInput: UITextField) {
@@ -693,10 +744,10 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
         return []
     }
-//    func retrieveSearchEngine(){
-//        let defaults = UserDefaults.standard
-//        
-//    }
+    //    func retrieveSearchEngine(){
+    //        let defaults = UserDefaults.standard
+    //        
+    //    }
     
     func hideDrawerView(){
         drawerView?.setPosition(.closed, animated: true)
@@ -714,11 +765,11 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         history = savedHistory
         bookmarks = savedBookmarks
     }
-
+    
     func saveData() {
         let defaults = UserDefaults.standard
         let encoder = JSONEncoder()
-
+        
         if let encodedTab = try? encoder.encode(tab) {
             defaults.set(encodedTab, forKey: "tabData")
             print("Tab data saved")
@@ -756,26 +807,36 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         launchViewImage.isHidden = true
     }
     
-
-//    //To reduce data save this instead of refetching it every time
-//    func updateAdBlockArray(){
-//        let url = URL(string: "https://hosts.anudeep.me/mirror/adservers.txt")!
-//        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-//            if let data = data {
-//                let dataString = String(data: data, encoding: .utf8)
-//                let lines = dataString!.split(separator: "\n")
-//                for line in lines {
-//                    if !line.starts(with: "#") {
-//                        self.adBlockArray.append(String(line))
-//                    }
-//                }
-//            }
-//        }
-//        task.resume()
-//    }
+    func loadBookmark(){
+        if loadedBookmark != "" {
+            let url = URL(string: loadedBookmark)
+            let request = URLRequest(url: url!)
+            webView.load(request)
+            loadedBookmark = ""
+        }
+        
+        
+        //    //To reduce data save this instead of refetching it every time
+        //    func updateAdBlockArray(){
+        //        let url = URL(string: "https://hosts.anudeep.me/mirror/adservers.txt")!
+        //        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+        //            if let data = data {
+        //                let dataString = String(data: data, encoding: .utf8)
+        //                let lines = dataString!.split(separator: "\n")
+        //                for line in lines {
+        //                    if !line.starts(with: "#") {
+        //                        self.adBlockArray.append(String(line))
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        task.resume()
+        //    }
+    }
+    
+    
+    
 }
-
-
 class Core {
     static let shared = Core()
     
@@ -787,4 +848,3 @@ class Core {
         UserDefaults.standard.set(true, forKey: "isNewUser")
     }
 }
-	
