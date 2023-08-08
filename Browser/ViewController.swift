@@ -488,7 +488,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             tableView.reloadData()
 //            if let url = URL(string: "https://google.com") {
 //                let request = URLRequest(url: url)
-//                webView.load(request)
+//                webView.load(request)ß
+            webView.stopLoading()
+            progressBar.progress = 0.0
                 webView.backForwardList.perform(Selector(("_removeAllItems")))
             textInput.text = ""
             hideWebView()
