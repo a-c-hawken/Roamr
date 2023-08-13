@@ -693,6 +693,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     func textFieldDidBeginEditing(_ textInput: UITextField) {
+        webView.stopLoading()
+        progressBar.setProgress(0.0, animated: true)
         drawerView?.setPosition(.open, animated: true)
         textInput.selectedTextRange = textInput.textRange(from: textInput.beginningOfDocument, to: textInput.endOfDocument)
         //        if let urlString = webView.url?.absoluteString {
