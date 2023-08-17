@@ -514,6 +514,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     // Trigger the search when the Return key is pressed
     func textFieldShouldReturn(_ textInput: UITextField) -> Bool {
+        showWebView()
         textInput.resignFirstResponder() // Dismiss the keyboard
         if let searchText = textInput.text, !searchText.isEmpty {
             // Check if the input is a valid URL
