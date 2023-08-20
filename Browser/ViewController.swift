@@ -110,6 +110,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     var bigPhone: Bool = false
     var spacing2: CGFloat = 0
     
+    var cancelOnPurpose: Bool = false
     
     
     class Tab: Codable {
@@ -662,9 +663,13 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
     }
     func webView(_ webView: WKWebView, didFailProvisionalNavigation: WKNavigation!, withError: Error){
-        let alert = UIAlertController(title: "Failed", message: "Webpage failed to load.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        if cancelOnPurpose == true{
+            cancelOnPurpose = false
+        }else{
+            let alert = UIAlertController(title: "Failed", message: "Webpage failed to load.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("Finished Navigation")
@@ -694,7 +699,10 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     
     func textFieldDidBeginEditing(_ textInput: UITextField) {
-        webView.stopLoading()
+        cancelOnPurpose = true
+        if webView.isLoading{
+            webView.stopLoading()
+        }
         progressBar.setProgress(0.0, animated: true)
         drawerView?.setPosition(.open, animated: true)
         textInput.selectedTextRange = textInput.textRange(from: textInput.beginningOfDocument, to: textInput.endOfDocument)
