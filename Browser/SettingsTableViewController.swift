@@ -9,7 +9,7 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
-    @IBOutlet weak var engineButton: UIButton!
+//    @IBOutlet weak var engineButton: UIButton!
     @IBOutlet weak var iconButton: UIButton!
     
     var appIconViewModel = ChangeAppIconViewModel()
@@ -18,49 +18,49 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadSettings()
-        if(url == "https://www.google.com/search?q="){
-            engineButton.setTitle("Google", for: .normal)
-        } else if(url == "https://duckduckgo.com/?q="){
-            engineButton.setTitle("DuckDuckGo", for: .normal)
-        } else if(url == "https://www.bing.com/search?q="){
-            engineButton.setTitle("Bing", for: .normal)
-        } else if(url == "https://search.yahoo.com/search?p="){
-            engineButton.setTitle("Yahoo", for: .normal)
-        }
+//        loadSettings()
+//        if(url == "https://www.google.com/search?q="){
+//            engineButton.setTitle("Google", for: .normal)
+//        } else if(url == "https://duckduckgo.com/?q="){
+//            engineButton.setTitle("DuckDuckGo", for: .normal)
+//        } else if(url == "https://www.bing.com/search?q="){
+//            engineButton.setTitle("Bing", for: .normal)
+//        } else if(url == "https://search.yahoo.com/search?p="){
+//            engineButton.setTitle("Yahoo", for: .normal)
+//        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        var menuItems: [UIAction] {
-            return [
-                UIAction(title: "Google", handler: { (_) in
-                    self.url = "https://www.google.com/search?q="
-                    self.engineButton.setTitle("Google", for: .normal)
-                    self.setGoogle()
-                
-                }),
-                UIAction(title: "DuckDuckGo", handler: { (_) in
-                    self.url = "https://duckduckgo.com/?q="
-                    self.engineButton.setTitle("DuckDuckGo", for: .normal)
-                    self.setDuckDuckGo()
-                
-                }),
-                UIAction(title: "Bing", handler: { (_) in
-                    self.url = "https://www.bing.com/search?q="
-                    self.engineButton.setTitle("Bing", for: .normal)
-                    self.setBing()
-                }),
-                UIAction(title: "Yahoo", handler: { (_) in
-                    self.url = "https://search.yahoo.com/search?p="
-                    self.engineButton.setTitle("Yahoo", for: .normal)
-                    self.setYahoo()
-                
-                }),
-            ]}
-        engineButton.menu = UIMenu(title: "Search Engine", children: menuItems)
-        engineButton.showsMenuAsPrimaryAction = true
+//        var menuItems: [UIAction] {
+//            return [
+//                UIAction(title: "Google", handler: { (_) in
+//                    self.url = "https://www.google.com/search?q="
+//                    self.engineButton.setTitle("Google", for: .normal)
+//                    self.setGoogle()
+//                
+//                }),
+//                UIAction(title: "DuckDuckGo", handler: { (_) in
+//                    self.url = "https://duckduckgo.com/?q="
+//                    self.engineButton.setTitle("DuckDuckGo", for: .normal)
+//                    self.setDuckDuckGo()
+//                
+//                }),
+//                UIAction(title: "Bing", handler: { (_) in
+//                    self.url = "https://www.bing.com/search?q="
+//                    self.engineButton.setTitle("Bing", for: .normal)
+//                    self.setBing()
+//                }),
+//                UIAction(title: "Yahoo", handler: { (_) in
+//                    self.url = "https://search.yahoo.com/search?p="
+//                    self.engineButton.setTitle("Yahoo", for: .normal)
+//                    self.setYahoo()
+//                
+//                }),
+//            ]}
+//        engineButton.menu = UIMenu(title: "Search Engine", children: menuItems)
+//        engineButton.showsMenuAsPrimaryAction = true
         
         var iconItems: [UIAction] {
             return [
@@ -107,42 +107,42 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return 3
     }
     
-    func setGoogle(){
-        self.url = "https://www.google.com/search?q="
-        saveSettings(self)
-    }
-    
-    func setBing(){
-        self.url = "https://www.bing.com/search?q="
-        saveSettings(self)
-    }
-    
-    func setDuckDuckGo(){
-        self.url = "https://duckduckgo.com/?q="
-        saveSettings(self)
-    }
-    
-    func setYahoo(){
-        self.url = "https://search.yahoo.com/search?p="
-        saveSettings(self)
-    }
-    
-    //save settings
-    func saveSettings(_ sender: Any) {
-        let defaults = UserDefaults.standard
-        defaults.set(url, forKey: "url")
-        defaults.synchronize()
-    }
-    
-    func loadSettings(){
-        let defaults = UserDefaults.standard
-        if let url = defaults.string(forKey: "url"){
-            self.url = url
-        }
-    }
+//    func setGoogle(){
+//        self.url = "https://www.google.com/search?q="
+//        saveSettings(self)
+//    }
+//    
+//    func setBing(){
+//        self.url = "https://www.bing.com/search?q="
+//        saveSettings(self)
+//    }
+//    
+//    func setDuckDuckGo(){
+//        self.url = "https://duckduckgo.com/?q="
+//        saveSettings(self)
+//    }
+//    
+//    func setYahoo(){
+//        self.url = "https://search.yahoo.com/search?p="
+//        saveSettings(self)
+//    }
+//    
+//    //save settings
+//    func saveSettings(_ sender: Any) {
+//        let defaults = UserDefaults.standard
+//        defaults.set(url, forKey: "url")
+//        defaults.synchronize()
+//    }
+//    
+//    func loadSettings(){
+//        let defaults = UserDefaults.standard
+//        if let url = defaults.string(forKey: "url"){
+//            self.url = url
+//        }
+//    }
     
     
 
