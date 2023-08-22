@@ -538,7 +538,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 let textSearch = searchText.replacingOccurrences(of: " ", with: "+")
                 let textSearch2 = textSearch.replacingOccurrences(of: "-+Google+Search", with: " ")
                 let urlString = "https://www.google.com/search?q=\(textSearch2)"
-                autoCompleteResults()
+//                autoCompleteResults()
                 if let url = URL(string: urlString) {
                     let request = URLRequest(url: url)
                     DispatchQueue.main.async {
@@ -569,9 +569,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
     }
     
-    func autoCompleteResults(){
-        let autoRequest = URLRequest(url: URL(string: "https://www.google.com/complete/search?client=chrome&q=\(textInput.text ?? "")")!)
-    }
+//    func autoCompleteResults(){
+//        let autoRequest = URLRequest(url: URL(string: "https://www.google.com/complete/search?client=chrome&q=\(textInput.text ?? "")")!)
+//    }
     
     @objc func createNewTabButtonPressed(_ sender: UIButton) {
         if privateMode == true {
@@ -583,11 +583,13 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             //            if let url = URL(string: "https://google.com") {
             //                let request = URLRequest(url: url)
             //                webView.load(request)ß
-            webView.stopLoading()
+            if webView.isLoading {
+                webView.stopLoading()
+            }
             progressBar.progress = 0.0
             webView.backForwardList.perform(Selector(("_removeAllItems")))
             textInput.text = ""
-            hideWebView()
+            if webView.isHidden == false{hideWebView()}
         }
         //        }
     }
