@@ -420,6 +420,42 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         settingsButton.showsMenuAsPrimaryAction = true
     }
     
+    func scrapBing() {
+            let urlString = "https://www.bing.com/search?q=\(String(describing: textInputUpdate))&count=30"
+            guard let url = URL(string: urlString) else {
+                print("Invalid URL")
+                exit(0)
+            }
+
+            var encounteredDomains: Set<String> = []
+
+            do {
+                let html = try String(contentsOf: url)
+                let document = try SwiftSoup.parse(html)
+                let links = try document.select("h2 a")
+                
+                for link in links {
+                    let linkText = try link.text()
+                    
+                    // Get the URL of the link
+                    let linkUrl = try link.attr("href")
+                    if let domain = URL(string: linkUrl)?.host {
+                        if !encounteredDomains.contains(domain) && !linkText.isEmpty {
+                            encounteredDomains.insert(domain)
+                            linkTitles.append(linkText)
+                        }
+                    }
+                }
+                
+                // Print the link titles
+                for (index, title) in linkTitles.enumerated() {
+                    print("\(index + 1). \(title)")
+                }
+            } catch {
+                print("Error: \(error)")
+            }
+        }
+    
     @objc func openBookmarks(){
         self.loadAndSetData()
         self.performSegue(withIdentifier: "bookmarksSegue", sender: self)
@@ -718,6 +754,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     func textFieldDidEndEditing(_ textInput: UITextField) {
         drawerView?.setPosition(.collapsed, animated: true)
+        scrapBing()
     }
     
     
@@ -871,43 +908,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             loadedBookmark = ""
         }
         
-        func scrapGoogle() {
-                let urlString = "https://www.bing.com/search?q=\(String(describing: textInputUpdate))&count=30"
-                guard let url = URL(string: urlString) else {
-                    print("Invalid URL")
-                    exit(0)
-                }
-
-                var encounteredDomains: Set<String> = []
-
-                do {
-                    let html = try String(contentsOf: url)
-                    let document = try SwiftSoup.parse(html)
-                    let links = try document.select("h2 a")
-                    
-                    for link in links {
-                        let linkText = try link.text()
-                        
-                        // Get the URL of the link
-                        let linkUrl = try link.attr("href")
-                        if let domain = URL(string: linkUrl)?.host {
-                            if !encounteredDomains.contains(domain) && !linkText.isEmpty {
-                                encounteredDomains.insert(domain)
-                                linkTitles.append(linkText)
-                            }
-                        }
-                    }
-                    
-                    // Print the link titles
-                    for (index, title) in linkTitles.enumerated() {
-                        print("\(index + 1). \(title)")
-                    }
-                } catch {
-                    print("Error: \(error)")
-                }
-            }
         
-        
+            
         //    //To reduce data save this instead of refetching it every time
         //    func updateAdBlockArray(){
         //        let url = URL(string: "https://hosts.anudeep.me/mirror/adservers.txt")!
@@ -925,9 +927,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         //        task.resume()
         //    }
     }
-    
-    
-    
+
 }
 class Core {
     static let shared = Core()
