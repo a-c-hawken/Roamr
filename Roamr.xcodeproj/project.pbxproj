@@ -20,6 +20,7 @@
 		D17D77452A7252D80085B9FB /* Watch_Roamr_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17D77442A7252D80085B9FB /* Watch_Roamr_Watch_AppUITests.swift */; };
 		D17D77472A7252D80085B9FB /* Watch_Roamr_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17D77462A7252D80085B9FB /* Watch_Roamr_Watch_AppUITestsLaunchTests.swift */; };
 		D17D774A2A7252D80085B9FB /* Roamr.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D17D77272A7252D50085B9FB /* Roamr.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D19BF7262A97626400940F9A /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = D19BF7252A97626400940F9A /* SwiftSoup */; };
 		D1AD22852A68E3E4008E21DB /* BookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD22842A68E3E4008E21DB /* BookmarkTableViewCell.swift */; };
 		D1AD22872A68E40F008E21DB /* BookmarksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD22862A68E40F008E21DB /* BookmarksTableViewController.swift */; };
 		D1F9DC0A2A80E980001283AE /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F9DC092A80E980001283AE /* WelcomeViewController.swift */; };
@@ -161,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DB3CDBBAAEB580B958959D8 /* Pods_Roamr.framework in Frameworks */,
+				D19BF7262A97626400940F9A /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +387,9 @@
 				D17D77492A7252D80085B9FB /* PBXTargetDependency */,
 			);
 			name = Roamr;
+			packageProductDependencies = (
+				D19BF7252A97626400940F9A /* SwiftSoup */,
+			);
 			productName = Browser;
 			productReference = DF2514E02A2585CE0075EB42 /* Roamr.app */;
 			productType = "com.apple.product-type.application";
@@ -471,6 +476,9 @@
 				Base,
 			);
 			mainGroup = DF2514D72A2585CE0075EB42;
+			packageReferences = (
+				D19BF7242A97626400940F9A /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = DF2514E12A2585CE0075EB42 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1265,6 +1273,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D19BF7242A97626400940F9A /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D19BF7252A97626400940F9A /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D19BF7242A97626400940F9A /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DF2514D82A2585CE0075EB42 /* Project object */;
 }
