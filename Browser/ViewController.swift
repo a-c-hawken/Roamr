@@ -240,6 +240,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         textInput.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: textInput.frame.height))
         textInput.borderStyle = UITextField.BorderStyle.none
         textInput.background = image2
+        textInput.clearButtonMode = .whileEditing
         drawerView.addSubview(textInput)
         
         reloadButton = UIButton(frame: CGRect(x: textInput.frame.maxX + spacing - 5, y: yOffset, width: buttonWidth, height: buttonHeight))
@@ -351,6 +352,22 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             zoomButton.setImage(imageZoom, for: .normal)
             zoomButton.setTitleColor(.black, for: .normal)
             zoomButton.backgroundColor = .clear
+            
+            let zoomMenu = UIMenu(title: "Zoom", children: [
+                                    UIAction(title: "Zoom In", image: UIImage(systemName: "plus.magnifyingglass"), handler: { (_) in
+                                        self.webView.scrollView.zoomScale += 0.5
+                                    }),
+                                    //reset
+                                    UIAction(title: "Reset Zoom", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
+                                        self.webView.scrollView.zoomScale = 1
+                                    }),
+                                    
+                                    UIAction(title: "Zoom Out", image: UIImage(systemName: "minus.magnifyingglass"), handler: { (_) in
+                                        self.webView.scrollView.zoomScale -= 0.5
+                                    }) 
+            ])
+            zoomButton.showsMenuAsPrimaryAction = true
+            zoomButton.menu = zoomMenu
             drawerView.addSubview(zoomButton)
         }
         
