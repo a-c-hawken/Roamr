@@ -11,6 +11,7 @@ class HistoryTableViewController: UITableViewController, HistoryDelegate {
     func didSelectHistory(url: URL) {
         let tab = Tab(url: url)
         history.append(tab)
+        history.reverse()
         print ("save", tab.url!.absoluteString)
         tableView.reloadData()
     }

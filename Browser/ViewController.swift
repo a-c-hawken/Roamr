@@ -195,9 +195,10 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         let spacing = view.frame.width / 35
         
         let maxwidth = view.frame.width - 20
+        let image2 = UIImage(named: "Image")
         
         //progressBar
-        progressBar = UIProgressView(frame: CGRect(x: xOffset, y: 0, width: maxwidth, height: buttonHeight))
+        progressBar = UIProgressView(frame: CGRect(x: xOffset, y: 0, width: maxwidth, height: buttonHeight + 20))
         progressBar.progressTintColor = UIColor.systemBlue
         progressBar.trackTintColor = UIColor.lightGray
         drawerView.addSubview(progressBar)
@@ -230,7 +231,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         
         textInput = UITextField(frame: CGRect(x: shareButton.frame.maxX + spacing, y: yOffset, width: maxwidth / 1.65, height: buttonHeight * 1.2))
         textInput.placeholder = "Search"
-        let image2 = UIImage(named: "Image")
         
         let leftPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: textInput.frame.height))
         textInput.leftView = leftPaddingView
@@ -733,6 +733,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     func textFieldDidEndEditing(_ textInput: UITextField) {
         drawerView?.setPosition(.collapsed, animated: true)
+        textInput.resignFirstResponder()
     }
     
     
@@ -885,8 +886,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             webView.load(request)
             loadedBookmark = ""
         }
-        
-        
+    
         //    //To reduce data save this instead of refetching it every time
         //    func updateAdBlockArray(){
         //        let url = URL(string: "https://hosts.anudeep.me/mirror/adservers.txt")!
@@ -904,9 +904,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         //        task.resume()
         //    }
     }
-    
-    
-    
 }
 class Core {
     static let shared = Core()
