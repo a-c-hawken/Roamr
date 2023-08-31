@@ -97,6 +97,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     var newWebView: WKWebView!
     var window: UIWindow?
     var adBlockArray: [String] = []
+    var autoComplete: [String] = []
     
     var tab: [Tab] = []
     var history: [Tab] = []
@@ -175,7 +176,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             print("rotated")
         })
     }
-
+    
     
     
     func loadDrawerView(){
@@ -241,6 +242,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         textInput.borderStyle = UITextField.BorderStyle.none
         textInput.background = image2
         textInput.clearButtonMode = .whileEditing
+        textInput.autocorrectionType = .no
+        textInput.addTarget(self, action: #selector(textFieldChanged(_:)), for: .editingChanged)
         drawerView.addSubview(textInput)
         
         reloadButton = UIButton(frame: CGRect(x: textInput.frame.maxX + spacing - 5, y: yOffset, width: buttonWidth, height: buttonHeight))
@@ -297,7 +300,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             spacing2 = view.frame.width / 6
             print(spacing2)
         } else {
-             spacing2 = view.frame.width / 12
+            spacing2 = view.frame.width / 12
         }
         
         let settingsButton = UIButton(frame: CGRect(x: reloadButton.frame.minX - 10, y: tableView.frame.maxY + 5, width: buttonWidth + 20, height: buttonHeight + 20))
@@ -354,17 +357,17 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             zoomButton.backgroundColor = .clear
             
             let zoomMenu = UIMenu(title: "Zoom", children: [
-                                    UIAction(title: "Zoom In", image: UIImage(systemName: "plus.magnifyingglass"), handler: { (_) in
-                                        self.webView.scrollView.zoomScale += 0.5
-                                    }),
-                                    //reset
-                                    UIAction(title: "Reset Zoom", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
-                                        self.webView.scrollView.zoomScale = 1
-                                    }),
-                                    
-                                    UIAction(title: "Zoom Out", image: UIImage(systemName: "minus.magnifyingglass"), handler: { (_) in
-                                        self.webView.scrollView.zoomScale -= 0.5
-                                    }) 
+                UIAction(title: "Zoom In", image: UIImage(systemName: "plus.magnifyingglass"), handler: { (_) in
+                    self.webView.scrollView.zoomScale += 0.5
+                }),
+                //reset
+                UIAction(title: "Reset Zoom", image: UIImage(systemName: "magnifyingglass"), handler: { (_) in
+                    self.webView.scrollView.zoomScale = 1
+                }),
+                
+                UIAction(title: "Zoom Out", image: UIImage(systemName: "minus.magnifyingglass"), handler: { (_) in
+                    self.webView.scrollView.zoomScale -= 0.5
+                })
             ])
             zoomButton.showsMenuAsPrimaryAction = true
             zoomButton.menu = zoomMenu
@@ -378,10 +381,10 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         forwardButton.setTitleColor(.black, for: .normal)
         forwardButton.backgroundColor = .clear
         drawerView.addSubview(forwardButton)
-
+        
         forwardButton.addTarget(self, action: #selector(forwardButtonTap), for: .touchUpInside)
         
-       
+        
         
         
         var menuItems: [UIAction] {
@@ -555,7 +558,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 let textSearch = searchText.replacingOccurrences(of: " ", with: "+")
                 let textSearch2 = textSearch.replacingOccurrences(of: "-+Google+Search", with: " ")
                 let urlString = "https://www.google.com/search?q=\(textSearch2)"
-//                autoCompleteResults()
+                //                autoCompleteResults()
                 if let url = URL(string: urlString) {
                     let request = URLRequest(url: url)
                     DispatchQueue.main.async {
@@ -569,7 +572,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         updateNavigationButtons()
         return true
     }
-    
     
     // Go back to the previous web page
     @objc func backButtonTapped() {
@@ -585,10 +587,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             print("Go Forward")
         }
     }
-    
-//    func autoCompleteResults(){
-//        let autoRequest = URLRequest(url: URL(string: "https://www.google.com/complete/search?client=chrome&q=\(textInput.text ?? "")")!)
-//    }
     
     @objc func createNewTabButtonPressed(_ sender: UIButton) {
         if privateMode == true {
@@ -681,15 +679,28 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
         
     }
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation: WKNavigation!, withError: Error){
+    
+    func failed() {
         if cancelOnPurpose == true{
             cancelOnPurpose = false
         }else{
             let alert = UIAlertController(title: "Failed", message: "Webpage failed to load.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Go Back", style: .default, handler: { (action) in
+                self.webView.goBack()
+            }))
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation: WKNavigation!, withError: Error){
+        failed()
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        failed()
+    }
+    
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("Finished Navigation")
         tempAddOpenTab()
@@ -818,7 +829,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     //    func retrieveSearchEngine(){
     //        let defaults = UserDefaults.standard
-    //        
+    //
     //    }
     
     func hideDrawerView(){
@@ -886,7 +897,14 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             webView.load(request)
             loadedBookmark = ""
         }
+    }
     
+    func autoCompleteResult(){
+        let urlSearch = textInput.text!.replacingOccurrences(of: " ", with: "+")
+        let url = URL(string: "https://www.google.com/complete/search?client=chrome&q=\(urlSearch)")!
+        print(url)
+    }
+        
         //    //To reduce data save this instead of refetching it every time
         //    func updateAdBlockArray(){
         //        let url = URL(string: "https://hosts.anudeep.me/mirror/adservers.txt")!
@@ -903,16 +921,20 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         //        }
         //        task.resume()
         //    }
+    
+    @objc func textFieldChanged(_ sender: UITextField) {
+        self.autoCompleteResult()
     }
 }
-class Core {
-    static let shared = Core()
-    
-    func isNewUser() -> Bool{
-        return !UserDefaults.standard.bool(forKey: "isNewUser")
+    class Core {
+        static let shared = Core()
+        
+        func isNewUser() -> Bool{
+            return !UserDefaults.standard.bool(forKey: "isNewUser")
+        }
+        
+        func setIsNotNewUser(){
+            UserDefaults.standard.set(true, forKey: "isNewUser")
+        }
     }
-    
-    func setIsNotNewUser(){
-        UserDefaults.standard.set(true, forKey: "isNewUser")
-    }
-}
+
