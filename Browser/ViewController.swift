@@ -13,42 +13,55 @@ protocol BookmarkDelegate {
 
 class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate, UITableViewDataSource, UITableViewDelegate, DrawerViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tab.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let reversedIndex = tab.count - 1 - indexPath.row
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        if tab.count > 0 {
-            cell.textLabel?.text = tab[reversedIndex].title
-            cell.backgroundColor = UIColor.clear
+        if isSearching {
+            return autoComplete.count
+        } else {
+            return tab.count
         }
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        if isSearching {
+            cell.textLabel?.text = autoComplete[indexPath.row]
+        } else {
+            let reversedIndex = tab.count - 1 - indexPath.row
+            if tab.count > 0 {
+                cell.textLabel?.text = tab[reversedIndex].title
+            }
+        }
+        
+        cell.backgroundColor = UIColor.clear
         self.loadBookmark()
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let reversedIndex = tab.count - 1 - indexPath.row
-        if let url = tab[reversedIndex].url {
-            let currentTab = Tab(url: url, title: tab[reversedIndex].title)
-            tab.append(currentTab)
-            webView.load(URLRequest(url: url))
+        if isSearching {
+            let selectedResult = autoComplete[indexPath.row]
+            let selectedResult2 = selectedResult.replacingOccurrences(of: " ", with: "+")
+            let url = URL(string: defaultSearchEngines + selectedResult2)
+            let request = URLRequest(url: url!)
+            webView.load(request)
             tableView.deselectRow(at: indexPath, animated: true)
-            //delete the tab item at select row
-            tab.remove(at: reversedIndex)
             drawerView?.setPosition(.collapsed, animated: true)
+            isSearching = false
+            tableView.reloadData()
+        } else {
+            let reversedIndex = tab.count - 1 - indexPath.row
+            if let url = tab[reversedIndex].url {
+                let currentTab = Tab(url: url, title: tab[reversedIndex].title)
+                tab.append(currentTab)
+                webView.load(URLRequest(url: url))
+                tableView.deselectRow(at: indexPath, animated: true)
+                // Delete the tab item at the selected row
+                tab.remove(at: reversedIndex)
+                drawerView?.setPosition(.collapsed, animated: true)
+            }
         }
     }
-    
-    //delete
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let reversedIndex = tab.count - 1 - indexPath.row
-        if editingStyle == .delete {
-            tab.remove(at: reversedIndex)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            saveData()
-        }
-    }
+
+    var isSearching = false
     
     func didSelectTabView(url: URL) {
         let request = URLRequest(url: url)
@@ -535,6 +548,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     // Trigger the search when the Return key is pressed
     func textFieldShouldReturn(_ textInput: UITextField) -> Bool {
+        isSearching = false
+        tableView.reloadData()
         showWebView()
         textInput.resignFirstResponder() // Dismiss the keyboard
         if let searchText = textInput.text, !searchText.isEmpty {
@@ -558,7 +573,6 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                 let textSearch = searchText.replacingOccurrences(of: " ", with: "+")
                 let textSearch2 = textSearch.replacingOccurrences(of: "-+Google+Search", with: " ")
                 let urlString = "https://www.google.com/search?q=\(textSearch2)"
-                //                autoCompleteResults()
                 if let url = URL(string: urlString) {
                     let request = URLRequest(url: url)
                     DispatchQueue.main.async {
@@ -572,6 +586,19 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         updateNavigationButtons()
         return true
     }
+    
+    //textInput did change change isSearching to true
+    func textFieldDidChangeSelection(_ textInput: UITextField) {
+        if textInput.text == "" {
+            isSearching = false
+            tableView.reloadData()
+            print("isSearching is false")
+        } else {
+            isSearching = true
+            print("isSearching is true")
+        }
+    }
+    
     
     // Go back to the previous web page
     @objc func backButtonTapped() {
@@ -899,11 +926,56 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
     }
     
-    func autoCompleteResult(){
+    func autoCompleteResult() {
+        let text = textInput.text
         let urlSearch = textInput.text!.replacingOccurrences(of: " ", with: "+")
         let url = URL(string: "https://www.google.com/complete/search?client=chrome&q=\(urlSearch)")!
-        print(url)
+
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if let error = error {
+                    print("Error: \(error)")
+                    return
+                }
+                
+                guard let data = data,
+                      let dataString = String(data: data, encoding: .utf8) else {
+                    print("No data or couldn't convert to string.")
+                    return
+                }
+                
+                // Extract the search results
+                if let results = dataString.range(of: "\\[\".*?\"\\]", options: .regularExpression) {
+                    let resultsString = dataString[results]
+                    let resultsArray = resultsString.components(separatedBy: "\",\"")
+                    
+                    var autoComplete = [String]()
+                    
+                    for result in resultsArray {
+                        //clean out the unwanted characters
+                        var cleanedResult = result.trimmingCharacters(in: .whitespacesAndNewlines)
+                        cleanedResult = cleanedResult.replacingOccurrences(of: #"^\["#, with: "", options: .regularExpression)
+                        cleanedResult = cleanedResult.replacingOccurrences(of: #"\]"#, with: "", options: .regularExpression)
+                        cleanedResult = cleanedResult.replacingOccurrences(of: "\"", with: "", options: .regularExpression)
+                        cleanedResult = cleanedResult.replacingOccurrences(of: "\(text!),[", with: "", options: .caseInsensitive)
+                        autoComplete.append(cleanedResult)
+                    }
+                    
+                    // Update the UI
+                    DispatchQueue.main.async {
+                        self.autoComplete = autoComplete
+                        print(self.autoComplete)
+                        print("reload data")
+                        self.isSearching = true
+                        self.tableView.reloadData()
+                    }
+                } else {
+                    print("No results found")
+                }
+            }
+
+        task.resume()
     }
+
         
         //    //To reduce data save this instead of refetching it every time
         //    func updateAdBlockArray(){
