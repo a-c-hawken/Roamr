@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="42f-s0-R2I">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="42f-s0-R2I">
     <device id="retina6_72" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22129"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView tag="-1" contentMode="scaleToFill" allowsBackForwardNavigationGestures="YES" findInteractionEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iQ5-Ip-pqd">
-                                <rect key="frame" x="0.0" y="59" width="430" height="839"/>
+                                <rect key="frame" x="0.0" y="59" width="430" height="816"/>
                                 <gestureRecognizers/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <wkWebViewConfiguration key="configuration">
@@ -34,7 +34,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="NFw-Un-l4B" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="41" id="2W1-Ol-Ech"/>
-                            <constraint firstItem="iQ5-Ip-pqd" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="2f5-Bh-Xyj"/>
+                            <constraint firstItem="iQ5-Ip-pqd" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-23" id="2f5-Bh-Xyj"/>
                             <constraint firstItem="NFw-Un-l4B" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-41" id="EWr-2W-e9w"/>
                             <constraint firstItem="NFw-Un-l4B" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="-77" id="FhS-aS-ZqN"/>
                             <constraint firstAttribute="bottom" secondItem="NFw-Un-l4B" secondAttribute="bottom" constant="-102" id="MfJ-UJ-2Zp"/>
@@ -92,20 +92,20 @@
                             <tableViewSection headerTitle="" id="tqx-CN-Yvy">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="MZB-1j-96D">
-                                        <rect key="frame" x="0.0" y="50" width="430" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="430" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MZB-1j-96D" id="Q8a-UX-Alg">
-                                            <rect key="frame" x="0.0" y="0.0" width="430" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EV6-iP-SKg">
-                                                    <rect key="frame" x="372.33333333333331" y="4" width="49.666666666666686" height="35"/>
+                                                    <rect key="frame" x="372.33333333333331" y="4" width="49.666666666666686" height="35.333333333333336"/>
                                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="filled" title="Set"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Icon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BfV-xX-hmS">
-                                                    <rect key="frame" x="20.000000000000004" y="10.999999999999998" width="32.333333333333343" height="21.333333333333329"/>
+                                                    <rect key="frame" x="20.000000000000004" y="11.000000000000002" width="32.333333333333343" height="21.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -122,7 +122,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="EbZ-LQ-KsN" detailTextLabel="LDS-N6-Fmb" style="IBUITableViewCellStyleValue1" id="Gw7-zZ-76L">
-                                        <rect key="frame" x="0.0" y="93.666667938232422" width="430" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="94" width="430" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gw7-zZ-76L" id="uup-Nb-UCI">
                                             <rect key="frame" x="0.0" y="0.0" width="430" height="43.666667938232422"/>
@@ -134,8 +134,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="0.1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LDS-N6-Fmb">
-                                                    <rect key="frame" x="388.66666666666669" y="11.999999999999998" width="21.333333333333332" height="20.333333333333332"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="1.2.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LDS-N6-Fmb">
+                                                    <rect key="frame" x="374.66666666666669" y="11.999999999999998" width="35.333333333333336" height="20.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
@@ -144,7 +144,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="GgV-zV-Mde" detailTextLabel="Xlr-xt-3K6" style="IBUITableViewCellStyleValue1" id="9hk-cI-NGm">
-                                        <rect key="frame" x="0.0" y="137.33333587646484" width="430" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="137.66666793823242" width="430" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9hk-cI-NGm" id="oIH-QU-lGG">
                                             <rect key="frame" x="0.0" y="0.0" width="430" height="43.666667938232422"/>

@@ -39,12 +39,28 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isSearching {
             let selectedResult = autoComplete[indexPath.row]
+            //if result url
+            if selectedResult.contains("http") {
+                let url = URL(string: selectedResult)
+                let request = URLRequest(url: url!)
+                webView.load(request)
+                tableView.deselectRow(at: indexPath, animated: true)
+                drawerView?.setPosition(.collapsed, animated: true)
+                //dismiss keyboard
+                textInput.resignFirstResponder()
+                isSearching = false
+                tableView.reloadData()
+                return
+            }
             let selectedResult2 = selectedResult.replacingOccurrences(of: " ", with: "+")
             let url = URL(string: defaultSearchEngines + selectedResult2)
             let request = URLRequest(url: url!)
             webView.load(request)
             tableView.deselectRow(at: indexPath, animated: true)
             drawerView?.setPosition(.collapsed, animated: true)
+            //dismiss keyboard
+            textInput.resignFirstResponder()
+            
             isSearching = false
             tableView.reloadData()
         } else {
@@ -60,6 +76,43 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             }
         }
     }
+    
+    //delete
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if isSearching == false {
+            let reversedIndex = tab.count - 1 - indexPath.row
+            let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, nil) in
+                self.tab.remove(at: reversedIndex)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                self.saveData()
+            }
+            let swipe = UISwipeActionsConfiguration(actions: [delete])
+            return swipe
+        } else {
+            return nil
+        }
+    }
+    
+    
+    //swipe left to right to favourite
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if isSearching == false {
+            let reversedIndex = tab.count - 1 - indexPath.row
+            let favourite = UIContextualAction(style: .normal, title: "Favourite") { (action, view, nil) in
+                let url = self.tab[reversedIndex].url
+                let title = self.tab[reversedIndex].title
+                let bookmark = Bookmark(title: title, url: url)
+                self.bookmarks.append(bookmark)
+                self.saveData()
+            }
+            favourite.backgroundColor = UIColor.systemYellow
+            let swipe = UISwipeActionsConfiguration(actions: [favourite])
+            return swipe
+        } else {
+            return nil
+        }
+    }
+    
 
     var isSearching = false
     
@@ -306,11 +359,11 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         progressBar.progress = 0.0
         stopButton.isHidden = true
         
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: tableView.frame.maxY, width: view.frame.width, height: 60))
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: tableView.frame.maxY + 10, width: view.frame.width, height: 80))
         drawerView.addSubview(toolbar)
         
         if bigPhone == false{
-            spacing2 = view.frame.width / 6
+            spacing2 = view.frame.width / 6.2
             print(spacing2)
         } else {
             spacing2 = view.frame.width / 12
@@ -632,6 +685,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             webView.backForwardList.perform(Selector(("_removeAllItems")))
             textInput.text = ""
             if webView.isHidden == false{hideWebView()}
+            tableView.reloadData()
         }
         //        }
     }
@@ -687,6 +741,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         progressBar.setProgress(0.5, animated: true)
+        tableView.reloadData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             if self.progressBar.progress == 0.5 {
                 self.progressBar.setProgress(0.65, animated: true)
