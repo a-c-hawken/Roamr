@@ -523,6 +523,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         }
     }
     func deleteMenu() {
+        self.warningHapticFeedback()
         let alert = UIAlertController(title: "Delete All Data", message: "Would you like to delete all browsing data including; tabs, history, bookmarks, and cache.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
@@ -632,6 +633,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
                         self.webView.load(request)
                         print("Searching", request)
                         self.drawerView?.setPosition(.collapsed, animated: true)
+                        self.hapticFeedback()
                     }
                 }
             }
@@ -657,6 +659,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @objc func backButtonTapped() {
         if webView.canGoBack {
             webView.goBack()
+            self.hapticFeedback()
             print("Go Back")
         }
     }
@@ -664,6 +667,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     @objc func forwardButtonTap(){
         if webView.canGoForward {
             webView.goForward()
+            self.hapticFeedback()
             print("Go Forward")
         }
     }
@@ -672,6 +676,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         if privateMode == true {
             
         } else {
+            self.hapticFeedback()
             cacheWebsite()
             loadAndSetData()
             tableView.reloadData()
@@ -692,6 +697,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     
     @objc func reloadWebView() {
         webView.reload()
+        self.hapticFeedback()
         print("Reload")
     }
     
@@ -980,6 +986,17 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             loadedBookmark = ""
         }
     }
+    
+    func hapticFeedback() {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+    }
+    
+    func warningHapticFeedback() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.warning)
+    }
+    
     
     func autoCompleteResult() {
         let text = textInput.text
